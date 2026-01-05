@@ -1,0 +1,343 @@
+{% schema %}
+  {
+    "name": "Before/After Comparison",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Images"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Before Image (Left)"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "After Image (Right)"
+      },
+      {
+        "type": "header",
+        "content": "Labels"
+      },
+      {
+        "type": "text",
+        "id": "label_1",
+        "label": "Before Label",
+        "default": "Before"
+      },
+      {
+        "type": "text",
+        "id": "label_2",
+        "label": "After Label",
+        "default": "After"
+      },
+      {
+        "type": "header",
+        "content": "Style"
+      },
+      {
+        "type": "range",
+        "id": "section_height",
+        "min": 300,
+        "max": 800,
+        "step": 10,
+        "unit": "px",
+        "label": "Section Height",
+        "default": 600
+      },
+      {
+        "type": "range",
+        "id": "border_radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Corner Radius",
+        "default": 24
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_handle",
+        "label": "Handle Color",
+        "default": "#ffffff"
+      },
+	  {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 36
+      }
+    ],
+    "presets": [
+      {
+        "name": "Before/After Comparison"
+      }
+    ]
+  }
+{% endschema %}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .before-after-container-{{ section.id }} {
+    position: relative;
+    width: calc(100% - 40px);
+    max-width: 1400px;
+    margin: 0 auto;
+    height: {{ section.settings.section_height }}px;
+    border-radius: {{ section.settings.border_radius }}px;
+    overflow: hidden;
+    user-select: none;
+    cursor: col-resize;
+    background-color: #f0f0f0; /* Fallback color */
+  }
+
+  /* Right Image (Background) - After */
+  .before-after__image-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .before-after__image-after img,
+  .before-after__image-after svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* Left Image (Foreground) - Before - Masked */
+  .before-after__image-before-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Initial split */
+    height: 100%;
+    overflow: hidden;
+    border-right: 2px solid {{ section.settings.color_handle }};
+    z-index: 2;
+    will-change: width;
+  }
+
+  .before-after__image-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    /* Width must match container width to prevent squishing */
+    width: 100%; 
+    max-width: 1400px; /* Match container max-width */
+  }
+
+  .before-after__image-before img,
+  .before-after__image-before svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  
+  /* Handle */
+  .before-after__handle {
+    position: absolute;
+    top: 50%;
+    left: 50%; /* Sync with JS initially */
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background-color: {{ section.settings.color_handle }};
+    border-radius: 50%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    pointer-events: none; /* Let clicks pass to container */
+    will-change: left;
+    cursor: col-resize;
+  }
+
+  .before-after__handle-arrow {
+    width: 24px;
+    height: 24px;
+    color: #1a1a1a;
+  }
+
+  /* Labels */
+  .before-after__label {
+    position: absolute;
+    bottom: 20px;
+    padding: 8px 16px;
+    color: {{ section.settings.color_text }};
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .before-after__label--before {
+    left: 20px;
+  }
+  .before-after__label--after {
+    right: 20px;
+  }
+
+  /* Responsive Adjustments */
+  @media screen and (max-width: 750px) {
+    .before-after-container-{{ section.id }} {
+      height: 400px; /* Smaller height on mobile */
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding">
+  <div class="before-after-container-{{ section.id }}" id="BeforeAfter-{{ section.id }}">
+    
+    <!-- Background (After) -->
+    <div class="before-after__image-after">
+      {%- if section.settings.image_2 != blank -%}
+        {{ section.settings.image_2 | image_url: width: 2000 | image_tag: loading: 'lazy' }}
+      {%- else -%}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+
+    <!-- Foreground (Before) -->
+    <div class="before-after__image-before-wrapper" id="BeforeWrapper-{{ section.id }}">
+       <!-- Inner div creates the full image context to avoid squish -->
+       <div class="before-after__image-before" id="BeforeImage-{{ section.id }}">
+         {%- if section.settings.image_1 != blank -%}
+           {{ section.settings.image_1 | image_url: width: 2000 | image_tag: loading: 'lazy' }}
+         {%- else -%}
+           {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+         {%- endif -%}
+       </div>
+    </div>
+
+    <div class="before-after__handle" id="Handle-{{ section.id }}">
+      <svg class="before-after__handle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 7v10"/>
+        <path d="M12 7v10"/>
+        <path d="M16 7v10"/>
+      </svg>
+    </div>
+
+    <!-- Labels -->
+    {%- if section.settings.label_1 != blank -%}
+      <div class="before-after__label before-after__label--before">{{ section.settings.label_1 }}</div>
+    {%- endif -%}
+    {%- if section.settings.label_2 != blank -%}
+      <div class="before-after__label before-after__label--after">{{ section.settings.label_2 }}</div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('BeforeAfter-{{ section.id }}');
+    const wrapper = document.getElementById('BeforeWrapper-{{ section.id }}');
+    const innerImage = document.getElementById('BeforeImage-{{ section.id }}');
+    const handle = document.getElementById('Handle-{{ section.id }}');
+
+    let isDragging = false;
+
+    function updateSlider(x) {
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      let position = x - rect.left;
+      
+      // Clamp
+      if (position < 0) position = 0;
+      if (position > rect.width) position = rect.width;
+
+      const percentage = (position / rect.width) * 100;
+
+      if(wrapper) wrapper.style.width = percentage + '%';
+      if(handle) handle.style.left = percentage + '%';
+    }
+
+    // Sync inner image width with container width to maintain aspect ratio logic
+    function syncDimensions() {
+       if(container && innerImage) {
+          innerImage.style.width = container.offsetWidth + 'px';
+       }
+    }
+
+    // Initial sync
+    syncDimensions();
+    // Re-sync after images load
+    window.addEventListener('load', syncDimensions);
+    window.addEventListener('resize', syncDimensions);
+
+    // Mouse Events
+    if (container) {
+      container.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        updateSlider(e.clientX);
+      });
+
+      window.addEventListener('mouseup', function() {
+        isDragging = false;
+      });
+
+      window.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        updateSlider(e.clientX);
+      });
+
+      // Touch Events
+      container.addEventListener('touchstart', function(e) {
+        isDragging = true;
+        updateSlider(e.touches[0].clientX);
+      }, {passive: true});
+
+      window.addEventListener('touchend', function() {
+        isDragging = false;
+      });
+
+      window.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        updateSlider(e.touches[0].clientX);
+      }, {passive: true});
+    }
+  });
+</script>

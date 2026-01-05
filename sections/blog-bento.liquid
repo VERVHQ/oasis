@@ -66,6 +66,10 @@
       grid-template-columns: repeat(3, 1fr);
       grid-auto-rows: 450px; /* Fixed height for consistency */
     }
+
+    .blog-span-1 { grid-column: span 1; }
+    .blog-span-2 { grid-column: span 2; }
+    .blog-span-3 { grid-column: span 3; }
     
     .blog-bento__subtitle {
        font-size: 1.4rem;
@@ -103,9 +107,7 @@
   }
 
   /* Column Spanning Classes */
-  .blog-span-1 { grid-column: span 1; }
-  .blog-span-2 { grid-column: span 2; }
-  .blog-span-3 { grid-column: span 3; }
+  /* Column Spanning Classes handled in media query */
 
   /* Background Image */
   .blog-card__bg {

@@ -18,6 +18,11 @@
     padding-right: 20px;
   }
 
+  .about-oasis-background {
+    width: 100%;
+    background-color: {{ section.settings.section_background }};
+  }
+
   /* Main Container */
   .about-oasis {
     display: flex;
@@ -120,7 +125,8 @@
   }
 {%- endstyle -%}
 
-<div class="about-oasis-wrapper section-{{ section.id }}-padding">
+<div class="about-oasis-background section-{{ section.id }}-padding">
+  <div class="about-oasis-wrapper">
   <div class="about-oasis">
     
     <!-- Content (Left on Desktop, Bottom on Mobile) -->
@@ -147,11 +153,18 @@
 
   </div>
 </div>
+</div>
 
 {% schema %}
 {
   "name": "About Oasis",
   "settings": [
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
     {
       "type": "header",
       "content": "Image"

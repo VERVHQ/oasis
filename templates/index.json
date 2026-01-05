@@ -76,7 +76,7 @@
       "settings": {
         "bg_color": "#1a1a1a",
         "text_color": "#ffffff",
-        "icon_color": "#E7C17D",
+        "icon_color": "#e7c17d",
         "card_bg_color": "#272727",
         "padding_top": 0,
         "padding_bottom": 0
@@ -136,7 +136,7 @@
       "name": "Products Collection (Bento)",
       "settings": {
         "heading": "Our Collection",
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "text_color": "#1a1a1a",
         "card_text_color": "#ffffff",
         "padding_top": 36,
@@ -177,7 +177,7 @@
       "settings": {
         "bg_color": "#272727",
         "text_color": "#ffffff",
-        "icon_color": "#E7C17D",
+        "icon_color": "#e7c17d",
         "speed": 31,
         "pause_on_hover": true,
         "padding_top": 20,
@@ -188,6 +188,7 @@
       "type": "about-oasis",
       "name": "About Oasis",
       "settings": {
+        "section_background": "#f8f8f5",
         "image": "shopify://shop_images/a-nice-plant-placed-in-a-minimal-white-kitchen-counter-top-in-daylight-scene.png",
         "section_height": 600,
         "heading": "About Oasis",
@@ -284,7 +285,7 @@
       ],
       "name": "Review Cards",
       "settings": {
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "scroll_speed": 40,
         "padding_top": 60,
         "padding_bottom": 60,
@@ -305,7 +306,7 @@
             "custom_author": "",
             "custom_url": "",
             "btn_text": "Read More",
-            "btn_bg_color": "#EF4444",
+            "btn_bg_color": "#ef4444",
             "btn_text_color": "#ffffff"
           }
         },
@@ -319,7 +320,7 @@
             "custom_author": "",
             "custom_url": "",
             "btn_text": "Read More",
-            "btn_bg_color": "#EF4444",
+            "btn_bg_color": "#ef4444",
             "btn_text_color": "#ffffff"
           }
         },
@@ -333,7 +334,7 @@
             "custom_author": "Jane Copper",
             "custom_url": "",
             "btn_text": "Read More",
-            "btn_bg_color": "#EF4444",
+            "btn_bg_color": "#ef4444",
             "btn_text_color": "#ffffff"
           }
         },
@@ -347,7 +348,7 @@
             "custom_author": "Jane Copper",
             "custom_url": "",
             "btn_text": "Read More",
-            "btn_bg_color": "#EF4444",
+            "btn_bg_color": "#ef4444",
             "btn_text_color": "#ffffff"
           }
         },
@@ -361,7 +362,7 @@
             "custom_author": "Oasis Team",
             "custom_url": "",
             "btn_text": "Read More",
-            "btn_bg_color": "#EF4444",
+            "btn_bg_color": "#ef4444",
             "btn_text_color": "#ffffff"
           }
         }
@@ -379,7 +380,7 @@
         "subtitle": "The latest and best blogs you can ever find",
         "heading_color": "#1a1a1a",
         "text_color": "#4b5563",
-        "bg_color": "#ffffff",
+        "bg_color": "#f8f8f5",
         "padding_top": 60,
         "padding_bottom": 60,
         "margin_top": 0,
