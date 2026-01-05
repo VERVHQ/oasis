@@ -386,6 +386,22 @@
         "margin_top": 0,
         "margin_bottom": 0
       }
+    },
+    "before_after_pWTiJ6": {
+      "type": "before-after",
+      "name": "Before/After Comparison",
+      "settings": {
+        "image_1": "shopify://shop_images/a-nice-expensive-looking-plant-placed-in-a-minimal-counter-top-in-a-living-room.png",
+        "image_2": "shopify://shop_images/Eat_Fresh_Everyday_01.png",
+        "label_1": "Before",
+        "label_2": "After",
+        "section_height": 600,
+        "border_radius": 24,
+        "color_text": "#ffffff",
+        "color_handle": "#ffffff",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -395,6 +411,7 @@
     "loop_ticker_Y3Letz",
     "about_oasis_aEKGMK",
     "review_cards_7abc8Y",
-    "blog_bento_Xypbir"
+    "blog_bento_Xypbir",
+    "before_after_pWTiJ6"
   ]
 }
