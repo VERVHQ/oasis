@@ -67,7 +67,7 @@
     left: 0;
     width: 100%;
     height: {{ section.settings.gradient_height }}%;
-    background: linear-gradient(to top, {{ section.settings.gradient_color }}, transparent);
+    background: linear-gradient(to top, {{ section.settings.gradient_color | color_modify: 'alpha', opacity_decimal }}, transparent);
     z-index: 2;
     pointer-events: none;
   }
@@ -231,6 +231,7 @@
       width: 100%; /* Full width button on mobile */
     }
   }
+  {%- assign opacity_decimal = section.settings.gradient_opacity | divided_by: 100.0 -%}
 {%- endstyle -%}
 
 <div class="hero-slider section-{{ section.id }}-padding" data-slider-id="{{ section.id }}">
@@ -382,6 +383,16 @@
       "unit": "%",
       "label": "Gradient Height/Distance",
       "default": 50
+    },
+    {
+      "type": "range",
+      "id": "gradient_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Gradient Opacity",
+      "default": 70
     }
   ],
   "blocks": [
