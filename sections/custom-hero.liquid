@@ -3,6 +3,7 @@
     padding-top: 0;
     padding-bottom: 0;
   }
+  {%- assign opacity_decimal = section.settings.gradient_opacity | divided_by: 100.0 -%}
 
   .hero-slider {
     position: relative;
@@ -231,7 +232,6 @@
       width: 100%; /* Full width button on mobile */
     }
   }
-  {%- assign opacity_decimal = section.settings.gradient_opacity | divided_by: 100.0 -%}
 {%- endstyle -%}
 
 <div class="hero-slider section-{{ section.id }}-padding" data-slider-id="{{ section.id }}">
