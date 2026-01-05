@@ -58,6 +58,18 @@
     background: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
     z-index: 2;
     pointer-events: none;
+
+  }
+
+  .hero-slide__gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: {{ section.settings.gradient_height }}%;
+    background: linear-gradient(to top, {{ section.settings.gradient_color }}, transparent);
+    z-index: 2;
+    pointer-events: none;
   }
 
   .hero-slide__content-wrapper {
@@ -254,6 +266,7 @@
         {%- endif -%}
 
         <div class="hero-slide__overlay"></div>
+        <div class="hero-slide__gradient"></div>
 
         <div class="hero-slide__content-wrapper">
           <div class="hero-slide__bottom-row">
@@ -349,6 +362,26 @@
       "unit": "%",
       "label": "Image Overlay Opacity",
       "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Gradient Settings"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color",
+      "label": "Gradient Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "gradient_height",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Gradient Height/Distance",
+      "default": 50
     }
   ],
   "blocks": [
