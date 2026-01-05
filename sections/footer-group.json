@@ -11,6 +11,60 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "new_footer_JbL4x7": {
+      "type": "new-footer",
+      "blocks": {
+        "footer_column_iUPfcp": {
+          "type": "footer_column",
+          "settings": {
+            "heading": "Solutions",
+            "menu": "main-menu"
+          }
+        },
+        "footer_column_6DdyDk": {
+          "type": "footer_column",
+          "settings": {
+            "heading": "Company",
+            "menu": "footer"
+          }
+        },
+        "footer_column_xxf9LT": {
+          "type": "footer_column",
+          "settings": {
+            "heading": "Resources",
+            "menu": ""
+          }
+        }
+      },
+      "block_order": [
+        "footer_column_iUPfcp",
+        "footer_column_6DdyDk",
+        "footer_column_xxf9LT"
+      ],
+      "name": "New Footer (REORC)",
+      "settings": {
+        "bg_color": "#0a0a0a",
+        "bg_image_opacity": 100,
+        "overlay_opacity": 0,
+        "divider_color": "#333333",
+        "padding_top": 60,
+        "padding_bottom": 40,
+        "text_color": "#ffffff",
+        "heading_font_size": 18,
+        "link_font_size": 14,
+        "copyright_font_size": 12,
+        "logo_image": "shopify://shop_images/Oasis0-light_bg.svg",
+        "logo_width": 280,
+        "badge_width": 80,
+        "copyright_text": "<p>2026 © Oasis Inc. All Rights Reserved</p>",
+        "copyright_color": "#888888",
+        "social_twitter_link": "",
+        "social_facebook_link": "",
+        "social_instagram_link": "",
+        "social_linkedin_link": "",
+        "social_youtube_link": ""
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -18,7 +72,7 @@
           "type": "link_list",
           "settings": {
             "heading": "Quick links",
-            "menu": "footer"
+            "menu": "main-menu"
           }
         },
         "footer-1": {
@@ -32,7 +86,7 @@
           "type": "text",
           "settings": {
             "heading": "Our mission",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+            "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>"
           }
         }
       },
@@ -41,10 +95,12 @@
         "footer-1",
         "footer-2"
       ],
+      "disabled": true,
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
         "newsletter_enable": true,
         "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": false,
         "enable_language_selector": false,
@@ -57,6 +113,7 @@
     }
   },
   "order": [
+    "new_footer_JbL4x7",
     "footer"
   ]
 }
