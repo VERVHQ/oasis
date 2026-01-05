@@ -1,0 +1,245 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .bento-grid {
+    background-color: {{ section.settings.bg_color }};
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .bento-grid__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media screen and (min-width: 900px) {
+    .bento-grid__container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    /* Dynamically span the last card if it's an odd child (meaning total count is odd in 2-col grid) */
+    .bento-card:last-child:nth-child(odd) {
+      grid-column: span 2;
+      aspect-ratio: 21 / 9; /* Wider feel for the full width card */
+    }
+  }
+
+  .bento-header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: {{ section.settings.text_color }};
+  }
+  
+  .bento-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .bento-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #f0f0f0; /* Fallback */
+    aspect-ratio: 16 / 9; /* Default aspect ratio */
+    text-decoration: none;
+    display: block;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  @media screen and (min-width: 900px) {
+     /* Make 5th card slightly shorter/wider aspect if intended, or keep uniform */
+     .bento-card:nth-child(5) {
+        aspect-ratio: 21 / 9; /* Wider feel for the full width card */
+     }
+  }
+
+  .bento-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .bento-card__image-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bento-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  /* Hover Zoom Effect */
+  .bento-card:hover .bento-card__image {
+    transform: scale(1.05);
+  }
+
+  .bento-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: #fff;
+    pointer-events: none; /* Let clicks pass to the anchor */
+  }
+
+  .bento-card__heading {
+    margin: 0;
+    font-size: calc(1.8rem + 2px);
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    color: {{ section.settings.card_text_color }};
+  }
+{%- endstyle -%}
+
+<div class="bento-grid section-{{ section.id }}-padding">
+  {%- if section.settings.heading != blank -%}
+    <div class="bento-header">
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+  {%- endif -%}
+
+  <div class="bento-grid__container" id="BentoGrid-{{ section.id }}">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.link | default: '#' }}" class="bento-card" style="transition-delay: {{ forloop.index | times: 100 }}ms;">
+        <div class="bento-card__image-wrapper">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'bento-card__image' }}
+          {%- else -%}
+            {{ 'collection-1' | placeholder_svg_tag: 'bento-card__image' }}
+          {%- endif -%}
+        </div>
+        <div class="bento-card__overlay">
+          <h3 class="bento-card__heading">{{ block.settings.heading | escape }}</h3>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.bento-card').forEach(card => {
+            card.classList.add('visible');
+          });
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const section = document.querySelector('#BentoGrid-{{ section.id }}');
+    if (section) observer.observe(section);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Products Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Our Collection"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bento_card",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Collection Name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products Collection (Bento)",
+      "blocks": [
+        { "type": "bento_card", "settings": { "heading": "Vegetables & Herbs" } },
+        { "type": "bento_card", "settings": { "heading": "Vegetables & Herbs" } },
+        { "type": "bento_card", "settings": { "heading": "Ornamental Plants" } },
+        { "type": "bento_card", "settings": { "heading": "Ornamental Plants" } },
+        { "type": "bento_card", "settings": { "heading": "Plant Care" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

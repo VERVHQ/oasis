@@ -1,0 +1,201 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .feature-cards {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  .feature-cards__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Reduced gap since cards have padding */
+    justify-content: space-around;
+    align-items: stretch; /* Stretch to fill width */
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  @media screen and (min-width: 900px) {
+    .feature-cards__wrapper {
+      flex-direction: row;
+      gap: 20px;
+      padding: 80px 40px;
+    }
+  }
+
+  .feature-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    background-color: {{ section.settings.card_bg_color }};
+    padding: 50px 30px; /* Increased vertical padding for more height */
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Very light shadow */
+    width: 100%;
+    min-height: 160px; /* Ensure substantial height */
+  }
+
+  .feature-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .feature-card__icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    color: {{ section.settings.icon_color }};
+  }
+
+  .feature-card__icon svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 1.5;
+  }
+
+  .feature-card__text {
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+{%- endstyle -%}
+
+<div class="feature-cards section-{{ section.id }}-padding">
+  <div class="feature-cards__wrapper" id="FeatureCards-{{ section.id }}">
+    {%- for block in section.blocks -%}
+      <div class="feature-card" style="transition-delay: {{ forloop.index | times: 150 }}ms;">
+        <div class="feature-card__icon">
+          {%- if block.settings.svg_code != blank -%}
+            {{ block.settings.svg_code }}
+          {%- elsif block.settings.image_icon != blank -%}
+            {{ block.settings.image_icon | image_url: width: 100 | image_tag: loading: 'lazy', class: 'custom-icon-image' }}
+          {%- else -%}
+             <!-- Fallback or empty -->
+          {%- endif -%}
+        </div>
+        <div class="feature-card__text">
+          {{ block.settings.text }}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.feature-card').forEach(card => {
+            card.classList.add('visible');
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+
+    const section = document.querySelector('#FeatureCards-{{ section.id }}');
+    if (section) observer.observe(section);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Feature Cards",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#E7C17D"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#272727"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Feature Card",
+      "settings": [
+        {
+          "type": "html",
+          "id": "svg_code",
+          "label": "SVG Icon Code",
+          "info": "Paste SVG code (starts with <svg>). Overrides image."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Image Icon (PNG/JPG)"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Feature description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Cards",
+      "blocks": [
+        { "type": "card", "settings": { "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"></circle><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"></line><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"></line><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"></line><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"></line><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"></line><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"></line><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"></line><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"></line></svg>", "text": "Full Spectrum Healthy Growth" } },
+        { "type": "card", "settings": { "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 18h6\"></path><path d=\"M10 22h4\"></path><path d=\"M15.09 14c.18-.9.95-1.59 1.91-1.7 1-.1 1.95.44 2.37 1.33.24.52.3 1.11.16 1.67-.14 0.56-.46 1.05-.9 1.4-1 .8-2.6 1.3-4.5 1.3-1.9 0-3.5-.5-4.5-1.3-.44-.35-.76-.84-.9-1.4-.14-.56-.08-1.15.16-1.67.42-.89 1.37-1.43 2.37-1.33.96.11 1.73.8 1.91 1.7z\" transform=\"translate(0 -2)\"></path><path d=\"M12 2v4\"></path><path d=\"M4.2 4.2l2.8 2.8\"></path><path d=\"M19.8 4.2l-2.8 2.8\"></path><path d=\"M23 11h-4\"></path><path d=\"M5 11H1\"></path></svg>", "text": "Neutral White Light No Glare" } },
+        { "type": "card", "settings": { "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z\"></path></svg>", "text": "Easy Installation Everything Included" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,495 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .section-{{ section.id }}-margin {
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .section-{{ section.id }}-margin {
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  }
+
+  .review-ticker-section {
+    background-color: {{ section.settings.bg_color }};
+    width: 100%;
+    position: relative;
+    display: block; 
+    overflow: hidden;
+  }
+
+  /* Container */
+  .review-section-container {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Header */
+  .review-main-header {
+    text-align: center;
+    max-width: 800px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+  }
+
+  .review-main-header h2 {
+    font-size: 3rem; 
+    line-height: 1.1;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 20px 0;
+    letter-spacing: -1px;
+    font-family: var(--font-heading-family);
+  }
+
+  .review-subtitle {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #444;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  @media screen and (min-width: 750px) {
+    .review-main-header h2 {
+      font-size: 3.8rem;
+    }
+    .review-subtitle {
+      font-size: 1.9rem;
+    }
+  }
+
+  /* ========================================
+     SINGLE ROW TICKER LAYOUT
+     ======================================== */
+  .review-rows-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .review-row {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0;
+  }
+
+  .review-ticker__track {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    /* Scrolls LEFT */
+    animation: scrollLeft {{ section.settings.scroll_speed }}s linear infinite;
+  }
+
+  .review-ticker__track:hover {
+    animation-play-state: paused !important;
+  }
+
+  @keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ========================================
+     HORIZONTAL CARD DESIGN
+     ======================================== */
+  .review-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px; /* Spacious padding */
+    width: 380px;  /* Narrower width */
+    min-height: 220px; /* Taller */
+    flex-shrink: 0;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: none; /* No shadow by default */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Shadow only on hover */
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Avatar */
+  .review-card__avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .review-card__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .review-card__avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.4rem;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  }
+
+  /* Content */
+  .review-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Header Row: Name + Google Badge */
+  .review-card__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* Increased Font Size */
+  .review-card__name {
+    font-weight: 800;
+    font-size: 1.4rem; /* Increased from 1.25rem */
+    color: #111827;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .review-card__google-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #f3f4f6;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #4285f4;
+    font-weight: 600;
+  }
+
+  .review-card__google-badge svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Stars */
+  .review-card__stars {
+    display: flex;
+    gap: 3px;
+  }
+
+  .review-card__stars svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .review-card__stars svg.star-filled {
+    color: #fbbf24;
+    fill: currentColor;
+  }
+
+  .review-card__stars svg.star-empty {
+    color: #d1d5db;
+    fill: currentColor;
+  }
+
+  /* Title */
+  .review-card__title {
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: #1f2937;
+    margin: 4px 0 0 0;
+    line-height: 1.4;
+  }
+
+  /* Body - Increased Font Size */
+  .review-card__body {
+    font-size: 1.25rem; /* Increased from 1.1rem */
+    line-height: 1.5;
+    color: #374151;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Location / Product */
+  .review-card__location {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+
+  /* Rise-up Animation */
+  .review-ticker-section.animate--slide-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .review-ticker-section.animate--slide-in.animate--active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+{%- endstyle -%}
+
+<div class="review-ticker-section section-{{ section.id }}-padding section-{{ section.id }}-margin{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  {% if settings.animations_reveal_on_scroll %}data-cascade{% endif %}>
+  <div class="review-section-container">
+    
+    <!-- Centered Header -->
+    <div class="review-main-header">
+      <h2>Real Reviews,<br>Shop with Confidence</h2>
+      <p class="review-subtitle">What our customers are saying</p>
+    </div>
+
+    <!-- Single Row Ticker -->
+    <div class="review-rows-container">
+      
+      <div class="review-row">
+        <div class="review-ticker__track">
+          
+          {%- comment -%}
+            LOOP LOGIC: Create 2 Halves. Inside each half, duplicate blocks enough times
+            to guarantee width > screen size (prevent flickering).
+          {%- endcomment -%}
+
+          {%- assign repeat_block_count = 1 -%}
+          {%- if section.blocks.size < 4 -%}
+             {%- assign repeat_block_count = 6 -%}
+          {%- elsif section.blocks.size < 8 -%}
+             {%- assign repeat_block_count = 3 -%}
+          {%- endif -%}
+
+          {%- for halves in (1..2) -%} 
+            {%- for reps in (1..repeat_block_count) -%}
+              {%- for block in section.blocks -%}
+                <div class="review-card" {{ block.shopify_attributes }}>
+                  <!-- Avatar -->
+                  <div class="review-card__avatar">
+                    {%- if block.settings.image != blank -%}
+                      {{ block.settings.image | image_url: width: 150 | image_tag: loading: 'lazy' }}
+                    {%- else -%}
+                      {%- assign initial = block.settings.name | slice: 0 | upcase | default: 'U' -%}
+                      <div class="review-card__avatar-placeholder">{{ initial }}</div>
+                    {%- endif -%}
+                  </div>
+
+                  <!-- Content -->
+                  <div class="review-card__content">
+                    <!-- Header: Name + Google Badge -->
+                    <div class="review-card__header">
+                      <h4 class="review-card__name">{{ block.settings.name }}</h4>
+                      {%- if block.settings.is_google_review -%}
+                        <span class="review-card__google-badge">
+                          <svg viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                          Google
+                        </span>
+                      {%- endif -%}
+                    </div>
+
+                    <!-- Stars -->
+                    <div class="review-card__stars">
+                      {%- for star in (1..5) -%}
+                        {%- if star <= block.settings.rating -%}
+                          <svg class="star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        {%- else -%}
+                          <svg class="star-empty" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+
+                    <!-- Title -->
+                    {%- if block.settings.review_title != blank -%}
+                      <h5 class="review-card__title">{{ block.settings.review_title }}</h5>
+                    {%- endif -%}
+
+                    <!-- Body -->
+                    <p class="review-card__body">{{ block.settings.review_body }}</p>
+
+                    <!-- Location / Product -->
+                    {%- if block.settings.location_or_product != blank -%}
+                      <span class="review-card__location">{{ block.settings.location_or_product }}</span>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+    </div>
+        
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Review Cards",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Scroll Settings"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "s",
+      "label": "Scroll Speed",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Reviewer Avatar"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Reviewer Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star Rating",
+          "default": 5
+        },
+        {
+          "type": "checkbox",
+          "id": "is_google_review",
+          "label": "Google Review",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "review_title",
+          "label": "Review Title",
+          "default": "Great Product!"
+        },
+        {
+          "type": "textarea",
+          "id": "review_body",
+          "label": "Review Content",
+          "default": "Outstanding customer experience! Will definitely be ordering again. The quality exceeded my expectations."
+        },
+        {
+          "type": "text",
+          "id": "location_or_product",
+          "label": "Location or Product",
+          "default": "New York, USA"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review Cards",
+      "blocks": [
+        { "type": "review", "settings": { "name": "Guy Hawkins", "review_title": "Exceptional Quality", "review_body": "Impressed by the professionalism and attention to detail. The product arrived quickly and was exactly as described.", "location_or_product": "Los Angeles, CA", "rating": 5, "is_google_review": true } },
+        { "type": "review", "settings": { "name": "Karla Lynn", "review_title": "Highly Recommend!", "review_body": "A seamless experience from start to finish. Customer service was responsive and helpful throughout.", "location_or_product": "Chicago, IL", "rating": 5, "is_google_review": false } },
+        { "type": "review", "settings": { "name": "Jane Cooper", "review_title": "Life Changing", "review_body": "Reliable and trustworthy. Made my life so much easier! I've already recommended this to all my friends.", "location_or_product": "Miami, FL", "rating": 5, "is_google_review": true } },
+        { "type": "review", "settings": { "name": "Michael B.", "review_title": "Great Value", "review_body": "Solid build quality and very easy to set up. The price point is fantastic for what you get.", "location_or_product": "Seattle, WA", "rating": 4, "is_google_review": false } },
+        { "type": "review", "settings": { "name": "Sarah Johnson", "review_title": "Perfect Purchase", "review_body": "Exactly what I was looking for. Fast shipping and the packaging was secure. Will buy again!", "location_or_product": "Austin, TX", "rating": 5, "is_google_review": true } },
+        { "type": "review", "settings": { "name": "David Chen", "review_title": "Exceeded Expectations", "review_body": "Better than expected! The quality is top-notch and the customer support team was incredibly helpful.", "location_or_product": "San Francisco, CA", "rating": 5, "is_google_review": false } }
+      ]
+    }
+  ]
+}
+{% endschema %}

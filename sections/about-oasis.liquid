@@ -1,0 +1,297 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .about-oasis-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Main Container */
+  .about-oasis {
+    display: flex;
+    flex-direction: column-reverse; /* Mobile: Image on top (visual), Text on bottom */
+    width: 100%;
+    /* No background color on the container, cleaner look */
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .about-oasis {
+      flex-direction: row; /* Desktop: Text Left, Image Right */
+      align-items: stretch; /* vital for full height image */
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+      min-height: {{ section.settings.section_height }}px; /* User controlled minimum height */
+    }
+  }
+
+  /* Left Side: Text Content */
+  .about-oasis__content {
+    flex: 1;
+    padding: 40px 0; /* Vertical padding on mobile */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center text */
+    align-items: flex-start; /* Left align text */
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .about-oasis__content {
+      width: 50%;
+      padding: 0 60px 0 0; /* Padding right to separate from image */
+    }
+  }
+
+  /* Right Side: Image Container */
+  .about-oasis__image-container {
+    flex: 1;
+    width: 100%;
+    min-height: 300px; /* Minimum height for mobile image */
+    position: relative;
+    border-radius: 24px; /* The requested rounded corners */
+    overflow: hidden; /* Clips the image to the corners */
+  }
+
+  @media screen and (min-width: 750px) {
+    .about-oasis__image-container {
+      width: 50%;
+      height: auto; /* Let flex-stretch handle the height */
+      min-height: 100%;
+    }
+  }
+
+  /* Image & Placeholder Styling */
+  .about-oasis__image,
+  .about-oasis__image-container svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image/svg covers the area without distortion */
+    object-position: center;
+    display: block;
+    position: absolute; /* Lock to container size */
+    top: 0;
+    left: 0;
+  }
+  
+  /* Placeholder specific specific to ensure it fills background */
+  .about-oasis__image-container svg {
+    background-color: #f0f0f0; 
+  }
+
+  /* Typography */
+  .about-oasis__heading {
+    margin: 0 0 24px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    letter-spacing: -0.02em;
+  }
+
+  .about-oasis__text {
+    margin: 0;
+    line-height: 1.6;
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.text_size_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .about-oasis__heading {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+    }
+    .about-oasis__text {
+      font-size: {{ section.settings.text_size_desktop }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="about-oasis-wrapper section-{{ section.id }}-padding">
+  <div class="about-oasis">
+    
+    <!-- Content (Left on Desktop, Bottom on Mobile) -->
+    <div class="about-oasis__content" data-aos="fade-up">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="about-oasis__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="about-oasis__text">
+          {{ section.settings.text | newline_to_br }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Image (Right on Desktop, Top on Mobile) -->
+    <div class="about-oasis__image-container" data-aos="fade-left">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1500 | image_tag: loading: 'lazy', class: 'about-oasis__image' }}
+      {%- else -%}
+        <!-- Placeholder logic that fills the container -->
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'about-oasis__image' }}
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Oasis",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Feature Image"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 400,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "label": "Minimum Height (Desktop)",
+      "default": 600
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "About Oasis"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Subheading / Text",
+      "default": "The company was established in 2016 in the early days of LED grow lighting development. The oasis team have 10 years experience combining horticultural and engineering knowledge to produce the best growlight solutions for you."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Subheading Color",
+      "default": "#4a4a4a"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 24,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size (Desktop)",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Size (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Size (Desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Size (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Oasis"
+    }
+  ]
+}
+{% endschema %}

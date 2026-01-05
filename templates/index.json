@@ -1,0 +1,399 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_hero_pDAnDn": {
+      "type": "custom-hero",
+      "blocks": {
+        "slide_bjaRWJ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-nice-expensive-looking-plant-placed-in-a-minimal-counter-top-in-a-living-room.png",
+            "heading": "TRIPOD STAND WITH REMOTE CONTROL",
+            "text": "Adjustable height for all plant stages.",
+            "button_label": "SHOP",
+            "button_link": ""
+          }
+        },
+        "slide_EenXx7": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Eat_Fresh_Everyday_01.png",
+            "heading": "TRIPOD STAND WITH REMOTE CONTROL",
+            "text": "Adjustable height for all plant stages.",
+            "button_label": "SHOP",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_bjaRWJ",
+        "slide_EenXx7"
+      ],
+      "name": "Full Screen Hero Slider",
+      "settings": {
+        "overlay_opacity": 30
+      }
+    },
+    "feature_cards_wX7Lga": {
+      "type": "feature-cards",
+      "blocks": {
+        "card_cfiA8e": {
+          "type": "card",
+          "settings": {
+            "svg_code": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"></circle><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"></line><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"></line><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"></line><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"></line><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"></line><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"></line><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"></line><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"></line></svg>",
+            "text": "Full Spectrum Healthy Growth"
+          }
+        },
+        "card_yq7QPT": {
+          "type": "card",
+          "settings": {
+            "svg_code": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 18h6\"></path><path d=\"M10 22h4\"></path><path d=\"M15.09 14c.18-.9.95-1.59 1.91-1.7 1-.1 1.95.44 2.37 1.33.24.52.3 1.11.16 1.67-.14 0.56-.46 1.05-.9 1.4-1 .8-2.6 1.3-4.5 1.3-1.9 0-3.5-.5-4.5-1.3-.44-.35-.76-.84-.9-1.4-.14-.56-.08-1.15.16-1.67.42-.89 1.37-1.43 2.37-1.33.96.11 1.73.8 1.91 1.7z\" transform=\"translate(0 -2)\"></path><path d=\"M12 2v4\"></path><path d=\"M4.2 4.2l2.8 2.8\"></path><path d=\"M19.8 4.2l-2.8 2.8\"></path><path d=\"M23 11h-4\"></path><path d=\"M5 11H1\"></path></svg>",
+            "text": "Neutral White Light No Glare"
+          }
+        },
+        "card_LAMWx3": {
+          "type": "card",
+          "settings": {
+            "svg_code": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z\"></path></svg>",
+            "text": "Easy Installation Everything Included"
+          }
+        }
+      },
+      "block_order": [
+        "card_cfiA8e",
+        "card_yq7QPT",
+        "card_LAMWx3"
+      ],
+      "name": "Feature Cards",
+      "settings": {
+        "bg_color": "#1a1a1a",
+        "text_color": "#ffffff",
+        "icon_color": "#E7C17D",
+        "card_bg_color": "#272727",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "bento_grid_HDbmej": {
+      "type": "bento-grid",
+      "blocks": {
+        "bento_card_A4NYEM": {
+          "type": "bento_card",
+          "settings": {
+            "image": "shopify://shop_images/Eat_Fresh_Everyday2.png",
+            "heading": "Collection Name",
+            "link": ""
+          }
+        },
+        "bento_card_t3GtDw": {
+          "type": "bento_card",
+          "settings": {
+            "image": "shopify://shop_images/Show_Them_Off_02.png",
+            "heading": "Vegetables & Herbs",
+            "link": ""
+          }
+        },
+        "bento_card_BUr4eh": {
+          "type": "bento_card",
+          "settings": {
+            "image": "shopify://shop_images/a-nice-plant-placed-in-a-minimal-white-kitchen-counter-top-in-daylight-scene.png",
+            "heading": "Vegetables & Herbs",
+            "link": ""
+          }
+        },
+        "bento_card_K7BbCi": {
+          "type": "bento_card",
+          "settings": {
+            "image": "shopify://shop_images/a-nice-expensive-looking-plant-placed-in-a-minimal-counter-top-in-a-living-room.png",
+            "heading": "Ornamental Plants",
+            "link": ""
+          }
+        },
+        "bento_card_Fx9R4r": {
+          "type": "bento_card",
+          "settings": {
+            "image": "shopify://shop_images/MIGRO_SEEDLING_ANIMATION_4K_FINAL.mp4.00_00_16_01.Still002.png",
+            "heading": "Ornamental Plants",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "bento_card_A4NYEM",
+        "bento_card_t3GtDw",
+        "bento_card_BUr4eh",
+        "bento_card_K7BbCi",
+        "bento_card_Fx9R4r"
+      ],
+      "name": "Products Collection (Bento)",
+      "settings": {
+        "heading": "Our Collection",
+        "bg_color": "#FFFFFF",
+        "text_color": "#1a1a1a",
+        "card_text_color": "#ffffff",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "loop_ticker_Y3Letz": {
+      "type": "loop-ticker",
+      "blocks": {
+        "ticker_item_G8jWBt": {
+          "type": "ticker_item",
+          "settings": {
+            "svg_code": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"></polygon><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"></circle><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"></circle></svg>",
+            "text": "Free Shipping on All Orders"
+          }
+        },
+        "ticker_item_qmMzym": {
+          "type": "ticker_item",
+          "settings": {
+            "svg_code": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"></path></svg>",
+            "text": "2 Year Warranty"
+          }
+        },
+        "ticker_item_D6RT79": {
+          "type": "ticker_item",
+          "settings": {
+            "svg_code": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"23\"></line><path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"></path></svg>",
+            "text": "30 Day Money Back Guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "ticker_item_G8jWBt",
+        "ticker_item_qmMzym",
+        "ticker_item_D6RT79"
+      ],
+      "name": "Loop Ticker",
+      "settings": {
+        "bg_color": "#272727",
+        "text_color": "#ffffff",
+        "icon_color": "#E7C17D",
+        "speed": 31,
+        "pause_on_hover": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "about_oasis_aEKGMK": {
+      "type": "about-oasis",
+      "name": "About Oasis",
+      "settings": {
+        "image": "shopify://shop_images/a-nice-plant-placed-in-a-minimal-white-kitchen-counter-top-in-daylight-scene.png",
+        "section_height": 600,
+        "heading": "About Oasis",
+        "heading_color": "#1a1a1a",
+        "text": "The company was established in 2016 in the early days of LED grow lighting development. The oasis team have 10 years experience combining horticultural and engineering knowledge to produce the best growlight solutions for you.",
+        "text_color": "#4a4a4a",
+        "heading_size_desktop": 64,
+        "heading_size_mobile": 40,
+        "text_size_desktop": 18,
+        "text_size_mobile": 16,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "review_cards_7abc8Y": {
+      "type": "review-cards",
+      "blocks": {
+        "review_PUgQam": {
+          "type": "review",
+          "settings": {
+            "name": "Guy Hawkins",
+            "rating": 5,
+            "is_google_review": true,
+            "review_title": "Exceptional Quality",
+            "review_body": "Impressed by the professionalism and attention to detail. The product arrived quickly and was exactly as described.",
+            "location_or_product": "Los Angeles, CA"
+          }
+        },
+        "review_LXAfUb": {
+          "type": "review",
+          "settings": {
+            "name": "Karla Lynn",
+            "rating": 5,
+            "is_google_review": false,
+            "review_title": "Highly Recommend!",
+            "review_body": "A seamless experience from start to finish. Customer service was responsive and helpful throughout.",
+            "location_or_product": "Chicago, IL"
+          }
+        },
+        "review_pimUKz": {
+          "type": "review",
+          "settings": {
+            "name": "Jane Cooper",
+            "rating": 5,
+            "is_google_review": true,
+            "review_title": "Life Changing",
+            "review_body": "Reliable and trustworthy. Made my life so much easier! I've already recommended this to all my friends.",
+            "location_or_product": "Miami, FL"
+          }
+        },
+        "review_cEQ4qz": {
+          "type": "review",
+          "settings": {
+            "name": "Michael B.",
+            "rating": 4,
+            "is_google_review": false,
+            "review_title": "Great Value",
+            "review_body": "Solid build quality and very easy to set up. The price point is fantastic for what you get.",
+            "location_or_product": "Seattle, WA"
+          }
+        },
+        "review_7KaCkm": {
+          "type": "review",
+          "settings": {
+            "name": "Sarah Johnson",
+            "rating": 5,
+            "is_google_review": true,
+            "review_title": "Perfect Purchase",
+            "review_body": "Exactly what I was looking for. Fast shipping and the packaging was secure. Will buy again!",
+            "location_or_product": "Austin, TX"
+          }
+        },
+        "review_jhgY4X": {
+          "type": "review",
+          "settings": {
+            "name": "David Chen",
+            "rating": 5,
+            "is_google_review": false,
+            "review_title": "Exceeded Expectations",
+            "review_body": "Better than expected! The quality is top-notch and the customer support team was incredibly helpful.",
+            "location_or_product": "San Francisco, CA"
+          }
+        }
+      },
+      "block_order": [
+        "review_PUgQam",
+        "review_LXAfUb",
+        "review_pimUKz",
+        "review_cEQ4qz",
+        "review_7KaCkm",
+        "review_jhgY4X"
+      ],
+      "name": "Review Cards",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "scroll_speed": 40,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "blog_bento_Xypbir": {
+      "type": "blog-bento",
+      "blocks": {
+        "card_UnzWQ6": {
+          "type": "card",
+          "settings": {
+            "column_span": "1",
+            "article": "",
+            "custom_image": "shopify://shop_images/R_S__05___Ready_To_Grow.png",
+            "custom_title": "",
+            "custom_author": "",
+            "custom_url": "",
+            "btn_text": "Read More",
+            "btn_bg_color": "#EF4444",
+            "btn_text_color": "#ffffff"
+          }
+        },
+        "card_RdGt6U": {
+          "type": "card",
+          "settings": {
+            "column_span": "1",
+            "article": "",
+            "custom_image": "shopify://shop_images/a-nice-plant-placed-in-a-minimal-white-kitchen-counter-top-in-daylight-scene.png",
+            "custom_title": "",
+            "custom_author": "",
+            "custom_url": "",
+            "btn_text": "Read More",
+            "btn_bg_color": "#EF4444",
+            "btn_text_color": "#ffffff"
+          }
+        },
+        "card_BengAp": {
+          "type": "card",
+          "settings": {
+            "column_span": "1",
+            "article": "",
+            "custom_image": "shopify://shop_images/Eat_Fresh_Everyday_01.png",
+            "custom_title": "Reliable and trustworthy.",
+            "custom_author": "Jane Copper",
+            "custom_url": "",
+            "btn_text": "Read More",
+            "btn_bg_color": "#EF4444",
+            "btn_text_color": "#ffffff"
+          }
+        },
+        "card_GAXErN": {
+          "type": "card",
+          "settings": {
+            "column_span": "2",
+            "article": "",
+            "custom_image": "shopify://shop_images/MIGRO_SEEDLING_ANIMATION_4K_FINAL.mp4.00_00_16_01.Still002_30caaecd-ecf1-40ff-8bb9-574877efd1de.png",
+            "custom_title": "Reliable and trustworthy. Made my life so much easier!",
+            "custom_author": "Jane Copper",
+            "custom_url": "",
+            "btn_text": "Read More",
+            "btn_bg_color": "#EF4444",
+            "btn_text_color": "#ffffff"
+          }
+        },
+        "card_XwHty6": {
+          "type": "card",
+          "settings": {
+            "column_span": "1",
+            "article": "",
+            "custom_image": "shopify://shop_images/Eat_Fresh_Everyday2.png",
+            "custom_title": "Understanding Grow Lights",
+            "custom_author": "Oasis Team",
+            "custom_url": "",
+            "btn_text": "Read More",
+            "btn_bg_color": "#EF4444",
+            "btn_text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "card_UnzWQ6",
+        "card_RdGt6U",
+        "card_BengAp",
+        "card_GAXErN",
+        "card_XwHty6"
+      ],
+      "name": "Blog Bento Grid",
+      "settings": {
+        "heading": "Blog Post",
+        "subtitle": "The latest and best blogs you can ever find",
+        "heading_color": "#1a1a1a",
+        "text_color": "#4b5563",
+        "bg_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "custom_hero_pDAnDn",
+    "feature_cards_wX7Lga",
+    "bento_grid_HDbmej",
+    "loop_ticker_Y3Letz",
+    "about_oasis_aEKGMK",
+    "review_cards_7abc8Y",
+    "blog_bento_Xypbir"
+  ]
+}

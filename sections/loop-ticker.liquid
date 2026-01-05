@@ -1,0 +1,261 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .loop-ticker {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .loop-ticker__track {
+    display: flex;
+    align-items: center;
+    gap: 60px; /* Spacing between items */
+    animation: loopTicker {{ section.settings.speed }}s linear infinite;
+    padding-left: 60px; /* Initial offset so it doesn't start flush */
+  }
+
+  /* Duplicate track for seamless looping */
+  .loop-ticker__track--duplicate {
+    position: absolute;
+    top: 0;
+    left: 100%; /* Start exactly where the first one ends */
+    height: 100%;
+  }
+
+  @keyframes loopTicker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+  }
+
+  .ticker-item__icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ section.settings.icon_color }};
+  }
+  
+  .ticker-item__icon svg, .ticker-item__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ticker-item__text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Pause on hover if requested */
+  {% if section.settings.pause_on_hover %}
+  .loop-ticker:hover .loop-ticker__track {
+    animation-play-state: paused;
+  }
+  {% endif %}
+
+{%- endstyle -%}
+
+<div class="loop-ticker section-{{ section.id }}-padding">
+  <!-- Content Track 1 -->
+  <div class="loop-ticker__track">
+    {%- for block in section.blocks -%}
+      <div class="ticker-item">
+        <div class="ticker-item__icon">
+           {%- if block.settings.svg_code != blank -%}
+            {{ block.settings.svg_code }}
+          {%- elsif block.settings.image_icon != blank -%}
+            {{ block.settings.image_icon | image_url: width: 60 | image_tag: loading: 'lazy' }}
+          {%- endif -%}
+        </div>
+        <div class="ticker-item__text">
+          {{ block.settings.text }}
+        </div>
+      </div>
+    {%- endfor -%}
+    
+    <!-- Duplicate Blocks for seamless loop (rendered immediately after in the same flex container for simplicity or dual track) -->
+    <!-- Ideally for CSS seamless loop we want 2 sets of items in the container, effectively double rendering -->
+    {%- for block in section.blocks -%}
+      <div class="ticker-item">
+        <div class="ticker-item__icon">
+           {%- if block.settings.svg_code != blank -%}
+            {{ block.settings.svg_code }}
+          {%- elsif block.settings.image_icon != blank -%}
+            {{ block.settings.image_icon | image_url: width: 60 | image_tag: loading: 'lazy' }}
+          {%- endif -%}
+        </div>
+        <div class="ticker-item__text">
+          {{ block.settings.text }}
+        </div>
+      </div>
+    {%- endfor -%}
+    {%- for block in section.blocks -%}
+      <div class="ticker-item">
+        <div class="ticker-item__icon">
+           {%- if block.settings.svg_code != blank -%}
+            {{ block.settings.svg_code }}
+          {%- elsif block.settings.image_icon != blank -%}
+            {{ block.settings.image_icon | image_url: width: 60 | image_tag: loading: 'lazy' }}
+          {%- endif -%}
+        </div>
+        <div class="ticker-item__text">
+          {{ block.settings.text }}
+        </div>
+      </div>
+    {%- endfor -%}
+    {%- for block in section.blocks -%}
+      <div class="ticker-item">
+        <div class="ticker-item__icon">
+           {%- if block.settings.svg_code != blank -%}
+            {{ block.settings.svg_code }}
+          {%- elsif block.settings.image_icon != blank -%}
+            {{ block.settings.image_icon | image_url: width: 60 | image_tag: loading: 'lazy' }}
+          {%- endif -%}
+        </div>
+        <div class="ticker-item__text">
+          {{ block.settings.text }}
+        </div>
+      </div>
+    {%- endfor -%}
+     {%- for block in section.blocks -%}
+      <div class="ticker-item">
+        <div class="ticker-item__icon">
+           {%- if block.settings.svg_code != blank -%}
+            {{ block.settings.svg_code }}
+          {%- elsif block.settings.image_icon != blank -%}
+            {{ block.settings.image_icon | image_url: width: 60 | image_tag: loading: 'lazy' }}
+          {%- endif -%}
+        </div>
+        <div class="ticker-item__text">
+          {{ block.settings.text }}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Loop Ticker",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#272727"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#E7C17D"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "label": "Speed",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ticker_item",
+      "name": "Ticker Item",
+      "settings": [
+        {
+          "type": "html",
+          "id": "svg_code",
+          "label": "SVG Icon Code"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Image Icon"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Free Shipping"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Loop Ticker",
+      "blocks": [
+        { "type": "ticker_item", "settings": { "text": "Free Shipping on All Orders", "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"></polygon><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"></circle><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"></circle></svg>" } },
+        { "type": "ticker_item", "settings": { "text": "2 Year Warranty", "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"></path></svg>" } },
+        { "type": "ticker_item", "settings": { "text": "30 Day Money Back Guarantee", "svg_code": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"23\"></line><path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"></path></svg>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
