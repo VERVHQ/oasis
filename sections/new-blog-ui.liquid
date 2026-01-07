@@ -1,0 +1,214 @@
+{{ 'new-blog-ui.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    --pt: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --pb: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --content-width: {{ section.settings.page_width }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      --pt: {{ section.settings.padding_top }}px;
+      --pb: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .new-blog-ui {
+    --card-radius: {{ section.settings.card_corner_radius }}px;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+  }
+{%- endstyle -%}
+
+<div class="new-blog-ui section-{{ section.id }}-padding">
+  
+  <div class="new-blog-ui__header">
+    <div class="new-blog-ui__filters">
+      <span class="new-blog-ui__label">Filters</span>
+      <div class="new-blog-ui__select-wrapper">
+        <select class="new-blog-ui__select" onchange="location.href=this.value">
+          <option value="{{ blog.url }}">Topics</option>
+          <option value="{{ blog.url }}">All Topics</option>
+          {% for tag in blog.all_tags %}
+            <option value="{{ blog.url }}/tagged/{{ tag | handle }}" {% if current_tags contains tag %}selected{% endif %}>
+              {{ tag }}
+            </option>
+          {% endfor %}
+        </select>
+        <svg class="new-blog-ui__select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </div>
+
+    <div class="new-blog-ui__search">
+      <form action="{{ routes.search_url }}" method="get" role="search">
+        <input type="hidden" name="type" value="article">
+        <input
+          class="new-blog-ui__search-input"
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Search..."
+        >
+        <button type="submit" class="new-blog-ui__search-button" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  {%paginate blog.articles by section.settings.posts_per_page %}
+    <div class="new-blog-ui__grid">
+      {% for article in blog.articles %}
+        <div class="blog-card">
+          <div class="blog-card__image-wrapper">
+            <a href="{{ article.url }}" class="full-unstyled-link">
+              {% if article.image %}
+                <img
+                  src="{{ article.image | image_url: width: 800 }}"
+                  alt="{{ article.image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ article.image.width }}"
+                  height="{{ article.image.height }}"
+                  class="blog-card__image"
+                >
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'blog-card__image placeholder-svg' }}
+              {% endif %}
+            </a>
+          </div>
+          <div class="blog-card__content">
+            <div class="blog-card__meta">
+              {% if article.tags.size > 0 %}
+                <span class="blog-card__tag">{{ article.tags.first }}</span>
+              {% endif %}
+              <span class="blog-card__date">{{ article.published_at | time_tag: format: 'date' }}</span>
+            </div>
+            <h3 class="blog-card__title">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h3>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if paginate.pages > 1 %}
+      <div class="pagination-wrapper">
+        <nav role="navigation">
+          <ul class="pagination__list">
+            {%- if paginate.previous -%}
+              <li>
+                <a href="{{ paginate.previous.url }}" class="pagination__item pagination__item--prev">
+                  <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6" style="transform: rotate(90deg);">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
+                  </svg>
+                </a>
+              </li>
+            {%- endif -%}
+
+            {%- for part in paginate.parts -%}
+              <li>
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}" class="pagination__item">{{ part.title }}</a>
+                {%- else -%}
+                  {%- if part.title == paginate.current_page -%}
+                    <span class="pagination__item pagination__item--current">{{ part.title }}</span>
+                  {%- else -%}
+                    <span class="pagination__item">{{ part.title }}</span>
+                  {%- endif -%}
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+
+            {%- if paginate.next -%}
+              <li>
+                <a href="{{ paginate.next.url }}" class="pagination__item pagination__item--next">
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6" style="transform: rotate(-90deg);">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 000-.708z" fill="currentColor"></path>
+                      </svg>
+                </a>
+              </li>
+            {%- endif -%}
+          </ul>
+        </nav>
+      </div>
+    {% endif %}
+
+  {% endpaginate %}
+</div>
+
+{% schema %}
+{
+  "name": "New Blog UI",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "page_width",
+      "min": 1000,
+      "max": 1600,
+      "step": 40,
+      "unit": "px",
+      "label": "Content Width",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "posts_per_page",
+      "min": 6,
+      "max": 24,
+      "step": 3,
+      "default": 9,
+      "label": "Posts per page"
+    },
+    {
+      "type": "range",
+      "id": "card_corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Corner Radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Blog UI"
+    }
+  ]
+}
+{% endschema %}
