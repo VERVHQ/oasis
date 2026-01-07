@@ -17,6 +17,14 @@
     position: relative;
     z-index: 1;
     background-color: rgb(var(--color-background)); /* Solid page background */
+    margin-top: 0 !important; /* Remove transparent margin */
+    padding-top: var(--spacing-sections-mobile); /* Use padding for spacing instead */
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} ~ .shopify-section {
+      padding-top: var(--spacing-sections-desktop);
+    }
   }
 
   {%- assign opacity_decimal = section.settings.gradient_opacity | divided_by: 100.0 -%}
