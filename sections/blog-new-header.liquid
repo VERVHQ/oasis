@@ -106,12 +106,13 @@
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0 3rem; /* Match header specific padding to align with logo */
     pointer-events: auto;
   }
 
   .hero-slide__text-group {
-    max-width: 60%;
+    max-width: 80%; /* Increased to keep long titles better formatted (2 lines) */
     color: #fff;
     text-align: left;
   }
@@ -193,7 +194,7 @@
         <div class="hero-slide__gradient"></div>
 
         <div class="hero-slide__content-wrapper">
-          <div class="hero-slide__bottom-row page-width">
+          <div class="hero-slide__bottom-row">
             <div class="hero-slide__text-group">
                 <h1 class="hero-slide__heading">{{ article.title }}</h1>
                 {%- if article.excerpt != blank -%}
