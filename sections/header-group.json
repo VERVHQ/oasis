@@ -13,6 +13,7 @@
   "sections": {
     "header": {
       "type": "header",
+      "disabled": true,
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
@@ -29,9 +30,34 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "new_header_ewJeQr": {
+      "type": "new-header",
+      "name": "New Header",
+      "settings": {
+        "enable_sticky": true,
+        "page_width": 1400,
+        "logo": "shopify://shop_images/Oasis0.svg",
+        "logo_width": 150,
+        "menu": "main-menu",
+        "link_1_text": "Log In",
+        "link_1_url": "",
+        "link_2_text": "Sign Up",
+        "link_2_url": "",
+        "cta_text": "Book a Demo",
+        "cta_url": "",
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "accent_color": "#272727",
+        "cta_bg_color": "#272727",
+        "cta_text_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
-    "header"
+    "header",
+    "new_header_ewJeQr"
   ]
 }

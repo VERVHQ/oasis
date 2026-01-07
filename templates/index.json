@@ -15,7 +15,7 @@
         "slide_bjaRWJ": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/a-nice-expensive-looking-plant-placed-in-a-minimal-counter-top-in-a-living-room.png",
+            "image": "shopify://shop_images/new-slide.jpg",
             "heading": "TRIPOD STAND WITH REMOTE CONTROL",
             "text": "Adjustable height for all plant stages.",
             "button_label": "SHOP",
@@ -25,7 +25,7 @@
         "slide_EenXx7": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Eat_Fresh_Everyday_01.png",
+            "image": "shopify://shop_images/new-slider-2.jpg",
             "heading": "TRIPOD STAND WITH REMOTE CONTROL",
             "text": "Adjustable height for all plant stages.",
             "button_label": "SHOP",
@@ -39,7 +39,12 @@
       ],
       "name": "Full Screen Hero Slider",
       "settings": {
-        "overlay_opacity": 30
+        "desktop_height": 790,
+        "mobile_height": 500,
+        "overlay_opacity": 30,
+        "gradient_color": "#000000",
+        "gradient_height": 0,
+        "gradient_opacity": 0
       }
     },
     "feature_cards_wX7Lga": {
@@ -74,7 +79,7 @@
       ],
       "name": "Feature Cards",
       "settings": {
-        "bg_color": "#1a1a1a",
+        "bg_color": "#272727",
         "text_color": "#ffffff",
         "icon_color": "#e7c17d",
         "card_bg_color": "#272727",
@@ -306,7 +311,7 @@
             "custom_author": "",
             "custom_url": "",
             "btn_text": "Read More",
-            "btn_bg_color": "#ef4444",
+            "btn_bg_color": "#55928f",
             "btn_text_color": "#ffffff"
           }
         },
@@ -320,7 +325,7 @@
             "custom_author": "",
             "custom_url": "",
             "btn_text": "Read More",
-            "btn_bg_color": "#ef4444",
+            "btn_bg_color": "#55928f",
             "btn_text_color": "#ffffff"
           }
         },
@@ -334,7 +339,7 @@
             "custom_author": "Jane Copper",
             "custom_url": "",
             "btn_text": "Read More",
-            "btn_bg_color": "#ef4444",
+            "btn_bg_color": "#55928f",
             "btn_text_color": "#ffffff"
           }
         },
@@ -348,7 +353,7 @@
             "custom_author": "Jane Copper",
             "custom_url": "",
             "btn_text": "Read More",
-            "btn_bg_color": "#ef4444",
+            "btn_bg_color": "#55928f",
             "btn_text_color": "#ffffff"
           }
         },
@@ -362,7 +367,7 @@
             "custom_author": "Oasis Team",
             "custom_url": "",
             "btn_text": "Read More",
-            "btn_bg_color": "#ef4444",
+            "btn_bg_color": "#55928f",
             "btn_text_color": "#ffffff"
           }
         }

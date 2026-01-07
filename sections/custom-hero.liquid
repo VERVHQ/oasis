@@ -3,16 +3,37 @@
     padding-top: 0;
     padding-bottom: 0;
   }
+  
+  /* Parallax Overlay Effect */
+  #shopify-section-{{ section.id }} {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 0;
+  }
+
+  #shopify-section-{{ section.id }} ~ .shopify-section {
+    position: relative;
+    z-index: 1;
+    background-color: var(--gradient-background); /* Default to theme background */
+  }
+
   {%- assign opacity_decimal = section.settings.gradient_opacity | divided_by: 100.0 -%}
 
   .hero-slider {
     position: relative;
     width: 100%;
-    height: calc(100vh - 220px); /* Reduced height further */
-    min-height: 500px; /* Adjusted min-height */
+    height: {{ section.settings.desktop_height }}px;
+    min-height: unset;
     overflow: hidden;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero-slider {
+      height: {{ section.settings.mobile_height }}px;
+    }
   }
 
   .hero-slider__container {
@@ -40,6 +61,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: {{ section.settings.image_alignment }};
     position: absolute;
     top: 0;
     left: 0;
@@ -213,7 +235,7 @@
     .hero-slide__bottom-row {
       flex-direction: column;
       align-items: flex-start;
-      gap: 30px;
+      gap: 70px;
     }
 
     .hero-slide__text-group {
@@ -354,6 +376,46 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "image_alignment",
+      "label": "Image Alignment",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom Center"
+        },
+        {
+          "value": "center top",
+          "label": "Top Center"
+        }
+      ],
+      "default": "center bottom"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 400,
+      "max": 1100,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop Slider Height",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Slider Height",
+      "default": 500
+    },
     {
       "type": "range",
       "id": "overlay_opacity",
