@@ -4,10 +4,19 @@
     padding-bottom: 0;
   }
   
-  /* Blog header - no parallax effect to prevent bleed-through at page bottom */
+  /* Parallax Overlay Effect */
   #shopify-section-{{ section.id }} {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 0;
+  }
+
+  /* All sections after the hero must have solid background to cover it */
+  #shopify-section-{{ section.id }} ~ .shopify-section {
     position: relative;
     z-index: 1;
+    background-color: rgb(var(--color-background)); /* Solid page background */
   }
 
   {%- assign opacity_decimal = section.settings.gradient_opacity | divided_by: 100.0 -%}
