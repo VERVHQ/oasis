@@ -103,11 +103,8 @@
 
   .hero-slide__bottom-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-end;
-    width: 100%;
-    margin: 0;
-    padding: 0 1.5rem 0 338px; /* 338px left padding as specified */
     pointer-events: auto;
   }
 
@@ -194,7 +191,7 @@
         <div class="hero-slide__gradient"></div>
 
         <div class="hero-slide__content-wrapper">
-          <div class="hero-slide__bottom-row">
+          <div class="hero-slide__bottom-row page-width">
             <div class="hero-slide__text-group">
                 <h1 class="hero-slide__heading">{{ article.title }}</h1>
                 {%- if article.excerpt != blank -%}
