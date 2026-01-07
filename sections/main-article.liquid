@@ -8,6 +8,7 @@
           {% render block %}
         </div>
       {%- when 'featured_image' -%}
+        {% comment %}
         {%- if article.image -%}
           <div
             class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
@@ -40,8 +41,10 @@
             </div>
           </div>
         {%- endif -%}
+        {% endcomment %}
 
       {%- when 'title' -%}
+        {% comment %}
         <header
           class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
           {{ block.shopify_attributes }}
@@ -62,6 +65,7 @@
             </span>
           {%- endif -%}
         </header>
+        {% endcomment %}
 
       {%- when 'content' -%}
         <div

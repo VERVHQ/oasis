@@ -11,19 +11,6 @@
   "sections": {
     "blog_new_header": {
       "type": "blog-new-header",
-      "blocks": {
-        "header_slide": {
-          "type": "slide",
-          "settings": {
-            "heading": "Blog Post Title",
-            "text": "Subtitle or Excerpt",
-            "button_label": "Read More"
-          }
-        }
-      },
-      "block_order": [
-        "header_slide"
-      ],
       "settings": {
         "desktop_height": 600,
         "mobile_height": 400
@@ -32,19 +19,6 @@
     "main": {
       "type": "main-article",
       "blocks": {
-        "featured_image": {
-          "type": "featured_image",
-          "settings": {
-            "image_height": "adapt"
-          }
-        },
-        "title": {
-          "type": "title",
-          "settings": {
-            "blog_show_date": true,
-            "blog_show_author": false
-          }
-        },
         "share": {
           "type": "share",
           "settings": {
@@ -57,8 +31,6 @@
         }
       },
       "block_order": [
-        "featured_image",
-        "title",
         "share",
         "content"
       ],
