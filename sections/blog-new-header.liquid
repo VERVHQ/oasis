@@ -194,7 +194,7 @@
   }
 {%- endstyle -%}
 
-<div class="hero-slider section-{{ section.id }}-padding">
+<div class="hero-slider section-{{ section.id }}-padding" id="HeroSlider-{{ section.id }}">
   <div class="hero-slider__container">
       <div class="hero-slide active">
         {%- if article.image != blank -%}
@@ -217,7 +217,7 @@
           <div class="hero-slide__image" style="background-color: {{ section.settings.gradient_color }};"></div>
         {%- endif -%}
 
-        <div class="hero-slide__overlay"></div>
+        <div class="hero-slide__overlay" style="will-change: background-color; transition: background-color 0.1s linear;"></div>
         <div class="hero-slide__gradient"></div>
 
         <div class="hero-slide__content-wrapper">
@@ -227,12 +227,113 @@
                 {%- if article.excerpt != blank -%}
                   <div class="hero-slide__subtext">{{ article.excerpt }}</div>
                 {%- endif -%}
+                <!-- Frosted Pills Row: Author/Date + Tags -->
+                <div class="hero-slide__pills-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.5rem;">
+                  
+                  <!-- Author and Date Pill -->
+                  <div class="hero-slide__meta-pill" style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.8rem;
+                    padding: 0.6rem 1.4rem;
+                    height: 3.2rem;
+                    border-radius: 50px;
+                    font-size: 1.3rem;
+                    background: rgba(255, 255, 255, 0.15);
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    color: #fff;
+                    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+                  ">
+                    <span class="hero-slide__author" style="font-weight: 600;">{{ article.author }}</span>
+                    <span style="opacity: 0.5;">•</span>
+                    <span class="hero-slide__date">{{ article.published_at | date: "%B %d, %Y" }}</span>
+                  </div>
+
+                  <!-- Tags Pills -->
+                  {%- if article.tags.size > 0 -%}
+                    {%- for tag in article.tags -%}
+                      <span class="hero-slide__tag" style="
+                        display: inline-flex;
+                        align-items: center;
+                        padding: 0.6rem 1.4rem;
+                        height: 3.2rem;
+                        border-radius: 50px;
+                        font-size: 1.3rem;
+                        font-weight: 500;
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(10px);
+                        -webkit-backdrop-filter: blur(10px);
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        color: #fff;
+                        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+                      ">{{ tag }}</span>
+                    {%- endfor -%}
+                  {%- endif -%}
+
+                </div>
             </div>
           </div>
         </div>
       </div>
   </div>
 </div>
+
+<script>
+  (function() {
+    function initHeroEffect() {
+      // Robust selection using internal ID
+      const heroWrapper = document.getElementById('HeroSlider-{{ section.id }}');
+      if (!heroWrapper) return false;
+      
+      const overlay = heroWrapper.querySelector('.hero-slide__overlay');
+      if (!overlay) return false;
+
+      // Check if we already attached (avoid duplicate listeners)
+      if (heroWrapper.dataset.scrollEffectAttached) return true;
+
+      const heroHeight = heroWrapper.offsetHeight;
+      const baseOpacity = {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+
+      const handleScroll = () => {
+          const scrollAmount = window.scrollY;
+          // Calculate new alpha
+          // Aggressive darkening: reach full opacity (0.95) when scrolled 60% of hero height
+          let addedOpacity = (scrollAmount / (heroHeight * 0.6)) * 1.0; 
+          let newOpacity = baseOpacity + addedOpacity;
+          
+          // Clamp
+          if (newOpacity > 0.95) newOpacity = 0.95;
+          if (newOpacity < baseOpacity) newOpacity = baseOpacity;
+          
+          overlay.style.backgroundColor = 'rgba(0, 0, 0, ' + newOpacity + ')';
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      // Initial call
+      handleScroll();
+      
+      heroWrapper.dataset.scrollEffectAttached = 'true';
+      console.log('Hero darken effect attached successfully to', heroWrapper.id);
+      return true;
+    }
+
+    // Attempt 1: Immediate
+    if (!initHeroEffect()) {
+      // Attempt 2: DOMContentLoaded
+      document.addEventListener('DOMContentLoaded', initHeroEffect);
+      // Attempt 3: Window Load
+      window.addEventListener('load', initHeroEffect);
+      // Attempt 4: Polling for 2 seconds (safe fallback for dynamic frameworks/slow render)
+      const interval = setInterval(() => {
+        if (initHeroEffect()) clearInterval(interval);
+      }, 200);
+      // Stop polling after 4 seconds
+      setTimeout(() => clearInterval(interval), 4000);
+    }
+  })();
+</script>
 
 {% schema %}
 {

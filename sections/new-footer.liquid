@@ -230,6 +230,13 @@
 {% endschema %}
 
 {%- style -%}
+  /* Fix for sticky hero showing through: Ensure footer sits on top */
+  #shopify-section-{{ section.id }} {
+    position: relative;
+    z-index: 5;
+    background-color: {{ section.settings.bg_color }};
+  }
+
  .new-footer-section-{{ section.id }} {
    position: relative;
    background-color: {{ section.settings.bg_color }};

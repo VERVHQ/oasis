@@ -133,15 +133,17 @@
   /* Overlay */
 
 
-  /* Gradient Overlay */
-  .blog-card__gradient {
+  /* Gradient Overlay - Using pseudo-element for reliability */
+  .blog-card--has-image::before {
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
+    right: 0;
     width: 100%;
-    height: 80%;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-    z-index: 5;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 40%, transparent 100%);
+    z-index: 2;
     pointer-events: none;
   }
 
@@ -283,8 +285,7 @@
 
 
 
-             <!-- Bottom Gradient (Always present for text visibility) -->
-             <div class="blog-card__gradient"></div>
+             <!-- Gradient handled via CSS pseudo-element on .blog-card--has-image -->
 
              <!-- Content -->
              <div class="blog-card__content">

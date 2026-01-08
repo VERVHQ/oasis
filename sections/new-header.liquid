@@ -14,9 +14,23 @@
   }
 
   .new-header.sticky {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+  }
+
+  /* Scroll Down - Hide */
+  .new-header.sticky.scroll-down {
+    transform: translate3d(0, -100%, 0);
+  }
+
+  /* Scroll Up - Show */
+  .new-header.sticky.scroll-up {
+    transform: translate3d(0, 0, 0);
   }
 
   .new-header__container {
@@ -83,7 +97,7 @@
     color: {{ section.settings.text_color }};
     text-decoration: none;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -196,45 +210,9 @@
     stroke-width: 1.5;
   }
 
-  /* Actions (Right Side) */
+  /* Actions removed */
   .new-header__actions {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-
-  @media screen and (max-width: 989px) {
-    .new-header__actions {
-      display: none;
-    }
-  }
-
-  .new-header__action-link {
-    text-decoration: none;
-    color: {{ section.settings.text_color }};
-    font-weight: 500;
-    font-size: 16px;
-    transition: color 0.2s ease;
-  }
-
-  .new-header__action-link:hover {
-    color: {{ section.settings.accent_color }};
-  }
-
-  .new-header__cta {
-    background-color: {{ section.settings.cta_bg_color }};
-    color: {{ section.settings.cta_text_color }};
-    padding: 12px 24px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-  }
-
-  .new-header__cta:hover {
-    background-color: {{ section.settings.cta_bg_color | color_lighten: 10 }};
-    transform: translateY(-1px);
+    display: none; 
   }
 
   /* Mobile Toggle */
@@ -254,6 +232,9 @@
   }
 
 {%- endstyle -%}
+
+<!-- Spacer for fixed header -->
+<div class="header-spacer"></div>
 
 <header class="new-header section-{{ section.id }}-padding {% if section.settings.enable_sticky %}sticky{% endif %}">
   <div class="new-header__container">
@@ -317,19 +298,7 @@
       </ul>
     </nav>
 
-    <!-- Right Actions -->
-    <div class="new-header__actions">
-      {%- if section.settings.link_1_text != blank -%}
-        <a href="{{ section.settings.link_1_url }}" class="new-header__action-link">{{ section.settings.link_1_text }}</a>
-      {%- endif -%}
-      {%- if section.settings.link_2_text != blank -%}
-        <a href="{{ section.settings.link_2_url }}" class="new-header__action-link">{{ section.settings.link_2_text }}</a>
-      {%- endif -%}
-      
-      {%- if section.settings.cta_text != blank -%}
-        <a href="{{ section.settings.cta_url }}" class="new-header__cta">{{ section.settings.cta_text }}</a>
-      {%- endif -%}
-    </div>
+
 
     <!-- Mobile Toggle -->
     <button class="new-header__mobile-toggle">
@@ -338,13 +307,65 @@
         <line x1="3" y1="6" x2="21" y2="6"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
-    </button>
   </div>
 </header>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('header.new-header.sticky');
+    
+    // Handle Spacer if header is sticky
+    if (header) {
+      const spacer = document.querySelector('.header-spacer');
+      if (spacer) {
+        const updateSpacer = () => {
+           const height = header.offsetHeight || 90;
+           spacer.style.height = height + 'px';
+           spacer.style.width = '100%';
+           spacer.style.display = 'block';
+        };
+        updateSpacer();
+        window.addEventListener('resize', updateSpacer);
+        window.addEventListener('load', updateSpacer);
+      }
+    }
+    
+    if (!header) return;
+
+    let lastScroll = 0;
+    const scrollThreshold = 60; // Minimum scroll before action
+
+    window.addEventListener('scroll', function() {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Ignore bounce (negative scroll)
+      if (currentScroll <= 0) {
+        header.classList.remove('scroll-down');
+        header.classList.add('scroll-up'); // Ensure visible at top
+        return;
+      }
+      
+      // Check difference to avoid jitter
+      if (Math.abs(currentScroll - lastScroll) < 10) return;
+
+      if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
+        // Scrolling Down AND passed threshold -> Hide
+        header.classList.remove('scroll-up');
+        header.classList.add('scroll-down');
+      } else if (currentScroll < lastScroll) {
+        // Scrolling Up -> Show
+        header.classList.remove('scroll-down');
+        header.classList.add('scroll-up');
+      }
+      
+      lastScroll = currentScroll;
+    }, { passive: true });
+  });
+</script>
+
 {% schema %}
 {
-  "name": "New Header",
+  "name": "Smart Sticky Header",
   "tag": "section",
   "class": "section-header",
   "settings": [
@@ -521,7 +542,7 @@
   ],
   "presets": [
     {
-      "name": "New Header",
+      "name": "Smart Sticky Header",
       "settings": {
         "menu": "main-menu"
       }
