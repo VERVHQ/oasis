@@ -97,10 +97,8 @@
     --scroll-duration: {{ section.settings.scroll_speed }}s;
     animation: scrollLeft var(--scroll-duration) linear infinite;
   }
-
-  .review-ticker__track:hover {
-    animation-duration: calc(var(--scroll-duration) * 2);
-  }
+  
+  /* Removed CSS-based hover duration change to prevent glitches */
 
   @keyframes scrollLeft {
     0% { transform: translateX(0); }
@@ -494,3 +492,25 @@
   ]
 }
 {% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tracks = document.querySelectorAll('.review-ticker__track');
+
+    tracks.forEach(track => {
+      track.addEventListener('mouseenter', () => {
+        const animations = track.getAnimations();
+        animations.forEach(animation => {
+          animation.updatePlaybackRate(0.5); // 2x slower
+        });
+      });
+
+      track.addEventListener('mouseleave', () => {
+        const animations = track.getAnimations();
+        animations.forEach(animation => {
+          animation.updatePlaybackRate(1); // Normal speed
+        });
+      });
+    });
+  });
+</script>
