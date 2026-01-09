@@ -94,11 +94,12 @@
     gap: 24px;
     width: max-content;
     /* Scrolls LEFT */
-    animation: scrollLeft {{ section.settings.scroll_speed }}s linear infinite;
+    --scroll-duration: {{ section.settings.scroll_speed }}s;
+    animation: scrollLeft var(--scroll-duration) linear infinite;
   }
 
   .review-ticker__track:hover {
-    animation-play-state: paused !important;
+    animation-duration: calc(var(--scroll-duration) * 2);
   }
 
   @keyframes scrollLeft {
@@ -124,10 +125,10 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  /* Shadow only on hover */
+  /* Shadow only on hover - REMOVED per user request */
   .review-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transform: none;
+    box-shadow: none;
   }
 
   /* Avatar */
