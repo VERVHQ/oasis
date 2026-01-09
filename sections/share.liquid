@@ -1,0 +1,214 @@
+{% schema %}
+  {
+    "name": "Share Section",
+    "settings": [
+      {
+         "type": "header",
+         "content": "Section Styling"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Top Padding",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Bottom Padding",
+        "default": 40
+      },
+      {
+         "type": "header",
+         "content": "Social Media Settings"
+      },
+      {
+         "type": "range",
+         "id": "social_icon_size",
+         "min": 12,
+         "max": 60,
+         "step": 1,
+         "unit": "px",
+         "label": "Icon Image Size",
+         "default": 24
+       },
+       {
+        "type": "range",
+        "id": "social_padding",
+        "min": 4,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Icon Padding",
+        "default": 12
+      },
+       {
+        "type": "range",
+        "id": "social_radius",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "%",
+        "label": "Corner Radius",
+        "default": 50
+      },
+      {
+        "type": "color",
+        "id": "social_bg_color",
+        "label": "Icon Background Color",
+        "default": "#f0f0f0"
+      },
+      {
+        "type": "header",
+        "content": "Social Links"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_instagram_icon",
+        "label": "Instagram Icon (Upload)"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook_link",
+        "label": "Facebook Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_facebook_icon",
+        "label": "Facebook Icon (Upload)"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_youtube_icon",
+        "label": "YouTube Icon (Upload)"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter_link",
+        "label": "Twitter/X Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_twitter_icon",
+        "label": "Twitter/X Icon (Upload)"
+      },
+      {
+        "type": "url",
+        "id": "social_linkedin_link",
+        "label": "LinkedIn Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_linkedin_icon",
+        "label": "LinkedIn Icon (Upload)"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Share Section"
+      }
+    ]
+  }
+{% endschema %}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .share-section-container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.5rem;
+  }
+
+  .share-social-icons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .share-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    background-color: {{ section.settings.social_bg_color }};
+    padding: {{ section.settings.social_padding }}px;
+    border-radius: {{ section.settings.social_radius }}%;
+    line-height: 0;
+  }
+  
+  .share-social-link:hover {
+     transform: scale(1.05);
+     filter: brightness(0.95);
+  }
+
+  .share-social-link img {
+    width: {{ section.settings.social_icon_size }}px;
+    height: {{ section.settings.social_icon_size }}px;
+    object-fit: contain;
+    display: block;
+  }
+{%- endstyle -%}
+
+<div class="share-section-container">
+   <div class="share-social-icons">
+      {%- if section.settings.social_instagram_icon != blank -%}
+        <a href="{{ section.settings.social_instagram_link }}" class="share-social-link" aria-label="Instagram">
+          {{ section.settings.social_instagram_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.social_facebook_icon != blank -%}
+        <a href="{{ section.settings.social_facebook_link }}" class="share-social-link" aria-label="Facebook">
+          {{ section.settings.social_facebook_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.social_youtube_icon != blank -%}
+        <a href="{{ section.settings.social_youtube_link }}" class="share-social-link" aria-label="YouTube">
+          {{ section.settings.social_youtube_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.social_twitter_icon != blank -%}
+        <a href="{{ section.settings.social_twitter_link }}" class="share-social-link" aria-label="Twitter">
+          {{ section.settings.social_twitter_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.social_linkedin_icon != blank -%}
+        <a href="{{ section.settings.social_linkedin_link }}" class="share-social-link" aria-label="LinkedIn">
+          {{ section.settings.social_linkedin_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+        </a>
+      {%- endif -%}
+   </div>
+</div>

@@ -12,8 +12,8 @@
     "blog_new_header": {
       "type": "blog-new-header",
       "settings": {
-        "desktop_height": 600,
-        "mobile_height": 400
+        "desktop_height": 850,
+        "mobile_height": 600
       }
     },
     "main": {
@@ -35,10 +35,18 @@
         "content"
       ],
       "settings": {}
+    },
+    "share": {
+      "type": "share",
+      "settings": {
+        "padding_top": 20,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "blog_new_header",
-    "main"
+    "main",
+    "share"
   ]
 }
