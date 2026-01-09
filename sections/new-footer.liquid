@@ -155,14 +155,47 @@
         "content": "Social Media Links"
       },
       {
+         "type": "range",
+         "id": "social_icon_size",
+         "min": 12,
+         "max": 40,
+         "step": 1,
+         "unit": "px",
+         "label": "Icon Image Size",
+         "default": 20
+       },
+       {
         "type": "range",
-        "id": "social_icon_size",
-        "min": 16,
-        "max": 60,
-        "step": 2,
+        "id": "social_padding",
+        "min": 4,
+        "max": 20,
+        "step": 1,
         "unit": "px",
-        "label": "Icon Size",
-        "default": 24
+        "label": "Icon Padding",
+        "default": 10
+      },
+       {
+        "type": "range",
+        "id": "social_radius",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "%",
+        "label": "Corner Radius",
+        "default": 12
+      },
+      {
+        "type": "color",
+        "id": "social_bg_color",
+        "label": "Icon Background Color",
+        "default": "#114f4a"
+      },
+      {
+        "type": "color",
+        "id": "social_icon_color_filter",
+        "label": "Icon Filter (e.g. for white)",
+        "default": "#ffffff",
+        "info": "This will affect border color for hover if coded."
       },
       {
         "type": "url",
@@ -420,20 +453,25 @@
 
   .footer-social-icons {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     justify-content: center;
+    align-items: center;
   }
 
   .footer-social-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    background-color: {{ section.settings.social_bg_color }};
+    padding: {{ section.settings.social_padding }}px;
+    border-radius: {{ section.settings.social_radius }}%;
+    line-height: 0;
   }
   
   .footer-social-link:hover {
-     transform: translateY(-3px);
-     filter: brightness(1.2);
+     transform: scale(1.05);
+     filter: brightness(1.1);
   }
 
   .footer-social-link img {
@@ -478,7 +516,36 @@
    </div>
 
    <!-- Bottom Row: Copyright & Socials -->
-    <div class="footer-bottom-bar">
+     <div class="footer-bottom-bar">
+       
+      <div class="footer-social-icons">
+          {%- if section.settings.social_instagram_icon != blank -%}
+            <a href="{{ section.settings.social_instagram_link }}" class="footer-social-link" aria-label="Instagram">
+              {{ section.settings.social_instagram_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.social_facebook_icon != blank -%}
+            <a href="{{ section.settings.social_facebook_link }}" class="footer-social-link" aria-label="Facebook">
+              {{ section.settings.social_facebook_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.social_youtube_icon != blank -%}
+            <a href="{{ section.settings.social_youtube_link }}" class="footer-social-link" aria-label="YouTube">
+              {{ section.settings.social_youtube_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.social_twitter_icon != blank -%}
+            <a href="{{ section.settings.social_twitter_link }}" class="footer-social-link" aria-label="Twitter">
+              {{ section.settings.social_twitter_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.social_linkedin_icon != blank -%}
+            <a href="{{ section.settings.social_linkedin_link }}" class="footer-social-link" aria-label="LinkedIn">
+              {{ section.settings.social_linkedin_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+            </a>
+          {%- endif -%}
+       </div>
+
       <div class="footer-legal-section">
         <div class="footer-copyright">
           {{ section.settings.copyright_text }}
@@ -494,33 +561,8 @@
         </div>
       </div>
 
-      <div class="footer-social-icons">
-         {%- if section.settings.social_instagram_icon != blank -%}
-           <a href="{{ section.settings.social_instagram_link }}" class="footer-social-link" aria-label="Instagram">
-             {{ section.settings.social_instagram_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-           </a>
-         {%- endif -%}
-         {%- if section.settings.social_facebook_icon != blank -%}
-           <a href="{{ section.settings.social_facebook_link }}" class="footer-social-link" aria-label="Facebook">
-             {{ section.settings.social_facebook_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-           </a>
-         {%- endif -%}
-         {%- if section.settings.social_youtube_icon != blank -%}
-           <a href="{{ section.settings.social_youtube_link }}" class="footer-social-link" aria-label="YouTube">
-             {{ section.settings.social_youtube_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-           </a>
-         {%- endif -%}
-         {%- if section.settings.social_twitter_icon != blank -%}
-           <a href="{{ section.settings.social_twitter_link }}" class="footer-social-link" aria-label="Twitter">
-             {{ section.settings.social_twitter_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-           </a>
-         {%- endif -%}
-         {%- if section.settings.social_linkedin_icon != blank -%}
-           <a href="{{ section.settings.social_linkedin_link }}" class="footer-social-link" aria-label="LinkedIn">
-             {{ section.settings.social_linkedin_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-           </a>
-         {%- endif -%}
       </div>
+    </div>
     </div>
 
  </div>
