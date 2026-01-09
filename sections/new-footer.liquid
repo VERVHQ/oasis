@@ -1,3 +1,31 @@
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const details = document.querySelectorAll('.footer-nav-col details');
+    const isMobile = window.innerWidth < 768;
+    
+    details.forEach(detail => {
+      if (isMobile) {
+        detail.removeAttribute('open');
+      } else {
+        detail.setAttribute('open', '');
+      }
+    });
+
+    // Handle window resize
+    let timeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        const currentlyMobile = window.innerWidth < 768;
+        details.forEach(detail => {
+          if (!currentlyMobile) {
+             detail.setAttribute('open', '');
+          }
+        });
+      }, 200);
+    });
+  });
+</script>
 {% schema %}
  {
    "name": "New Footer",
@@ -73,26 +101,26 @@
        "label": "Text Color",
        "default": "#ffffff"
      },
-     {
-       "type": "range",
-       "id": "heading_font_size",
-       "min": 12,
-       "max": 40,
-       "step": 1,
-       "unit": "px",
-       "label": "Column Heading Size",
-       "default": 18
-     },
-     {
-       "type": "range",
-       "id": "link_font_size",
-       "min": 12,
-       "max": 30,
-       "step": 1,
-       "unit": "px",
-       "label": "Link Text Size",
-       "default": 14
-     },
+      {
+        "type": "range",
+        "id": "heading_font_size_v2",
+        "min": 10,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "label": "Column Heading Size",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "link_font_size_v2",
+        "min": 10,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Link Text Size",
+        "default": 12
+      },
      {
        "type": "range",
        "id": "copyright_font_size",
@@ -141,6 +169,22 @@
         "label": "Badge Width",
         "default": 80
      },
+      {
+        "type": "header",
+        "content": "Newsletter"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_heading",
+        "label": "Heading",
+        "default": "Sign up to receive 30% off your first order"
+      },
+      {
+        "type": "color",
+        "id": "newsletter_bg",
+        "label": "Input Background",
+        "default": "#1a1a1a"
+      },
      {
        "type": "header",
        "content": "Bottom Content"
@@ -157,35 +201,70 @@
        "label": "Copyright Color",
        "default": "#888888"
      },
-     {
-       "type": "header",
-       "content": "Social Media Links"
-     },
-     {
-       "type": "url",
-       "id": "social_twitter_link",
-       "label": "Twitter/X Link"
-     },
-     {
-       "type": "url",
-       "id": "social_facebook_link",
-       "label": "Facebook Link"
-     },
-     {
-       "type": "url",
-       "id": "social_instagram_link",
-       "label": "Instagram Link"
-     },
-     {
-       "type": "url",
-       "id": "social_linkedin_link",
-       "label": "LinkedIn Link"
-     },
       {
-       "type": "url",
-       "id": "social_youtube_link",
-       "label": "YouTube Link"
-     }
+        "type": "header",
+        "content": "Social Media Links"
+      },
+      {
+        "type": "range",
+        "id": "social_icon_size",
+        "min": 16,
+        "max": 60,
+        "step": 2,
+        "unit": "px",
+        "label": "Icon Size",
+        "default": 24
+      },
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_instagram_icon",
+        "label": "Instagram Icon (Upload)"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook_link",
+        "label": "Facebook Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_facebook_icon",
+        "label": "Facebook Icon (Upload)"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_youtube_icon",
+        "label": "YouTube Icon (Upload)"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter_link",
+        "label": "Twitter/X Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_twitter_icon",
+        "label": "Twitter/X Icon (Upload)"
+      },
+      {
+        "type": "url",
+        "id": "social_linkedin_link",
+        "label": "LinkedIn Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_linkedin_icon",
+        "label": "LinkedIn Icon (Upload)"
+      }
    ],
    "blocks": [
      {
@@ -281,65 +360,184 @@
    padding-bottom: {{ section.settings.padding_bottom }}px;
  }
 
- /* --- ROW 1: Logo --- */
- .footer-top-logo {
-   padding-bottom: 30px;
+ /* --- TOP BAR LAYOUT --- */
+ .footer-top-bar {
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+   padding-bottom: 40px;
    border-bottom: 1px solid {{ section.settings.divider_color }};
    margin-bottom: 40px;
  }
 
- .footer-top-logo img, .footer-top-logo svg {
-   width: {{ section.settings.logo_width }}px;
-   height: auto;
-   display: block;
- }
-
- /* --- ROW 2: Main Grid --- */
- .footer-main-grid {
-   display: grid;
-   grid-template-columns: 1fr;
-   gap: 40px;
-   padding-bottom: 40px;
-   border-bottom: 1px solid {{ section.settings.divider_color }};
-   margin-bottom: 30px;
- }
-
  @media screen and (min-width: 768px) {
-   .footer-main-grid {
-     grid-template-columns: repeat(2, 1fr);
+   .footer-top-bar {
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center; /* Vertically align logo and form */
    }
  }
+
+ .footer-logo-wrapper {
+   flex-shrink: 0;
+ }
+
+ .footer-top-newsletter {
+   width: 100%;
+   max-width: 500px;
+ }
+
+ .footer-newsletter-heading {
+   font-size: 20px; /* Adjusted size for top bar */
+   font-weight: 700;
+   margin-bottom: 16px;
+   line-height: 1.2;
+   text-align: left;
+ }
  
- @media screen and (min-width: 1024px) {
-    .footer-main-grid {
-        grid-template-columns: repeat(4, 1fr); /* 3 cols for Nav + 1 for Badge */
+ @media screen and (min-width: 768px) {
+    .footer-newsletter-heading {
+        text-align: left;
     }
  }
 
- .footer-column-heading {
-   font-size: {{ section.settings.heading_font_size }}px;
-   font-weight: 600;
-   margin-bottom: 24px;
+ .newsletter-form {
+   max-width: 100%;
+   margin-bottom: 0;
+   position: relative;
+ }
+
+ .newsletter-input-wrapper {
+   position: relative;
+   display: flex;
+   align-items: center;
+   background-color: {{ section.settings.newsletter_bg }};
+   border-radius: 8px;
+   padding: 5px;
+ }
+
+ .newsletter-input {
+   width: 100%;
+   background: transparent;
+   border: none;
    color: {{ section.settings.text_color }};
+   padding: 12px 16px;
+   font-size: 14px;
+ }
+ 
+ .newsletter-input:focus {
+   outline: none;
+ }
+ .newsletter-input::placeholder {
+   color: rgba(255,255,255,0.5);
  }
 
- .footer-menu {
-   list-style: none;
-   padding: 0;
-   margin: 0;
+ .newsletter-submit {
+   background: #ffffff;
+   border: none;
+   border-radius: 50%;
+   width: 36px;
+   height: 36px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   color: #000;
+   transition: transform 0.2s ease;
+   flex-shrink: 0;
+   margin-right: 4px;
+ }
+ 
+ .newsletter-submit:hover {
+   transform: scale(1.05);
  }
 
- .footer-menu li {
+
+ /* --- MAIN GRID (Links) --- */
+ .footer-nav-grid {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 40px;
+   margin-bottom: 40px;
+   width: 100%;
+ }
+ 
+ /* Use 4 columns on desktop for links + badge */
+ @media screen and (min-width: 1024px) {
+   .footer-nav-grid {
+     grid-template-columns: repeat(4, 1fr);
+   }
+ }
+
+ .footer-nav-grid {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 40px;
+ }
+
+ @media screen and (min-width: 768px) {
+   .footer-nav-grid {
+     grid-template-columns: repeat(3, 1fr);
+   }
+ }
+ 
+ /* Reuse existing menu styles */
+
+
+  .footer-column-heading {
+    font-size: {{ section.settings.heading_font_size_v2 }}px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: {{ section.settings.text_color }};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .footer-column-heading::-webkit-details-marker {
+    display: none;
+  }
+
+  .footer-column-heading .icon-caret {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.6;
+  }
+
+  details[open] .footer-column-heading .icon-caret {
+    transform: rotate(180deg);
+  }
+
+  .footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  /* Desktop layout tweaks */
+  @media screen and (min-width: 768px) {
+    .footer-column-heading {
+      margin-bottom: 20px;
+    }
+  }
+
+  .footer-menu li {
    margin-bottom: 14px;
  }
 
- .footer-menu a {
-   text-decoration: none;
-   color: {{ section.settings.text_color }};
-   font-size: {{ section.settings.link_font_size }}px;
-   opacity: 0.7;
-   transition: opacity 0.2s;
- }
+  .footer-menu a {
+    text-decoration: none;
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.link_font_size_v2 }}px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
 
  .footer-menu a:hover {
    opacity: 1;
@@ -386,25 +584,43 @@
  
  .footer-copyright p { margin: 0; }
 
- .footer-social-icons {
-   display: flex;
-   gap: 20px;
- }
+  .footer-social-icons {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+    justify-content: flex-start;
+  }
 
- .footer-social-link {
-   color: {{ section.settings.text_color }};
-   opacity: 0.8;
-   transition: opacity 0.2s;
- }
- 
- .footer-social-link:hover {
-    opacity: 1;
- }
+  @media screen and (min-width: 768px) {
+    .footer-social-icons {
+      justify-content: flex-start;
+    }
+  }
 
- .footer-social-link svg {
-   width: 20px;
-   height: 20px;
- }
+  .footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+  }
+  
+  .footer-social-link:hover {
+     transform: translateY(-5px) scale(1.1);
+     filter: brightness(1.2);
+  }
+
+  .footer-social-link img {
+    width: {{ section.settings.social_icon_size }}px;
+    height: {{ section.settings.social_icon_size }}px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .footer-social-link svg {
+    width: {{ section.settings.social_icon_size }}px;
+    height: {{ section.settings.social_icon_size }}px;
+    color: {{ section.settings.text_color }};
+  }
 
 {%- endstyle -%}
 
@@ -420,86 +636,129 @@
 
  <div class="new-footer-container">
    
-   <!-- Top Row: Logo -->
-   <div class="footer-top-logo">
-     {%- if section.settings.logo_image != blank -%}
-       {{ section.settings.logo_image | image_url: width: section.settings.logo_width | image_tag: loading: 'lazy' }}
-     {%- else -%}
-       <!-- Placeholder Text Logo if no image -->
-       <h2 style="margin:0; font-size: 24px;">{{ shop.name }}</h2>
-     {%- endif -%}
+   <!-- Top Row: Logo & Newsletter -->
+   <div class="footer-top-bar">
+     <div class="footer-logo-wrapper">
+       {%- if section.settings.logo_image != blank -%}
+         {{ section.settings.logo_image | image_url: width: section.settings.logo_width | image_tag: loading: 'lazy' }}
+       {%- else -%}
+         <h2 style="margin:0; font-size: 24px;">{{ shop.name }}</h2>
+       {%- endif -%}
+     </div>
+
+     <div class="footer-top-newsletter">
+        {%- if section.settings.newsletter_heading != blank -%}
+           <div class="footer-newsletter-heading">{{ section.settings.newsletter_heading }}</div>
+        {%- endif -%}
+
+         <div class="newsletter-form">
+           {% form 'customer', class: 'newsletter-form' %}
+             <input type="hidden" name="contact[tags]" value="newsletter">
+             <div class="newsletter-input-wrapper">
+               <input
+                 id="NewsletterForm--{{ section.id }}"
+                 type="email"
+                 name="contact[email]"
+                 class="newsletter-input"
+                 value="{{ form.email }}"
+                 aria-required="true"
+                 autocorrect="off"
+                 autocapitalize="off"
+                 autocomplete="email"
+                 {% if form.errors %}
+                   autofocus
+                   aria-invalid="true"
+                   aria-describedby="Newsletter-error--{{ section.id }}"
+                 {% elsif form.posted_successfully? %}
+                   aria-describedby="Newsletter-success--{{ section.id }}"
+                 {% endif %}
+                 placeholder="Enter your email"
+                 required
+               >
+               <button type="submit" class="newsletter-submit" name="commit" id="Subscribe" aria-label="Subscribe">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.66669 4L10.6667 8L6.66669 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+               </button>
+             </div>
+             {%- if form.errors -%}
+               <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
+             {%- endif -%}
+             {%- if form.posted_successfully? -%}
+               <small class="newsletter-form__message form__message form__message--success" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>Thanks for subscribing!</small>
+             {%- endif -%}
+           {% endform %}
+         </div>
+
+         <!-- Custom Social Icons (User Uploaded) -->
+         <div class="footer-social-icons">
+            {%- if section.settings.social_instagram_icon != blank -%}
+              <a href="{{ section.settings.social_instagram_link }}" class="footer-social-link" aria-label="Instagram">
+                {{ section.settings.social_instagram_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+              </a>
+            {%- endif -%}
+            {%- if section.settings.social_facebook_icon != blank -%}
+              <a href="{{ section.settings.social_facebook_link }}" class="footer-social-link" aria-label="Facebook">
+                {{ section.settings.social_facebook_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+              </a>
+            {%- endif -%}
+            {%- if section.settings.social_youtube_icon != blank -%}
+              <a href="{{ section.settings.social_youtube_link }}" class="footer-social-link" aria-label="YouTube">
+                {{ section.settings.social_youtube_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+              </a>
+            {%- endif -%}
+            {%- if section.settings.social_twitter_icon != blank -%}
+              <a href="{{ section.settings.social_twitter_link }}" class="footer-social-link" aria-label="Twitter">
+                {{ section.settings.social_twitter_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+              </a>
+            {%- endif -%}
+            {%- if section.settings.social_linkedin_icon != blank -%}
+              <a href="{{ section.settings.social_linkedin_link }}" class="footer-social-link" aria-label="LinkedIn">
+                {{ section.settings.social_linkedin_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+              </a>
+            {%- endif -%}
+         </div>
+     </div>
    </div>
 
-   <!-- Middle Row: Grid -->
-   <div class="footer-main-grid">
-     <!-- Navigation Columns (Limit 3) -->
+   <!-- Middle Row: Links Grid (Full Width) -->
+   <div class="footer-nav-grid">
      {%- for block in section.blocks -%}
        <div class="footer-nav-col">
-         {%- if block.settings.heading != blank -%}
-           <div class="footer-column-heading">{{ block.settings.heading }}</div>
-         {%- endif -%}
-         
-         {%- if block.settings.menu != blank -%}
-           <ul class="footer-menu">
-             {%- for link in linklists[block.settings.menu].links -%}
-               <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-             {%- endfor -%}
-           </ul>
-         {%- endif -%}
+         <details id="Details-{{ block.id }}-{{ section.id }}">
+           <summary class="footer-column-heading">
+             <span>{{ block.settings.heading | escape }}</span>
+             <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
+               <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+             </svg>
+           </summary>
+           
+           {%- if block.settings.menu != blank -%}
+             <ul class="footer-menu">
+               {%- for link in linklists[block.settings.menu].links -%}
+                 <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+               {%- endfor -%}
+             </ul>
+           {%- endif -%}
+         </details>
        </div>
      {%- endfor -%}
      
-     <!-- Spacer columns if less than 3 blocks? No, grid auto-placement handles it, 
-          but we want the badge to be the 4th column always? 
-          We'll just put the Badge column after the loop. 
-          If user adds 3 blocks, badge is 4th. If user adds 4 blocks, badge is 5th (next row).
-          User is limited to 3 blocks in schema.
-      -->
-
-     <!-- Badge Column (Right aligned on desktop) -->
+     <!-- Badge in Grid (Rightmost) -->
       <div class="footer-badge-column">
-        {%- if section.settings.badge_image != blank -%}
-            <div class="footer-badge">
-                {{ section.settings.badge_image | image_url: width: section.settings.badge_width | image_tag: loading: 'lazy' }}
-            </div>
-        {%- endif -%}
-      </div>
+         {%- if section.settings.badge_image != blank -%}
+             <div class="footer-badge">
+                 {{ section.settings.badge_image | image_url: width: section.settings.badge_width | image_tag: loading: 'lazy' }}
+             </div>
+         {%- endif -%}
+       </div>
    </div>
 
-   <!-- Bottom Row: Copyright & Socials -->
-   <div class="footer-bottom-bar">
-     <div class="footer-copyright">
-       {{ section.settings.copyright_text }}
-     </div>
-     
-     <div class="footer-social-icons">
-        {%- if section.settings.social_youtube_link != blank -%}
-         <a href="{{ section.settings.social_youtube_link }}" class="footer-social-link" aria-label="YouTube">
-           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
-         </a>
-       {%- endif -%}
-       {%- if section.settings.social_twitter_link != blank -%}
-         <a href="{{ section.settings.social_twitter_link }}" class="footer-social-link" aria-label="X/Twitter">
-           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
-         </a>
-       {%- endif -%}
-       {%- if section.settings.social_linkedin_link != blank -%}
-         <a href="{{ section.settings.social_linkedin_link }}" class="footer-social-link" aria-label="LinkedIn">
-           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-         </a>
-       {%- endif -%}
-       {%- if section.settings.social_facebook_link != blank -%}
-         <a href="{{ section.settings.social_facebook_link }}" class="footer-social-link" aria-label="Facebook">
-           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-         </a>
-       {%- endif -%}
-       {%- if section.settings.social_instagram_link != blank -%}
-         <a href="{{ section.settings.social_instagram_link }}" class="footer-social-link" aria-label="Instagram">
-           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-         </a>
-       {%- endif -%}
-     </div>
-   </div>
+    <div class="footer-bottom-bar">
+      <div class="footer-copyright">
+        {{ section.settings.copyright_text }}
+      </div>
+    </div>
 
  </div>
 </div>

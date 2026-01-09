@@ -231,6 +231,129 @@
     }
   }
 
+  /* Mobile Drawer */
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    visibility: hidden;
+    pointer-events: none;
+    transition: visibility 0.4s;
+  }
+
+  .mobile-drawer.is-open {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mobile-drawer__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .mobile-drawer.is-open .mobile-drawer__overlay {
+    opacity: 1;
+  }
+
+  .mobile-drawer__content {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 400px;
+    height: 100%;
+    background: {{ section.settings.bg_color }};
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    overflow-y: auto;
+  }
+
+  .mobile-drawer.is-open .mobile-drawer__content {
+    right: 0;
+  }
+
+  .mobile-drawer__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .mobile-drawer__close {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: {{ section.settings.text_color }};
+  }
+
+  .mobile-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mobile-menu__item {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 12px;
+  }
+
+  .mobile-menu__link {
+    font-size: 20px;
+    font-weight: 700;
+    color: {{ section.settings.text_color }};
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .mobile-submenu {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mobile-submenu__link {
+    font-size: 16px;
+    font-weight: 500;
+    color: {{ section.settings.text_color }};
+    text-decoration: none;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-submenu__icon {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+  }
+  
+  body.menu-open {
+    overflow: hidden;
+  }
+
 {%- endstyle -%}
 
 <!-- Spacer for fixed header -->
@@ -301,14 +424,65 @@
 
 
     <!-- Mobile Toggle -->
-    <button class="new-header__mobile-toggle">
+    <button class="new-header__mobile-toggle" aria-label="Open Menu" id="MobileToggle">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="12" x2="21" y2="12"></line>
         <line x1="3" y1="6" x2="21" y2="6"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
+    </button>
   </div>
 </header>
+
+<!-- Mobile Drawer HTML -->
+<div class="mobile-drawer" id="MobileDrawer">
+  <div class="mobile-drawer__overlay" id="DrawerOverlay"></div>
+  <div class="mobile-drawer__content">
+    <div class="mobile-drawer__header">
+      <span class="new-header__logo-text">{{ shop.name }}</span>
+      <button class="mobile-drawer__close" id="DrawerClose" aria-label="Close Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="mobile-drawer__nav">
+      <ul class="mobile-menu">
+        {%- for link in section.settings.menu.links -%}
+          <li class="mobile-menu__item">
+            <a href="{{ link.url }}" class="mobile-menu__link">{{ link.title }}</a>
+            {%- if link.links != blank -%}
+              <ul class="mobile-submenu">
+                {%- for child_link in link.links -%}
+                  {%- for grandchild_link in child_link.links -%}
+                    <li>
+                       <a href="{{ grandchild_link.url }}" class="mobile-submenu__link">
+                         {%- assign icon_svg = '' -%}
+                         {%- for block in section.blocks -%}
+                           {%- if block.settings.menu_title == grandchild_link.title -%}
+                             {%- assign icon_svg = block.settings.svg_code -%}
+                             {%- break -%}
+                           {%- endif -%}
+                         {%- endfor -%}
+                         
+                         {%- if icon_svg != blank -%}
+                           <div class="mobile-submenu__icon">{{ icon_svg }}</div>
+                         {%- endif -%}
+                         {{ grandchild_link.title }}
+                       </a>
+                    </li>
+                  {%- endfor -%}
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -338,6 +512,9 @@
     window.addEventListener('scroll', function() {
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
       
+      // Don't hide if menu is open
+      if (document.body.classList.contains('menu-open')) return;
+
       // Ignore bounce (negative scroll)
       if (currentScroll <= 0) {
         header.classList.remove('scroll-down');
@@ -360,6 +537,27 @@
       
       lastScroll = currentScroll;
     }, { passive: true });
+
+    // --- Mobile Drawer Logic ---
+    const drawer = document.getElementById('MobileDrawer');
+    const toggle = document.getElementById('MobileToggle');
+    const close = document.getElementById('DrawerClose');
+    const overlay = document.getElementById('DrawerOverlay');
+
+    const openDrawer = () => {
+      drawer.classList.add('is-open');
+      document.body.classList.add('menu-open');
+    };
+
+    const closeDrawer = () => {
+      drawer.classList.remove('is-open');
+      document.body.classList.remove('menu-open');
+    };
+
+    if (toggle) toggle.addEventListener('click', openDrawer);
+    if (close) close.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+
   });
 </script>
 

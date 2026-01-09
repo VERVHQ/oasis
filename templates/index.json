@@ -15,8 +15,8 @@
         "slide_bjaRWJ": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/new-slide.jpg",
-            "heading": "TRIPOD STAND WITH REMOTE CONTROL",
+            "image": "shopify://shop_images/Oasis---Slider.jpg",
+            "heading": "HIGH POWER GROW LIGHT BAR",
             "text": "Adjustable height for all plant stages.",
             "button_label": "SHOP",
             "button_link": ""
@@ -25,7 +25,8 @@
         "slide_EenXx7": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/new-slider-2.jpg",
+            "image": "shopify://shop_images/Oasis---Slider2.jpg",
+            "image_mobile": "shopify://shop_images/ChatGPT_Image_Jan_8_2026_07_39_32_PM.png",
             "heading": "TRIPOD STAND WITH REMOTE CONTROL",
             "text": "Adjustable height for all plant stages.",
             "button_label": "SHOP",
@@ -39,8 +40,9 @@
       ],
       "name": "Full Screen Hero Slider",
       "settings": {
+        "image_alignment": "center bottom",
         "desktop_height": 790,
-        "mobile_height": 500,
+        "mobile_height": 610,
         "overlay_opacity": 30,
         "gradient_color": "#000000",
         "gradient_height": 0,
@@ -94,53 +96,35 @@
           "type": "bento_card",
           "settings": {
             "image": "shopify://shop_images/Eat_Fresh_Everyday2.png",
-            "heading": "Collection Name",
-            "link": ""
-          }
-        },
-        "bento_card_t3GtDw": {
-          "type": "bento_card",
-          "settings": {
-            "image": "shopify://shop_images/Show_Them_Off_02.png",
-            "heading": "Vegetables & Herbs",
-            "link": ""
+            "heading": "High power grow light bar",
+            "link": "shopify://products/ray-75"
           }
         },
         "bento_card_BUr4eh": {
           "type": "bento_card",
           "settings": {
-            "image": "shopify://shop_images/a-nice-plant-placed-in-a-minimal-white-kitchen-counter-top-in-daylight-scene.png",
-            "heading": "Vegetables & Herbs",
-            "link": ""
-          }
-        },
-        "bento_card_K7BbCi": {
-          "type": "bento_card",
-          "settings": {
-            "image": "shopify://shop_images/a-nice-expensive-looking-plant-placed-in-a-minimal-counter-top-in-a-living-room.png",
-            "heading": "Ornamental Plants",
-            "link": ""
+            "image": "shopify://shop_images/Oasis---Slidper.jpg",
+            "heading": "House plant grow light",
+            "link": "shopify://products/house-plant-grow-light"
           }
         },
         "bento_card_Fx9R4r": {
           "type": "bento_card",
           "settings": {
-            "image": "shopify://shop_images/MIGRO_SEEDLING_ANIMATION_4K_FINAL.mp4.00_00_16_01.Still002.png",
-            "heading": "Ornamental Plants",
-            "link": ""
+            "image": "shopify://shop_images/seed-starting-secrets-get-a-head-start-on-spring-with-grow-lights.png",
+            "heading": "Plant grow light bar",
+            "link": "shopify://products/plant-grow-light-bar"
           }
         }
       },
       "block_order": [
         "bento_card_A4NYEM",
-        "bento_card_t3GtDw",
         "bento_card_BUr4eh",
-        "bento_card_K7BbCi",
         "bento_card_Fx9R4r"
       ],
       "name": "Products Collection (Bento)",
       "settings": {
-        "heading": "Our Collection",
+        "heading": "Our Products",
         "bg_color": "#ffffff",
         "text_color": "#1a1a1a",
         "card_text_color": "#ffffff",
@@ -305,38 +289,10 @@
           "type": "card",
           "settings": {
             "column_span": "1",
-            "article": "",
-            "custom_image": "shopify://shop_images/R_S__05___Ready_To_Grow.png",
+            "article": "mi-verv/seed-starting-secrets-get-a-head-start-on-spring-with-grow-lights",
+            "custom_image": "shopify://shop_images/ChatGPT_Image_Jan_8_2026_05_09_28_PM.png",
             "custom_title": "",
             "custom_author": "",
-            "custom_url": "",
-            "btn_text": "Read More",
-            "btn_bg_color": "#55928f",
-            "btn_text_color": "#ffffff"
-          }
-        },
-        "card_RdGt6U": {
-          "type": "card",
-          "settings": {
-            "column_span": "1",
-            "article": "",
-            "custom_image": "shopify://shop_images/a-nice-plant-placed-in-a-minimal-white-kitchen-counter-top-in-daylight-scene.png",
-            "custom_title": "",
-            "custom_author": "",
-            "custom_url": "",
-            "btn_text": "Read More",
-            "btn_bg_color": "#55928f",
-            "btn_text_color": "#ffffff"
-          }
-        },
-        "card_BengAp": {
-          "type": "card",
-          "settings": {
-            "column_span": "1",
-            "article": "",
-            "custom_image": "shopify://shop_images/Eat_Fresh_Everyday_01.png",
-            "custom_title": "Reliable and trustworthy.",
-            "custom_author": "Jane Copper",
             "custom_url": "",
             "btn_text": "Read More",
             "btn_bg_color": "#55928f",
@@ -347,9 +303,23 @@
           "type": "card",
           "settings": {
             "column_span": "2",
-            "article": "",
-            "custom_image": "shopify://shop_images/MIGRO_SEEDLING_ANIMATION_4K_FINAL.mp4.00_00_16_01.Still002_30caaecd-ecf1-40ff-8bb9-574877efd1de.png",
-            "custom_title": "Reliable and trustworthy. Made my life so much easier!",
+            "article": "mi-verv/stop-killing-your-succulents-a-simple-guide-to-winter-lighting",
+            "custom_image": "shopify://shop_images/stop-killing-your-succulents.png",
+            "custom_title": "",
+            "custom_author": "Jane Copper",
+            "custom_url": "",
+            "btn_text": "Read More",
+            "btn_bg_color": "#55928f",
+            "btn_text_color": "#ffffff"
+          }
+        },
+        "card_xHUhUa": {
+          "type": "card",
+          "settings": {
+            "column_span": "2",
+            "article": "mi-verv/5-signs-your-plants-are-starving-for-light-and-how-to-fix-it",
+            "custom_image": "shopify://shop_images/a-nice-plant-placed-in-a-minimal-white-kitchen-counter-top-in-daylight-scene.png",
+            "custom_title": "",
             "custom_author": "Jane Copper",
             "custom_url": "",
             "btn_text": "Read More",
@@ -361,9 +331,9 @@
           "type": "card",
           "settings": {
             "column_span": "1",
-            "article": "",
-            "custom_image": "shopify://shop_images/Eat_Fresh_Everyday2.png",
-            "custom_title": "Understanding Grow Lights",
+            "article": "mi-verv/how-to-grow-cherry-tomatoes-indoors",
+            "custom_image": "shopify://shop_images/ChatGPT_Image_Jan_8_2026_04_54_57_PM.png",
+            "custom_title": "",
             "custom_author": "Oasis Team",
             "custom_url": "",
             "btn_text": "Read More",
@@ -374,9 +344,8 @@
       },
       "block_order": [
         "card_UnzWQ6",
-        "card_RdGt6U",
-        "card_BengAp",
         "card_GAXErN",
+        "card_xHUhUa",
         "card_XwHty6"
       ],
       "name": "Blog Bento Grid",
@@ -392,11 +361,42 @@
         "margin_bottom": 0
       }
     },
+    "rich_text_ayBQ7i": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XFdgqh": {
+          "type": "heading",
+          "settings": {
+            "heading": "From Withering to Thriving",
+            "heading_size": "h1"
+          }
+        },
+        "text_PhFT8D": {
+          "type": "text",
+          "settings": {
+            "text": "<p>See how our full-spectrum grow lights mimic natural sunlight to restore vitality in low-light environments.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XFdgqh",
+        "text_PhFT8D"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "before_after_pWTiJ6": {
       "type": "before-after",
       "name": "Before/After Comparison",
       "settings": {
-        "image_1": "shopify://shop_images/a-nice-expensive-looking-plant-placed-in-a-minimal-counter-top-in-a-living-room.png",
+        "image_1": "shopify://shop_images/as.jpg",
         "image_2": "shopify://shop_images/Eat_Fresh_Everyday_01.png",
         "label_1": "Before",
         "label_2": "After",
@@ -411,6 +411,20 @@
     "faq_section_7KJTPj": {
       "type": "faq-section",
       "blocks": {
+        "question_HPc9GG": {
+          "type": "question",
+          "settings": {
+            "title": "Will this increase my electricity bill?",
+            "answer": "<p>Not at all. Our energy-efficient LEDs consume very little power, costing just a few dollars a month to run daily.</p>"
+          }
+        },
+        "question_cMUB9A": {
+          "type": "question",
+          "settings": {
+            "title": "How long should I leave the light on?",
+            "answer": "<p>Aim for 12–16 hours a day for optimal growth. We recommend keeping the light roughly 6–12 inches above the top leaves.</p>"
+          }
+        },
         "question_jpCBYF": {
           "type": "question",
           "settings": {
@@ -441,6 +455,8 @@
         }
       },
       "block_order": [
+        "question_HPc9GG",
+        "question_cMUB9A",
         "question_jpCBYF",
         "question_gYW8cc",
         "question_TWTqmn",
@@ -466,6 +482,7 @@
     "about_oasis_aEKGMK",
     "review_cards_7abc8Y",
     "blog_bento_Xypbir",
+    "rich_text_ayBQ7i",
     "before_after_pWTiJ6",
     "faq_section_7KJTPj"
   ]

@@ -17,12 +17,13 @@
         "footer_column_iUPfcp": {
           "type": "footer_column",
           "settings": {
-            "heading": "Solutions",
+            "heading": "Links",
             "menu": "main-menu"
           }
         },
         "footer_column_6DdyDk": {
           "type": "footer_column",
+          "disabled": true,
           "settings": {
             "heading": "Company",
             "menu": "footer"
@@ -30,6 +31,7 @@
         },
         "footer_column_xxf9LT": {
           "type": "footer_column",
+          "disabled": true,
           "settings": {
             "heading": "Resources",
             "menu": ""
@@ -50,19 +52,17 @@
         "padding_top": 60,
         "padding_bottom": 40,
         "text_color": "#ffffff",
-        "heading_font_size": 18,
-        "link_font_size": 14,
         "copyright_font_size": 12,
         "logo_image": "shopify://shop_images/Oasis0-light_bg.svg",
         "logo_width": 280,
         "badge_width": 80,
         "copyright_text": "<p>2026 © Oasis Inc. All Rights Reserved</p>",
         "copyright_color": "#888888",
-        "social_twitter_link": "",
-        "social_facebook_link": "",
         "social_instagram_link": "",
-        "social_linkedin_link": "",
-        "social_youtube_link": ""
+        "social_facebook_link": "",
+        "social_youtube_link": "",
+        "social_twitter_link": "",
+        "social_linkedin_link": ""
       }
     },
     "footer": {
