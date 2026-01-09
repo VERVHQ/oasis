@@ -72,7 +72,9 @@
         "social_youtube_link": "",
         "social_twitter_link": "",
         "social_twitter_icon": "shopify://shop_images/twitter.png",
-        "social_linkedin_link": ""
+        "social_linkedin_link": "",
+        "bottom_logo": "shopify://shop_images/Asset_2_2x_78c5e653-951d-4681-9715-e7ecf9ffcb94.png",
+        "bottom_logo_width": 1400
       }
     },
     "footer": {
