@@ -14,34 +14,32 @@
     "new_footer_JbL4x7": {
       "type": "new-footer",
       "blocks": {
-        "footer_column_iUPfcp": {
-          "type": "footer_column",
+        "footer_link_rXaHXf": {
+          "type": "footer_link",
           "settings": {
-            "heading": "Links",
-            "menu": "main-menu"
+            "text": "Products",
+            "url": ""
           }
         },
-        "footer_column_6DdyDk": {
-          "type": "footer_column",
-          "disabled": true,
+        "footer_link_7ahCrq": {
+          "type": "footer_link",
           "settings": {
-            "heading": "Company",
-            "menu": "footer"
+            "text": "Products",
+            "url": ""
           }
         },
-        "footer_column_xxf9LT": {
-          "type": "footer_column",
-          "disabled": true,
+        "footer_link_tRx4Cr": {
+          "type": "footer_link",
           "settings": {
-            "heading": "Resources",
-            "menu": ""
+            "text": "Products",
+            "url": ""
           }
         }
       },
       "block_order": [
-        "footer_column_iUPfcp",
-        "footer_column_6DdyDk",
-        "footer_column_xxf9LT"
+        "footer_link_rXaHXf",
+        "footer_link_7ahCrq",
+        "footer_link_tRx4Cr"
       ],
       "name": "New Footer (REORC)",
       "settings": {
@@ -52,12 +50,13 @@
         "padding_top": 60,
         "padding_bottom": 40,
         "text_color": "#ffffff",
+        "link_font_size_v2": 16,
         "copyright_font_size": 12,
         "logo_image": "shopify://shop_images/Oasis0-light_bg.svg",
         "logo_width": 280,
-        "badge_width": 80,
         "copyright_text": "<p>2026 © Oasis Inc. All Rights Reserved</p>",
         "copyright_color": "#888888",
+        "social_icon_size": 24,
         "social_instagram_link": "",
         "social_facebook_link": "",
         "social_youtube_link": "",

@@ -122,12 +122,34 @@
        "label": "Copyright Text",
        "default": "<p>2026 © Oasis Inc. All Rights Reserved</p>"
      },
-     {
-       "type": "color",
-       "id": "copyright_color",
-       "label": "Copyright Color",
-       "default": "#888888"
+      {
+       "type": "text",
+       "id": "terms_text",
+       "label": "Terms Label",
+       "default": "Terms and Conditions"
      },
+     {
+       "type": "url",
+       "id": "terms_url",
+       "label": "Terms Link"
+     },
+     {
+       "type": "text",
+       "id": "privacy_text",
+       "label": "Privacy Label",
+       "default": "Privacy Policy"
+     },
+     {
+       "type": "url",
+       "id": "privacy_url",
+       "label": "Privacy Link"
+     },
+      {
+        "type": "color",
+        "id": "copyright_color",
+        "label": "Copyright Color",
+        "default": "#888888"
+      },
       {
         "type": "header",
         "content": "Social Media Links"
@@ -352,6 +374,42 @@
    }
  }
 
+
+  /* Legal Links Section */
+  .footer-legal-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .footer-legal-section {
+      flex-direction: row;
+      gap: 24px;
+    }
+  }
+
+  .footer-legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .footer-legal-link {
+    text-decoration: none;
+    color: {{ section.settings.copyright_color }};
+    font-size: {{ section.settings.copyright_font_size }}px;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+
+  .footer-legal-link:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
  .footer-copyright {
    color: {{ section.settings.copyright_color }};
    font-size: {{ section.settings.copyright_font_size }}px;
@@ -421,8 +479,19 @@
 
    <!-- Bottom Row: Copyright & Socials -->
     <div class="footer-bottom-bar">
-      <div class="footer-copyright">
-        {{ section.settings.copyright_text }}
+      <div class="footer-legal-section">
+        <div class="footer-copyright">
+          {{ section.settings.copyright_text }}
+        </div>
+        
+        <div class="footer-legal-links">
+           {%- if section.settings.terms_text != blank -%}
+             <a href="{{ section.settings.terms_url }}" class="footer-legal-link">{{ section.settings.terms_text }}</a>
+           {%- endif -%}
+           {%- if section.settings.privacy_text != blank -%}
+             <a href="{{ section.settings.privacy_url }}" class="footer-legal-link">{{ section.settings.privacy_text }}</a>
+           {%- endif -%}
+        </div>
       </div>
 
       <div class="footer-social-icons">
