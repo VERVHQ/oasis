@@ -94,7 +94,8 @@
     left: 0;
     width: 100%;
     height: {{ section.settings.gradient_height }}%;
-    background: linear-gradient(to top, {{ section.settings.gradient_color | color_modify: 'alpha', opacity_decimal }}, transparent);
+    /* Hardcoded black gradient as per user request for robustness */
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     z-index: 2;
     pointer-events: none;
   }
@@ -243,7 +244,7 @@
                     backdrop-filter: blur(10px);
                     -webkit-backdrop-filter: blur(10px);
                     border: 1px solid rgba(255, 255, 255, 0.2);
-                    color: #fff;
+                    color: #000;
                     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
                   ">
                     <span class="hero-slide__author" style="font-weight: 600;">{{ article.author }}</span>
@@ -266,7 +267,7 @@
                         backdrop-filter: blur(10px);
                         -webkit-backdrop-filter: blur(10px);
                         border: 1px solid rgba(255, 255, 255, 0.2);
-                        color: #fff;
+                        color: #000;
                         box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
                       ">{{ tag }}</span>
                     {%- endfor -%}
