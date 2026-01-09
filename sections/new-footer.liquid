@@ -246,6 +246,25 @@
         "type": "image_picker",
         "id": "social_linkedin_icon",
         "label": "LinkedIn Icon (Upload)"
+      },
+      {
+        "type": "header",
+        "content": "Bottom Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "bottom_logo",
+        "label": "Bottom Logo Image"
+      },
+      {
+        "type": "range",
+        "id": "bottom_logo_width",
+        "min": 50,
+        "max": 2000,
+        "step": 50,
+        "unit": "px",
+        "label": "Bottom Logo Width",
+        "default": 1400
       }
    ],
    "blocks": [
@@ -480,6 +499,18 @@
     object-fit: contain;
     display: block;
   }
+  .footer-bottom-logo {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     margin-top: 40px;
+  }
+  
+  .footer-bottom-logo img {
+     max-width: 100%;
+     width: {{ section.settings.bottom_logo_width }}px;
+     height: auto;
+  }
 {%- endstyle -%}
 
 <div class="new-footer-section-{{ section.id }}">
@@ -561,9 +592,16 @@
         </div>
       </div>
 
+       </div>
+    </div>
+    
+    {%- if section.settings.bottom_logo != blank -%}
+      <div class="footer-bottom-logo">
+        {{ section.settings.bottom_logo | image_url: width: 2000 | image_tag: loading: 'lazy' }}
       </div>
-    </div>
-    </div>
+    {%- endif -%}
+
+  </div>
 
  </div>
 </div>
