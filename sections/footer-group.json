@@ -24,14 +24,14 @@
         "footer_link_7ahCrq": {
           "type": "footer_link",
           "settings": {
-            "text": "Products",
+            "text": "Blogs",
             "url": ""
           }
         },
         "footer_link_tRx4Cr": {
           "type": "footer_link",
           "settings": {
-            "text": "Products",
+            "text": "Contact",
             "url": ""
           }
         }
@@ -55,12 +55,23 @@
         "logo_image": "shopify://shop_images/Oasis0-light_bg.svg",
         "logo_width": 280,
         "copyright_text": "<p>2026 © Oasis Inc. All Rights Reserved</p>",
+        "terms_text": "Terms and Conditions",
+        "terms_url": "",
+        "privacy_text": "Privacy Policy",
+        "privacy_url": "",
         "copyright_color": "#888888",
-        "social_icon_size": 24,
+        "social_icon_size": 20,
+        "social_padding": 8,
+        "social_radius": 12,
+        "social_bg_color": "#114f4a",
+        "social_icon_color_filter": "#ffffff",
         "social_instagram_link": "",
+        "social_instagram_icon": "shopify://shop_images/instagram.png",
         "social_facebook_link": "",
+        "social_facebook_icon": "shopify://shop_images/facebook-app-symbol.png",
         "social_youtube_link": "",
         "social_twitter_link": "",
+        "social_twitter_icon": "shopify://shop_images/twitter.png",
         "social_linkedin_link": ""
       }
     },
