@@ -55,14 +55,16 @@
         "card_cfiA8e": {
           "type": "card",
           "settings": {
-            "svg_code": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"></circle><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"></line><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"></line><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"></line><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"></line><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"></line><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"></line><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"></line><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"></line></svg>",
+            "svg_code": "",
+            "image_icon": "shopify://shop_images/leaf.png",
             "text": "Full Spectrum Healthy Growth"
           }
         },
         "card_yq7QPT": {
           "type": "card",
           "settings": {
-            "svg_code": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 18h6\"></path><path d=\"M10 22h4\"></path><path d=\"M15.09 14c.18-.9.95-1.59 1.91-1.7 1-.1 1.95.44 2.37 1.33.24.52.3 1.11.16 1.67-.14 0.56-.46 1.05-.9 1.4-1 .8-2.6 1.3-4.5 1.3-1.9 0-3.5-.5-4.5-1.3-.44-.35-.76-.84-.9-1.4-.14-.56-.08-1.15.16-1.67.42-.89 1.37-1.43 2.37-1.33.96.11 1.73.8 1.91 1.7z\" transform=\"translate(0 -2)\"></path><path d=\"M12 2v4\"></path><path d=\"M4.2 4.2l2.8 2.8\"></path><path d=\"M19.8 4.2l-2.8 2.8\"></path><path d=\"M23 11h-4\"></path><path d=\"M5 11H1\"></path></svg>",
+            "svg_code": "",
+            "image_icon": "shopify://shop_images/brightness.png",
             "text": "Neutral White Light No Glare"
           }
         },
@@ -84,7 +86,7 @@
         "bg_color": "#272727",
         "text_color": "#ffffff",
         "icon_color": "#e7c17d",
-        "card_bg_color": "#272727",
+        "card_bg_color": "#595959",
         "padding_top": 0,
         "padding_bottom": 0
       }
