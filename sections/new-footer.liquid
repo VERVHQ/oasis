@@ -1,34 +1,6 @@
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const details = document.querySelectorAll('.footer-nav-col details');
-    const isMobile = window.innerWidth < 768;
-    
-    details.forEach(detail => {
-      if (isMobile) {
-        detail.removeAttribute('open');
-      } else {
-        detail.setAttribute('open', '');
-      }
-    });
-
-    // Handle window resize
-    let timeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        const currentlyMobile = window.innerWidth < 768;
-        details.forEach(detail => {
-          if (!currentlyMobile) {
-             detail.setAttribute('open', '');
-          }
-        });
-      }, 200);
-    });
-  });
-</script>
 {% schema %}
  {
-   "name": "New Footer",
+   "name": "New Footer (Reorc)",
    "settings": [
      {
        "type": "header",
@@ -103,23 +75,13 @@
      },
       {
         "type": "range",
-        "id": "heading_font_size_v2",
-        "min": 10,
-        "max": 40,
-        "step": 1,
-        "unit": "px",
-        "label": "Column Heading Size",
-        "default": 16
-      },
-      {
-        "type": "range",
         "id": "link_font_size_v2",
         "min": 10,
         "max": 30,
         "step": 1,
         "unit": "px",
         "label": "Link Text Size",
-        "default": 12
+        "default": 16
       },
      {
        "type": "range",
@@ -133,7 +95,7 @@
      },
      {
        "type": "header",
-       "content": "Top Content (Logo)"
+       "content": "Branding (Logo)"
      },
      {
        "type": "image_picker",
@@ -150,41 +112,6 @@
        "label": "Logo Width",
        "default": 150
      },
-     {
-       "type": "header",
-       "content": "Right Side Badge/Image"
-     },
-     {
-        "type": "image_picker",
-        "id": "badge_image",
-        "label": "Badge/Certification Image"
-     },
-     {
-        "type": "range",
-        "id": "badge_width",
-        "min": 20,
-        "max": 200,
-        "step": 5,
-        "unit": "px",
-        "label": "Badge Width",
-        "default": 80
-     },
-      {
-        "type": "header",
-        "content": "Newsletter"
-      },
-      {
-        "type": "text",
-        "id": "newsletter_heading",
-        "label": "Heading",
-        "default": "Sign up to receive 30% off your first order"
-      },
-      {
-        "type": "color",
-        "id": "newsletter_bg",
-        "label": "Input Background",
-        "default": "#1a1a1a"
-      },
      {
        "type": "header",
        "content": "Bottom Content"
@@ -268,20 +195,19 @@
    ],
    "blocks": [
      {
-       "type": "footer_column",
-       "name": "Navigation Column",
-       "limit": 3,
+       "type": "footer_link",
+       "name": "Link",
        "settings": [
          {
            "type": "text",
-           "id": "heading",
-           "label": "Heading",
-           "default": "Column Heading"
+           "id": "text",
+           "label": "Link Text",
+           "default": "Products"
          },
          {
-           "type": "link_list",
-           "id": "menu",
-           "label": "Menu"
+           "type": "url",
+           "id": "url",
+           "label": "Link URL"
          }
        ]
      }
@@ -291,16 +217,16 @@
        "name": "New Footer (REORC)",
        "blocks": [
          {
-           "type": "footer_column",
-           "settings": { "heading": "Solutions" }
+           "type": "footer_link",
+           "settings": { "text": "Products", "url": "#" }
          },
          {
-           "type": "footer_column",
-           "settings": { "heading": "Company" }
+           "type": "footer_link",
+           "settings": { "text": "Blogs", "url": "#" }
          },
          {
-           "type": "footer_column",
-           "settings": { "heading": "Resources" }
+           "type": "footer_link",
+           "settings": { "text": "Contact", "url": "#" }
          }
        ]
      }
@@ -309,7 +235,6 @@
 {% endschema %}
 
 {%- style -%}
-  /* Fix for sticky hero showing through: Ensure footer sits on top */
   #shopify-section-{{ section.id }} {
     position: relative;
     z-index: 5;
@@ -360,21 +285,22 @@
    padding-bottom: {{ section.settings.padding_bottom }}px;
  }
 
- /* --- TOP BAR LAYOUT --- */
- .footer-top-bar {
+ /* --- TOP ROW --- */
+ .footer-top-row {
    display: flex;
    flex-direction: column;
+   align-items: center;
+   justify-content: space-between;
    gap: 30px;
    padding-bottom: 40px;
    border-bottom: 1px solid {{ section.settings.divider_color }};
-   margin-bottom: 40px;
+   margin-bottom: 24px;
  }
 
  @media screen and (min-width: 768px) {
-   .footer-top-bar {
+   .footer-top-row {
      flex-direction: row;
-     justify-content: space-between;
-     align-items: center; /* Vertically align logo and form */
+     align-items: center;
    }
  }
 
@@ -382,197 +308,46 @@
    flex-shrink: 0;
  }
 
- .footer-top-newsletter {
-   width: 100%;
-   max-width: 500px;
- }
-
- .footer-newsletter-heading {
-   font-size: 20px; /* Adjusted size for top bar */
-   font-weight: 700;
-   margin-bottom: 16px;
-   line-height: 1.2;
-   text-align: left;
- }
- 
- @media screen and (min-width: 768px) {
-    .footer-newsletter-heading {
-        text-align: left;
-    }
- }
-
- .newsletter-form {
-   max-width: 100%;
-   margin-bottom: 0;
-   position: relative;
- }
-
- .newsletter-input-wrapper {
-   position: relative;
+ .footer-nav-links {
    display: flex;
-   align-items: center;
-   background-color: {{ section.settings.newsletter_bg }};
-   border-radius: 8px;
-   padding: 5px;
- }
-
- .newsletter-input {
-   width: 100%;
-   background: transparent;
-   border: none;
-   color: {{ section.settings.text_color }};
-   padding: 12px 16px;
-   font-size: 14px;
- }
- 
- .newsletter-input:focus {
-   outline: none;
- }
- .newsletter-input::placeholder {
-   color: rgba(255,255,255,0.5);
- }
-
- .newsletter-submit {
-   background: #ffffff;
-   border: none;
-   border-radius: 50%;
-   width: 36px;
-   height: 36px;
-   display: flex;
-   align-items: center;
+   flex-wrap: wrap;
+   gap: 20px;
    justify-content: center;
-   cursor: pointer;
-   color: #000;
-   transition: transform 0.2s ease;
-   flex-shrink: 0;
-   margin-right: 4px;
+   align-items: center;
  }
  
- .newsletter-submit:hover {
-   transform: scale(1.05);
- }
-
-
- /* --- MAIN GRID (Links) --- */
- .footer-nav-grid {
-   display: grid;
-   grid-template-columns: repeat(2, 1fr);
-   gap: 40px;
-   margin-bottom: 40px;
-   width: 100%;
- }
- 
- /* Use 4 columns on desktop for links + badge */
- @media screen and (min-width: 1024px) {
-   .footer-nav-grid {
-     grid-template-columns: repeat(4, 1fr);
-   }
- }
-
- .footer-nav-grid {
-   display: grid;
-   grid-template-columns: repeat(2, 1fr);
-   gap: 40px;
- }
-
  @media screen and (min-width: 768px) {
-   .footer-nav-grid {
-     grid-template-columns: repeat(3, 1fr);
-   }
- }
- 
- /* Reuse existing menu styles */
-
-
-  .footer-column-heading {
-    font-size: {{ section.settings.heading_font_size_v2 }}px;
-    font-weight: 600;
-    margin-bottom: 24px;
-    color: {{ section.settings.text_color }};
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    list-style: none;
-    user-select: none;
-  }
-
-  .footer-column-heading::-webkit-details-marker {
-    display: none;
-  }
-
-  .footer-column-heading .icon-caret {
-    width: 12px;
-    height: 12px;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0.6;
-  }
-
-  details[open] .footer-column-heading .icon-caret {
-    transform: rotate(180deg);
-  }
-
-  .footer-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  /* Desktop layout tweaks */
-  @media screen and (min-width: 768px) {
-    .footer-column-heading {
-      margin-bottom: 20px;
+    .footer-nav-links {
+        gap: 40px;
+        justify-content: flex-end;
     }
-  }
-
-  .footer-menu li {
-   margin-bottom: 14px;
  }
 
-  .footer-menu a {
-    text-decoration: none;
-    color: {{ section.settings.text_color }};
-    font-size: {{ section.settings.link_font_size_v2 }}px;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-  }
+ .footer-link-item {
+   text-decoration: none;
+   color: {{ section.settings.text_color }};
+   font-size: {{ section.settings.link_font_size_v2 }}px;
+   opacity: 0.8;
+   transition: opacity 0.2s, color 0.2s;
+ }
 
- .footer-menu a:hover {
+ .footer-link-item:hover {
    opacity: 1;
  }
- 
- .footer-badge-column {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
- }
- 
- @media screen and (min-width: 1024px) {
-    .footer-badge-column {
-        align-items: flex-end; /* Right align on desktop */
-    }
- }
-
- .footer-badge img {
-    width: {{ section.settings.badge_width }}px;
-    height: auto;
- }
 
 
- /* --- ROW 3: Bottom --- */
+ /* --- BOTTOM BAR --- */
  .footer-bottom-bar {
    display: flex;
-   flex-direction: column;
+   flex-direction: column-reverse; /* Icons on top on mobile, copyright bottom */
    gap: 20px;
-   align-items: flex-start;
+   align-items: center;
+   justify-content: space-between;
  }
 
  @media screen and (min-width: 768px) {
    .footer-bottom-bar {
-     flex-direction: row;
-     justify-content: space-between;
+     flex-direction: row; /* Copyright left, icons right */
      align-items: center;
    }
  }
@@ -580,6 +355,7 @@
  .footer-copyright {
    color: {{ section.settings.copyright_color }};
    font-size: {{ section.settings.copyright_font_size }}px;
+   text-align: center;
  }
  
  .footer-copyright p { margin: 0; }
@@ -587,14 +363,7 @@
   .footer-social-icons {
     display: flex;
     gap: 16px;
-    margin-top: 24px;
-    justify-content: flex-start;
-  }
-
-  @media screen and (min-width: 768px) {
-    .footer-social-icons {
-      justify-content: flex-start;
-    }
+    justify-content: center;
   }
 
   .footer-social-link {
@@ -605,7 +374,7 @@
   }
   
   .footer-social-link:hover {
-     transform: translateY(-5px) scale(1.1);
+     transform: translateY(-3px);
      filter: brightness(1.2);
   }
 
@@ -615,13 +384,6 @@
     object-fit: contain;
     display: block;
   }
-
-  .footer-social-link svg {
-    width: {{ section.settings.social_icon_size }}px;
-    height: {{ section.settings.social_icon_size }}px;
-    color: {{ section.settings.text_color }};
-  }
-
 {%- endstyle -%}
 
 <div class="new-footer-section-{{ section.id }}">
@@ -636,127 +398,59 @@
 
  <div class="new-footer-container">
    
-   <!-- Top Row: Logo & Newsletter -->
-   <div class="footer-top-bar">
+   <!-- Top Row: Logo & Editable Links -->
+   <div class="footer-top-row">
      <div class="footer-logo-wrapper">
        {%- if section.settings.logo_image != blank -%}
          {{ section.settings.logo_image | image_url: width: section.settings.logo_width | image_tag: loading: 'lazy' }}
        {%- else -%}
-         <h2 style="margin:0; font-size: 24px;">{{ shop.name }}</h2>
+         <h2 style="margin:0; font-size: 24px; font-weight: 700;">{{ shop.name }}</h2>
        {%- endif -%}
      </div>
 
-     <div class="footer-top-newsletter">
-        {%- if section.settings.newsletter_heading != blank -%}
-           <div class="footer-newsletter-heading">{{ section.settings.newsletter_heading }}</div>
-        {%- endif -%}
-
-         <div class="newsletter-form">
-           {% form 'customer', class: 'newsletter-form' %}
-             <input type="hidden" name="contact[tags]" value="newsletter">
-             <div class="newsletter-input-wrapper">
-               <input
-                 id="NewsletterForm--{{ section.id }}"
-                 type="email"
-                 name="contact[email]"
-                 class="newsletter-input"
-                 value="{{ form.email }}"
-                 aria-required="true"
-                 autocorrect="off"
-                 autocapitalize="off"
-                 autocomplete="email"
-                 {% if form.errors %}
-                   autofocus
-                   aria-invalid="true"
-                   aria-describedby="Newsletter-error--{{ section.id }}"
-                 {% elsif form.posted_successfully? %}
-                   aria-describedby="Newsletter-success--{{ section.id }}"
-                 {% endif %}
-                 placeholder="Enter your email"
-                 required
-               >
-               <button type="submit" class="newsletter-submit" name="commit" id="Subscribe" aria-label="Subscribe">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6.66669 4L10.6667 8L6.66669 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-               </button>
-             </div>
-             {%- if form.errors -%}
-               <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
-             {%- endif -%}
-             {%- if form.posted_successfully? -%}
-               <small class="newsletter-form__message form__message form__message--success" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>Thanks for subscribing!</small>
-             {%- endif -%}
-           {% endform %}
-         </div>
-
-         <!-- Custom Social Icons (User Uploaded) -->
-         <div class="footer-social-icons">
-            {%- if section.settings.social_instagram_icon != blank -%}
-              <a href="{{ section.settings.social_instagram_link }}" class="footer-social-link" aria-label="Instagram">
-                {{ section.settings.social_instagram_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-              </a>
-            {%- endif -%}
-            {%- if section.settings.social_facebook_icon != blank -%}
-              <a href="{{ section.settings.social_facebook_link }}" class="footer-social-link" aria-label="Facebook">
-                {{ section.settings.social_facebook_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-              </a>
-            {%- endif -%}
-            {%- if section.settings.social_youtube_icon != blank -%}
-              <a href="{{ section.settings.social_youtube_link }}" class="footer-social-link" aria-label="YouTube">
-                {{ section.settings.social_youtube_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-              </a>
-            {%- endif -%}
-            {%- if section.settings.social_twitter_icon != blank -%}
-              <a href="{{ section.settings.social_twitter_link }}" class="footer-social-link" aria-label="Twitter">
-                {{ section.settings.social_twitter_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-              </a>
-            {%- endif -%}
-            {%- if section.settings.social_linkedin_icon != blank -%}
-              <a href="{{ section.settings.social_linkedin_link }}" class="footer-social-link" aria-label="LinkedIn">
-                {{ section.settings.social_linkedin_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-              </a>
-            {%- endif -%}
-         </div>
+     <div class="footer-nav-links">
+       {%- for block in section.blocks -%}
+         {%- if block.type == 'footer_link' -%}
+            <a href="{{ block.settings.url }}" class="footer-link-item" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </a>
+         {%- endif -%}
+       {%- endfor -%}
      </div>
    </div>
 
-   <!-- Middle Row: Links Grid (Full Width) -->
-   <div class="footer-nav-grid">
-     {%- for block in section.blocks -%}
-       <div class="footer-nav-col">
-         <details id="Details-{{ block.id }}-{{ section.id }}">
-           <summary class="footer-column-heading">
-             <span>{{ block.settings.heading | escape }}</span>
-             <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
-               <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
-             </svg>
-           </summary>
-           
-           {%- if block.settings.menu != blank -%}
-             <ul class="footer-menu">
-               {%- for link in linklists[block.settings.menu].links -%}
-                 <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-               {%- endfor -%}
-             </ul>
-           {%- endif -%}
-         </details>
-       </div>
-     {%- endfor -%}
-     
-     <!-- Badge in Grid (Rightmost) -->
-      <div class="footer-badge-column">
-         {%- if section.settings.badge_image != blank -%}
-             <div class="footer-badge">
-                 {{ section.settings.badge_image | image_url: width: section.settings.badge_width | image_tag: loading: 'lazy' }}
-             </div>
-         {%- endif -%}
-       </div>
-   </div>
-
+   <!-- Bottom Row: Copyright & Socials -->
     <div class="footer-bottom-bar">
       <div class="footer-copyright">
         {{ section.settings.copyright_text }}
+      </div>
+
+      <div class="footer-social-icons">
+         {%- if section.settings.social_instagram_icon != blank -%}
+           <a href="{{ section.settings.social_instagram_link }}" class="footer-social-link" aria-label="Instagram">
+             {{ section.settings.social_instagram_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+           </a>
+         {%- endif -%}
+         {%- if section.settings.social_facebook_icon != blank -%}
+           <a href="{{ section.settings.social_facebook_link }}" class="footer-social-link" aria-label="Facebook">
+             {{ section.settings.social_facebook_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+           </a>
+         {%- endif -%}
+         {%- if section.settings.social_youtube_icon != blank -%}
+           <a href="{{ section.settings.social_youtube_link }}" class="footer-social-link" aria-label="YouTube">
+             {{ section.settings.social_youtube_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+           </a>
+         {%- endif -%}
+         {%- if section.settings.social_twitter_icon != blank -%}
+           <a href="{{ section.settings.social_twitter_link }}" class="footer-social-link" aria-label="Twitter">
+             {{ section.settings.social_twitter_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+           </a>
+         {%- endif -%}
+         {%- if section.settings.social_linkedin_icon != blank -%}
+           <a href="{{ section.settings.social_linkedin_link }}" class="footer-social-link" aria-label="LinkedIn">
+             {{ section.settings.social_linkedin_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+           </a>
+         {%- endif -%}
       </div>
     </div>
 
