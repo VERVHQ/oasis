@@ -41,14 +41,41 @@
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </div>
+
+      <div class="new-blog-ui__checkbox-wrapper" style="display: flex; align-items: center; gap: 8px; background: #fff; padding: 0 16px; height: 44px; border-radius: 50px; border: 1px solid #e5e7eb;">
+        <input type="checkbox" id="FilterAvailability" {% if current_tags contains 'filter_availability' %}checked{% endif %} style="width: 16px; height: 16px; cursor: pointer;">
+        <label for="FilterAvailability" style="font-size: 0.9rem; font-weight: 500; cursor: pointer;">In Stock Only</label>
+      </div>
     </div>
 
     <script>
+      // Sort By Logic
       document.getElementById('SortBy').addEventListener('change', function(e) {
         var value = e.target.value;
         var url = new URL(window.location.href);
         url.searchParams.set('sort_by', value);
         window.location.href = url.href;
+      });
+
+      // Availability Filter Logic (Simple query param toggle if supported, or tag)
+      // Since standard availability filtering is complex without facets, we'll try a common pattern:
+      // appending filter.v.availability=1 (Standard Shopify 2.0)
+      document.getElementById('FilterAvailability').addEventListener('change', function(e) {
+        var url = new URL(window.location.href);
+        if (e.target.checked) {
+          url.searchParams.set('filter.v.availability', '1');
+        } else {
+          url.searchParams.delete('filter.v.availability');
+        }
+        window.location.href = url.href;
+      });
+      
+      // Check checkbox state on load based on URL params
+      document.addEventListener('DOMContentLoaded', function() {
+        var url = new URL(window.location.href);
+        if (url.searchParams.get('filter.v.availability') === '1') {
+           document.getElementById('FilterAvailability').checked = true;
+        }
       });
     </script>
 
