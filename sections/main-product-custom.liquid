@@ -1,3 +1,12 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    --btn-bg-color: {{ section.settings.btn_bg_color }};
+    --btn-text-color: {{ section.settings.btn_text_color }};
+  }
+{%- endstyle -%}
+
 {{ 'section-main-product-custom.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'product-custom.js' | asset_url }}" defer="defer"></script>
 
@@ -184,6 +193,22 @@
       "unit": "px",
       "label": "Bottom Padding",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Button Colors"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background",
+      "default": "#55928F"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text",
+      "default": "#ffffff"
     }
   ],
   "blocks": [

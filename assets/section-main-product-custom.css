@@ -174,14 +174,14 @@
 }
 
 .product-custom__btn--add {
-  background-color: #55928F;
-  color: #fff;
+  background-color: var(--btn-bg-color, #55928F);
+  color: var(--btn-text-color, #fff);
 }
 
 .product-custom__btn--add:hover {
-  background-color: #467a78;
+  filter: brightness(0.9);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(85, 146, 143, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .product-custom__btn--disabled {
@@ -195,13 +195,13 @@
 
 .product-custom__btn--notify {
   background-color: transparent;
-  color: #55928F;
-  border: 2px solid #55928F;
+  color: var(--btn-bg-color, #55928F);
+  border: 2px solid var(--btn-bg-color, #55928F);
 }
 
 .product-custom__btn--notify:hover {
-  background-color: #55928F;
-  color: #fff;
+  background-color: var(--btn-bg-color, #55928F);
+  color: var(--btn-text-color, #fff);
 }
 
 /* Trust Badges */
