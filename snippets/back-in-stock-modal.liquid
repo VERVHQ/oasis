@@ -1,0 +1,63 @@
+{% comment %}
+  Back in Stock Modal
+  Accepts:
+  - product: The product object
+{% endcomment %}
+
+<div id="BackInStockModal" class="bis-modal">
+  <div class="bis-modal__overlay"></div>
+  <div class="bis-modal__content">
+    <button type="button" class="bis-modal__close" aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+    </button>
+    
+    <div class="bis-modal__header">
+      <div class="bis-modal__product-thumb">
+        {{ product.featured_image | image_url: width: 100 | image_tag }}
+      </div>
+      <div class="bis-modal__product-info">
+        <h3 class="bis-modal__product-title">{{ product.title }}</h3>
+        <p class="bis-modal__product-price">{{ product.price | money }}</p>
+      </div>
+    </div>
+    
+    <div class="bis-modal__body">
+      <h2 class="bis-modal__heading">Register to receive a notification when this item comes back in stock.</h2>
+      
+      {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <div class="bis-modal__success">
+             <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+             <p>Thanks! We will notify you when it's available.</p>
+          </div>
+          <script>
+            // Auto open modal if posted successfully to show message
+            document.addEventListener('DOMContentLoaded', () => {
+               document.querySelector('#BackInStockModal').classList.add('open');
+            });
+          </script>
+        {% else %}
+          
+          <div class="bis-modal__input-group">
+            <input type="hidden" name="contact[tags]" value="back-in-stock-request">
+            <input type="hidden" name="contact[body]" value="Please notify me when {{ product.title }} is back in stock.">
+            
+            <label for="ContactFormEmail" class="hidden">Email address</label>
+            <input type="email"
+              name="contact[email]"
+              id="ContactFormEmail"
+              class="bis-modal__input"
+              value="{{ customer.email }}"
+              placeholder="Email address"
+              required>
+          </div>
+          
+          <button type="submit" class="bis-modal__submit">
+            Email me when available
+          </button>
+          
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+</div>

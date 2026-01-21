@@ -1,28 +1,53 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-product-custom",
       "blocks": {
+        "viewer_count_V8mamk": {
+          "type": "viewer_count",
+          "settings": {
+            "text": "People are viewing this right now",
+            "min_viewers": 10,
+            "max_viewers": 25,
+            "update_interval": 5
+          }
+        },
         "title": {
           "type": "title",
           "settings": {}
         },
+        "short_summary": {
+          "type": "short_summary",
+          "settings": {
+            "custom_text": ""
+          }
+        },
         "rating": {
           "type": "rating",
-          "settings": {}
+          "settings": {
+            "stars": "★★★★★",
+            "star_color": "#ffd700",
+            "review_text": "100+ reviews"
+          }
         },
         "price": {
           "type": "price",
           "settings": {}
         },
-        "short_summary": {
-          "type": "short_summary",
-          "settings": {}
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_notify_me": true
+            "show_notify_me": true,
+            "notify_me_text": "Notify Me"
           }
         },
         "trust_badge": {
@@ -35,6 +60,7 @@
         }
       },
       "block_order": [
+        "viewer_count_V8mamk",
         "title",
         "short_summary",
         "rating",
@@ -44,7 +70,11 @@
       ],
       "settings": {
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "btn_bg_color": "#55928f",
+        "btn_text_color": "#ffffff",
+        "summary_font_size": 18,
+        "summary_font_color": "#666666"
       }
     },
     "tabs": {
@@ -54,7 +84,7 @@
           "type": "tab",
           "settings": {
             "heading": "Specifications",
-            "content": "<p><strong>Dimensions:</strong> 10x20x30</p>"
+            "content": "<style>\n  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');\n  \n  #ctg-section {\n    font-family: 'Quicksand', sans-serif;\n    color: #272727;\n    background-color: #ffffff;\n    /* Reduced padding to fit better inside the tab */\n    padding: 40px 0; \n    box-sizing: border-box;\n    width: 100%;\n  }\n  #ctg-section * {\n    box-sizing: border-box;\n  }\n  .ctg-container {\n    max-width: 100%; \n    width: 100%;\n    margin: 0 auto;\n  }\n  .ctg-header {\n    text-align: center;\n    margin-bottom: 70px;\n    max-width: 100%; \n    margin-left: auto;\n    margin-right: auto;\n  }\n  .ctg-title {\n    font-size: 46px;\n    font-weight: 700;\n    color: #55928F;\n    margin: 0 0 20px 0;\n    line-height: 1.1;\n    letter-spacing: -0.5px;\n  }\n  .ctg-subtitle {\n    font-size: 18px;\n    line-height: 1.6;\n    margin: 0 0 30px 0;\n    color: #666;\n  }\n  .ctg-emphasis-pill {\n    display: inline-block;\n    background-color: #EAF4F4;\n    color: #3A6B68;\n    font-weight: 700;\n    font-size: 18px;\n    padding: 14px 30px;\n    border-radius: 9999px;\n    margin-bottom: 30px;\n    border: 1px solid rgba(85, 146, 143, 0.2);\n  }\n  .ctg-intro-body {\n    font-size: 17px;\n    line-height: 1.8;\n    color: #444;\n    max-width: 100%; /* Changed to 100% to fill container */\n    margin: 0 auto;\n  }\n  .ctg-list {\n    display: flex;\n    flex-direction: column;\n    gap: 24px;\n    margin-bottom: 80px;\n    width: 100%;\n  }\n  .ctg-card {\n    background-color: #F8F8F5;\n    border-radius: 24px;\n    overflow: hidden;\n    display: flex;\n    flex-direction: row;\n    align-items: stretch;\n    border: 1px solid #EAEAEA;\n    width: 100%;\n  }\n  .ctg-card-image-wrapper {\n    width: 240px;\n    flex-shrink: 0;\n    background-color: #ffffff;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    padding: 20px;\n    border: 0 !important;\n    outline: none !important;\n    box-shadow: none !important;\n  }\n  .ctg-card-image {\n    max-width: 90%;\n    max-height: 120px;\n    object-fit: contain;\n    border: 0 !important;\n    outline: none !important;\n    box-shadow: none !important;\n    background: transparent !important;\n  }\n  .ctg-card-content {\n    padding: 30px;\n    flex-grow: 1;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n  }\n  .ctg-card-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: flex-start;\n    margin-bottom: 12px;\n    flex-wrap: wrap;\n    gap: 10px;\n  }\n  .ctg-card-title {\n    font-size: 24px;\n    font-weight: 700;\n    color: #55928F;\n    margin: 0;\n  }\n  .ctg-card-desc {\n    font-size: 16px;\n    line-height: 1.6;\n    color: #555;\n    margin: 0;\n    max-width: 100%; \n  }\n  .ctg-value-badge {\n    background-color: #fff;\n    border: 1px solid #E0E0E0;\n    border-radius: 12px;\n    padding: 8px 16px;\n    font-weight: 700;\n    color: #272727;\n    font-size: 15px;\n    white-space: nowrap;\n    margin-top: 5px;\n  }\n  .ctg-video-section {\n    background-color: #F8F8F5;\n    border-radius: 40px;\n    padding: 80px 40px;\n    text-align: center;\n    border: 1px solid #EAEAEA;\n    width: 100%;\n  }\n  .ctg-video-title {\n    font-size: 36px;\n    font-weight: 700;\n    color: #55928F;\n    margin: 0 0 16px 0;\n  }\n  .ctg-video-container {\n    position: relative;\n    padding-bottom: 56.25%;\n    height: 0;\n    overflow: hidden;\n    border-radius: 24px;\n    border: 1px solid #EAEAEA; \n    max-width: 100%; \n    margin: 40px auto 0;\n  }\n  .ctg-video-container iframe {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    border: 0;\n  }\n  @media (max-width: 768px) {\n    #ctg-section { padding: 40px 0; }\n    .ctg-title { font-size: 34px; }\n    .ctg-emphasis-pill { font-size: 16px; padding: 12px 20px; white-space: normal; text-align: center; }\n    \n    .ctg-card {\n      flex-direction: column;\n    }\n    \n    .ctg-card-image-wrapper {\n      width: 100%;\n      height: 160px;\n      padding: 30px;\n      background-color: #ffffff;\n    }\n    \n    .ctg-card-image {\n      max-height: 100px;\n    }\n    .ctg-card-content {\n      padding: 24px;\n    }\n    .ctg-card-header {\n      flex-direction: column;\n      gap: 5px;\n    }\n    .ctg-value-badge {\n      margin-top: 15px;\n      align-self: flex-start;\n      margin-left: -2px;\n    }\n    .ctg-video-section { padding: 40px 20px; border-radius: 24px; }\n  }\n</style>\n<div id=\"ctg-section\">\n  <div class=\"ctg-container\">\n    \n    <div class=\"ctg-header\">\n      <h2 class=\"ctg-title\">Grow cherry tomatoes indoors all year round</h2>\n      <p class=\"ctg-subtitle\">Cherry tomatoes are relatively quick to grow and provide a regular harvest for months.</p>\n      \n      <div class=\"ctg-emphasis-pill\">\n        STOP buying tasteless supermarket tomatoes! Grow your own flavor bombs indoors.\n      </div>\n      \n      <div class=\"ctg-intro-body\">\n        Cherry tomatoes are loved for their quick-ripening fruits and regular, abundant harvests, but they are energetic plants that demand specific conditions to perform. If your indoor tomatoes are leggy or refusing to fruit, you are likely missing one of these variables.\n      </div>\n    </div> <div class=\"ctg-list\">\n      \n      <div class=\"ctg-card\">\n        <div class=\"ctg-card-image-wrapper\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0986/9865/8056/files/light_levels_high_1000x.png?v=1765545929\" alt=\"Natural Light\" class=\"ctg-card-image\">\n        </div>\n        <div class=\"ctg-card-content\">\n          <div class=\"ctg-card-header\">\n             <h3 class=\"ctg-card-title\">Natural Light</h3>\n          </div>\n          <p class=\"ctg-card-desc\">If relying on windows, they require full Direct Sunlight.</p>\n        </div>\n      </div>\n      <div class=\"ctg-card\">\n        <div class=\"ctg-card-image-wrapper\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0986/9865/8056/files/grow_light_1000x.png?v=1765546141\" alt=\"Grow Lights\" class=\"ctg-card-image\">\n        </div>\n        <div class=\"ctg-card-content\">\n          <div class=\"ctg-card-header\">\n             <h3 class=\"ctg-card-title\">Grow Lights</h3>\n             <div class=\"ctg-value-badge\">2,400 – 4,800 FC / 25k - 50k Lux</div>\n          </div>\n          <p class=\"ctg-card-desc\">Tomatoes are “high light” crops. Light is the energy source that will fuel the plant's growth. Without enough intensity, you get leaves but small tomatoes. This is the priority for indoor growers.</p>\n        </div>\n      </div>\n      <div class=\"ctg-card\">\n        <div class=\"ctg-card-image-wrapper\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0986/9865/8056/files/potting_medium_well_draining_1000x.png?v=1765547634\" alt=\"Soil\" class=\"ctg-card-image\">\n        </div>\n        <div class=\"ctg-card-content\">\n          <div class=\"ctg-card-header\">\n             <h3 class=\"ctg-card-title\">Soil</h3>\n          </div>\n          <p class=\"ctg-card-desc\">Plant in rich well drained soil. Add perlite to organic soil for good aeration and drainage.</p>\n        </div>\n      </div>\n      <div class=\"ctg-card\">\n        <div class=\"ctg-card-image-wrapper\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0986/9865/8056/files/sow_density_low_1000x.png?v=1765547691\" alt=\"Spacing\" class=\"ctg-card-image\">\n        </div>\n        <div class=\"ctg-card-content\">\n          <div class=\"ctg-card-header\">\n             <h3 class=\"ctg-card-title\">Spacing</h3>\n          </div>\n          <p class=\"ctg-card-desc\">Only sow one seed per pot or space far apart in larger containers. Tomatoes require a lot of room to grow large roots.</p>\n        </div>\n      </div>\n      <div class=\"ctg-card\">\n        <div class=\"ctg-card-image-wrapper\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0986/9865/8056/files/temperature_medium_44cea769-04c6-418b-aee2-717bf58ef41e_1000x.png?v=1765547816\" alt=\"Temperature\" class=\"ctg-card-image\">\n        </div>\n        <div class=\"ctg-card-content\">\n          <div class=\"ctg-card-header\">\n             <h3 class=\"ctg-card-title\">Temperature</h3>\n             <div class=\"ctg-value-badge\">65-85°F / 18-29°C</div>\n          </div>\n          <p class=\"ctg-card-desc\">Tomatoes require warm temperatures to grow vigorously.</p>\n        </div>\n      </div>\n      <div class=\"ctg-card\">\n        <div class=\"ctg-card-image-wrapper\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0986/9865/8056/files/humidity_1000x.png?v=1765549647\" alt=\"Humidity\" class=\"ctg-card-image\">\n        </div>\n        <div class=\"ctg-card-content\">\n          <div class=\"ctg-card-header\">\n             <h3 class=\"ctg-card-title\">Humidity</h3>\n             <div class=\"ctg-value-badge\">50-70% RH</div>\n          </div>\n          <p class=\"ctg-card-desc\">Humidity should be kept in range to ensure fast growth and minimise chance of mould and rot.</p>\n        </div>\n      </div>\n      <div class=\"ctg-card\">\n        <div class=\"ctg-card-image-wrapper\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0986/9865/8056/files/watering_medium_943d5be0-0dd1-4de3-b0f8-45de3939ffad_1000x.png?v=1765548031\" alt=\"Watering\" class=\"ctg-card-image\">\n        </div>\n        <div class=\"ctg-card-content\">\n          <div class=\"ctg-card-header\">\n             <h3 class=\"ctg-card-title\">Watering</h3>\n          </div>\n          <p class=\"ctg-card-desc\">When watering keep the soil moist but never too wet or soggy or growth will slow and the roots may rot.</p>\n        </div>\n      </div>\n      <div class=\"ctg-card\">\n        <div class=\"ctg-card-image-wrapper\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0986/9865/8056/files/feeding_heavy_1000x.png?v=1765548648\" alt=\"Feeding\" class=\"ctg-card-image\">\n        </div>\n        <div class=\"ctg-card-content\">\n          <div class=\"ctg-card-header\">\n             <h3 class=\"ctg-card-title\">Feeding</h3>\n          </div>\n          <p class=\"ctg-card-desc\">Cherry tomatoes require a lot of nutrients, particularly when producing fruits. Feed regularly according to the nutrient suppliers recommendations.</p>\n        </div>\n      </div>\n    </div>\n    <div class=\"ctg-video-section\">\n      <h2 class=\"ctg-video-title\">Video Guide: Cherry Tomato Grow Tips</h2>\n      <p class=\"ctg-subtitle\">Cherry tomatoes are relatively quick to grow and provide a regular harvest for months.</p>\n      \n      <div class=\"ctg-video-container\">\n        <iframe src=\"https://www.youtube.com/embed/NLW14IL4mRw\" title=\"Cherry Tomato Grow Tips\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>\n      </div>\n    </div>\n  </div>\n</div>"
           }
         },
         "how_to_use": {

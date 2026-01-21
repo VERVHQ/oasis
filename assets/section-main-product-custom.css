@@ -278,11 +278,179 @@
   width: 8px;
   height: 8px;
   background-color: #2ecc71;
-  /* Green dot */
-  border-radius: 50%;
-  display: inline-block;
-  box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
-  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 6px rgba(46, 204, 113, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+  }
+}
+
+/* Back in Stock Modal */
+.bis-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.bis-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bis-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+.bis-modal__content {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  padding: 0;
+}
+
+.bis-modal.open .bis-modal__content {
+  transform: translateY(0);
+}
+
+.bis-modal__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  z-index: 2;
+  padding: 5px;
+}
+
+.bis-modal__header {
+  padding: 24px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #f9f9f9;
+}
+
+.bis-modal__product-thumb img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+.bis-modal__product-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+}
+
+.bis-modal__product-price {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0 0 0;
+}
+
+.bis-modal__body {
+  padding: 30px 24px;
+  text-align: center;
+}
+
+.bis-modal__heading {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #272727;
+  line-height: 1.4;
+}
+
+.bis-modal__input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.bis-modal__input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.bis-modal__input:focus {
+  border-color: #55928F;
+  box-shadow: 0 0 0 2px rgba(85, 146, 143, 0.1);
+}
+
+.bis-modal__submit {
+  width: 100%;
+  padding: 14px;
+  background-color: #0056b3;
+  /* Blue as per request/image */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.bis-modal__submit:hover {
+  background-color: #004494;
+}
+
+.bis-modal__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: #2ecc71;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* Green dot */
+border-radius: 50%;
+display: inline-block;
+box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+animation: pulse-dot 2s infinite;
 }
 
 @keyframes pulse-dot {

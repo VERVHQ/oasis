@@ -120,3 +120,44 @@ class LiveViewerCount extends HTMLElement {
 }
 
 customElements.define('live-viewer-count', LiveViewerCount);
+
+// Back in Stock Modal Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const notifyBtns = document.querySelectorAll('.js-notify-me-trigger');
+    const modal = document.getElementById('BackInStockModal');
+
+    if (modal) {
+        const closeBtn = modal.querySelector('.bis-modal__close');
+        const overlay = modal.querySelector('.bis-modal__overlay');
+
+        function openModal() {
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        notifyBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        });
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (overlay) overlay.addEventListener('click', closeModal);
+
+        // Check for success message in URL (standard Shopify form behavior)
+        if (window.location.search.includes('contact_posted=true')) {
+            const successMsg = modal.querySelector('.bis-modal__success');
+            if (successMsg) {
+                openModal();
+                // Clean up URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+    }
+});
