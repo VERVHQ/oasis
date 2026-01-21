@@ -698,6 +698,8 @@
   /* Ensure standard button height */
   box-shadow: none !important;
   /* Remove any box-shadow borders */
+  margin-top: 1.5rem !important;
+  /* Space between Price and Button */
 }
 
 /* Remove the Dawn default button outline (box) */

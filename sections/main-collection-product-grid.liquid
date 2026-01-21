@@ -34,6 +34,13 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* Custom Grid Spacing & Centering */
+  #product-grid[data-id="{{ section.id }}"] {
+    justify-content: center !important; /* Center cards */
+    gap: 40px !important; /* Increase gap between cards */
+    row-gap: 50px !important;
+  }
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
