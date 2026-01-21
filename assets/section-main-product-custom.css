@@ -39,13 +39,26 @@
   gap: 15px;
   width: 100px;
   flex-shrink: 0;
-  max-height: 100%;
   overflow-y: auto;
   /* Hide scrollbar for cleaner look */
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+  position: relative;
+}
+
+/* Scroll indicator gradient */
+.product-custom__media-gallery::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 40px;
+  background: linear-gradient(to top, rgba(248, 248, 245, 1), transparent);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .product-custom__thumbnails-wrapper::-webkit-scrollbar {
@@ -80,9 +93,10 @@
   overflow: hidden;
   position: relative;
   aspect-ratio: 1;
-  /* Square or adaptable */
+  /* Square */
   background-color: #fff;
   cursor: zoom-in;
+  flex-grow: 1;
 }
 
 .product-custom__main-image {
@@ -243,7 +257,8 @@
 
 .trust-badge__text {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
+  /* Increased from 0.95rem */
 }
 
 /* Rating */
