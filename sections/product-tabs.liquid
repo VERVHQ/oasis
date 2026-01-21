@@ -25,7 +25,11 @@
           <div id="tab-{{ section.id }}-description" 
                class="product-tabs__pane active">
             <div class="rte">
-              {{ product.description }}
+              {%- if section.settings.description_page != blank -%}
+                {{ section.settings.description_page.content }}
+              {%- else -%}
+                {{ product.description }}
+              {%- endif -%}
             </div>
           </div>
         {%- endif -%}
@@ -69,6 +73,12 @@
       "id": "description_tab_heading",
       "label": "Description Tab Heading",
       "default": "Description"
+    },
+    {
+      "type": "page",
+      "id": "description_page",
+      "label": "Description Page Content",
+      "info": "Optional: Select a page to pull content from. If empty, the product description will be used."
     },
     {
       "type": "header",
