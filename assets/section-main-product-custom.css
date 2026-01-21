@@ -149,11 +149,14 @@
 
 /* Quantity & Buttons */
 .product-custom__actions {
+  margin-top: 1rem;
+}
+
+.product-custom__actions form {
   display: flex;
   flex-direction: column;
   gap: 20px !important;
-  /* Force Gap */
-  margin-top: 1rem;
+  width: 100%;
 }
 
 .product-custom__btn {
