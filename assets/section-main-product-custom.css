@@ -254,6 +254,41 @@
   justify-content: center;
 }
 
+/* Live Viewer Count */
+.product-custom__viewer-count {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewer-count__icon {
+  width: 8px;
+  height: 8px;
+  background-color: #2ecc71;
+  /* Green dot */
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 6px rgba(46, 204, 113, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+  }
+}
+
 .trust-badge__icon img,
 .trust-badge__icon svg {
   width: 100%;

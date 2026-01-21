@@ -309,6 +309,41 @@
       ]
     },
     {
+      "type": "viewer_count",
+      "name": "Live Viewer Count",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "People are viewing this right now"
+        },
+        {
+          "type": "number",
+          "id": "min_viewers",
+          "label": "Min Viewers",
+          "default": 10
+        },
+        {
+          "type": "number",
+          "id": "max_viewers",
+          "label": "Max Viewers",
+          "default": 25
+        },
+        {
+          "type": "range",
+          "id": "update_interval",
+          "min": 2,
+          "max": 10,
+          "step": 1,
+          "unit": "s",
+          "label": "Update Interval",
+          "default": 5
+        }
+      ]
+    },
+    {
       "type": "trust_badge",
       "name": "Trust Badges",
       "limit": 1,

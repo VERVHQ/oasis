@@ -71,3 +71,52 @@ class ProductTabs extends HTMLElement {
 }
 
 customElements.define('product-tabs', ProductTabs);
+
+class LiveViewerCount extends HTMLElement {
+    constructor() {
+        super();
+        this.countElement = this.querySelector('.viewer-count');
+        this.min = parseInt(this.dataset.min) || 10;
+        this.max = parseInt(this.dataset.max) || 20;
+        this.updateInterval = parseInt(this.dataset.interval) * 1000 || 5000;
+    }
+
+    connectedCallback() {
+        this.startUpdates();
+    }
+
+    startUpdates() {
+        setInterval(() => {
+            this.updateCount();
+        }, this.updateInterval);
+    }
+
+    updateCount() {
+        let currentCount = parseInt(this.countElement.textContent);
+        // Randomly decide to add or subtract, but bias towards keeping it in range
+        const change = Math.random() > 0.5 ? 1 : -1;
+        let newCount = currentCount + change;
+
+        // Clamp between min and max
+        if (newCount < this.min) newCount = this.min + 1;
+        if (newCount > this.max) newCount = this.max - 1;
+
+        // Add some "jitter" (sometimes change by 2 or 3)
+        if (Math.random() > 0.8) {
+            newCount += (Math.random() > 0.5 ? 2 : -2);
+        }
+
+        // Hard clamp
+        newCount = Math.max(this.min, Math.min(newCount, this.max));
+
+        this.countElement.textContent = newCount;
+
+        // Optional: Add a subtle flash effect
+        this.countElement.style.opacity = 0.7;
+        setTimeout(() => {
+            this.countElement.style.opacity = 1;
+        }, 300);
+    }
+}
+
+customElements.define('live-viewer-count', LiveViewerCount);
