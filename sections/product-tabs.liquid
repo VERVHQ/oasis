@@ -9,7 +9,11 @@
         {% for block in section.blocks %}
           <button class="product-tabs__btn {% if forloop.first %}active{% endif %}" 
                   data-target-id="tab-{{ section.id }}-{{ block.id }}">
-            {{ block.settings.heading | escape }}
+            {%- if block.type == 'description' -%}
+              {{ block.settings.heading | default: 'Description' }}
+            {%- else -%}
+              {{ block.settings.heading | escape }}
+            {%- endif -%}
           </button>
         {% endfor %}
       </div>
