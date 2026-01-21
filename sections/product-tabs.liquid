@@ -19,7 +19,11 @@
           <div id="tab-{{ section.id }}-{{ block.id }}" 
                class="product-tabs__pane {% if forloop.first %}active{% endif %}">
             <div class="rte">
-              {{ block.settings.content }}
+              {%- if block.type == 'html_tab' -%}
+                {{ block.settings.html_content }}
+              {%- else -%}
+                {{ block.settings.content }}
+              {%- endif -%}
             </div>
           </div>
         {% endfor %}
@@ -79,7 +83,24 @@
         }
       ]
     },
-
+    {
+      "type": "html_tab",
+      "name": "HTML Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Tab Heading",
+          "default": "Custom Tab"
+        },
+        {
+          "type": "liquid",
+          "id": "html_content",
+          "label": "HTML/Liquid Code",
+          "info": "Enter any custom HTML or Liquid code here."
+        }
+      ]
+    }
   ],
   "presets": [
     {

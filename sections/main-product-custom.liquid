@@ -78,13 +78,17 @@
 
             {%- when 'rating' -%}
               <div class="product-custom__rating" {{ block.shopify_attributes }}>
-                 <!-- Simple Star Rating Placeholder or Liquid Logic -->
-                 <span style="color: #FFD700;">★★★★★</span> <span style="font-size: 0.9em; color:#666;">({{ 'rand' | date: "%N" | modulo: 50 | plus: 10 }} reviews)</span>
+                 <span style="color: {{ block.settings.star_color }};">{{ block.settings.stars }}</span>
+                 <span style="font-size: 0.9em; color:#666;">({{ block.settings.review_text }})</span>
               </div>
 
             {%- when 'short_summary' -%}
               <div class="product-custom__short-summary" {{ block.shopify_attributes }}>
-                {{ product.description | strip_html | truncatewords: 30 }}
+                {%- if block.settings.custom_text != blank -%}
+                  {{ block.settings.custom_text }}
+                {%- else -%}
+                  {{ product.description | strip_html | truncatewords: 30 }}
+                {%- endif -%}
               </div>
 
             {%- when 'buy_buttons' -%}
@@ -250,12 +254,40 @@
     {
       "type": "rating",
       "name": "Star Rating",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "stars",
+          "label": "Stars Display",
+          "default": "★★★★★"
+        },
+        {
+          "type": "color",
+          "id": "star_color",
+          "label": "Star Color",
+          "default": "#FFD700"
+        },
+        {
+          "type": "text",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "100+ reviews"
+        }
+      ]
     },
     {
       "type": "short_summary",
-      "name": "Auto Short Summary",
-      "limit": 1
+      "name": "Short Summary",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "custom_text",
+          "label": "Custom Text (Leave blank for auto)",
+          "info": "If empty, first 30 words of product description will be used."
+        }
+      ]
     },
     {
       "type": "buy_buttons",
