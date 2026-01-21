@@ -37,17 +37,19 @@
 .product-custom__thumbnails-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 100px;
+  gap: 10px;
+  width: 80px;
   flex-shrink: 0;
   max-height: 500px;
-  /* Match main image height */
   overflow-y: auto;
   /* Hide scrollbar for cleaner look */
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+  padding-bottom: 30px;
+  /* Space for gradient */
+  position: relative;
 }
 
 /* Scroll indicator gradient */
@@ -68,14 +70,15 @@
 }
 
 .product-custom__thumbnail {
-  width: 100%;
-  aspect-ratio: 1;
+  width: 80px;
+  height: 80px;
+  /* Explicit square */
+  flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   border: 2px solid transparent;
   transition: all 0.3s ease;
-  position: relative;
 }
 
 .product-custom__thumbnail.active {
