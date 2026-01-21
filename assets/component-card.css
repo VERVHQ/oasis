@@ -696,6 +696,16 @@
   transition: all 0.3s ease;
   min-height: 4.5rem;
   /* Ensure standard button height */
+  box-shadow: none !important;
+  /* Remove any box-shadow borders */
+}
+
+/* Remove the Dawn default button outline (box) */
+.product-card-wrapper .quick-add__submit.button::after,
+.product-card-wrapper .quick-add__submit.button::before {
+  display: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .product-card-wrapper .quick-add__submit.button:hover {
@@ -703,5 +713,5 @@
   background-color: #333333 !important;
   /* Dark Grey Hover */
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
