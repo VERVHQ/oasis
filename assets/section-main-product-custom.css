@@ -264,6 +264,16 @@
   gap: 8px;
 }
 
+/* Ensure tab content takes full container width */
+.product-tabs__pane .rte {
+  max-width: 100%;
+  width: 100%;
+}
+
+.product-tabs__pane .rte>*:first-child {
+  margin-top: 0;
+}
+
 .viewer-count__icon {
   width: 8px;
   height: 8px;
