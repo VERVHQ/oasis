@@ -1,0 +1,90 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product-custom",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_notify_me": true
+          }
+        },
+        "trust_badge": {
+          "type": "trust_badge",
+          "settings": {
+            "text_1": "Free Shipping",
+            "text_2": "30 Day Returns",
+            "text_3": "12 Month Warranty"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "rating",
+        "price",
+        "description",
+        "buy_buttons",
+        "trust_badge"
+      ],
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "tabs": {
+      "type": "product-tabs",
+      "blocks": {
+        "specifications": {
+          "type": "tab",
+          "settings": {
+            "heading": "Specifications",
+            "content": "<p><strong>Dimensions:</strong> 10x20x30</p>"
+          }
+        },
+        "how_to_use": {
+          "type": "tab",
+          "settings": {
+            "heading": "How to use",
+            "content": "<p>Use daily for best results.</p>"
+          }
+        },
+        "features": {
+          "type": "tab",
+          "settings": {
+            "heading": "Features",
+            "content": "<p>Water resistant.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "specifications",
+        "how_to_use",
+        "features"
+      ],
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "tabs"
+  ]
+}

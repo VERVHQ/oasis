@@ -1,0 +1,294 @@
+{{ 'section-main-product-custom.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-custom.js' | asset_url }}" defer="defer"></script>
+
+{%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
+{%- if first_3d_model -%}
+  <link
+    id="ModelViewerStyle"
+    rel="stylesheet"
+    href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
+    media="print"
+    onload="this.media='all'"
+  >
+{%- endif -%}
+
+<section class="product-custom-section section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="product-custom__grid">
+      
+      <!-- LEFT COLUMN: Media Gallery -->
+      <div class="product-custom__media-wrapper">
+        <product-custom-gallery class="product-custom__media-gallery">
+          <!-- Thumbnail Strip -->
+          <div class="product-custom__thumbnails-wrapper">
+            {% for media in product.media %}
+              <div class="product-custom__thumbnail {% if forloop.first %}active{% endif %}" 
+                   data-target-src="{{ media | image_url: width: 1000 }}"
+                   data-target-alt="{{ media.alt | escape }}">
+                {{ media | image_url: width: 200 | image_tag: loading: 'lazy', alt: media.alt }}
+              </div>
+            {% endfor %}
+          </div>
+          
+          <!-- Main Image -->
+          <div class="product-custom__main-image-wrapper">
+            {% assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media %}
+            <img src="{{ featured_media | image_url: width: 1000 }}" 
+                 alt="{{ featured_media.alt | escape }}" 
+                 class="product-custom__main-image"
+                 width="1000"
+                 height="1000">
+          </div>
+        </product-custom-gallery>
+      </div>
+
+      <!-- RIGHT COLUMN: Product Info -->
+      <div class="product-custom__info-wrapper">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            
+            {%- when '@app' -%}
+              {% render block %}
+            
+            {%- when 'title' -%}
+              <div class="product-custom__title" {{ block.shopify_attributes }}>
+                <h1>{{ product.title | escape }}</h1>
+              </div>
+            
+            {%- when 'price' -%}
+              <div class="product-custom__price" {{ block.shopify_attributes }}>
+                {{ product.selected_or_first_available_variant.price | money }}
+                {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+                  <s style="color: #999; font-size: 0.8em; margin-left: 10px;">{{ product.selected_or_first_available_variant.compare_at_price | money }}</s>
+                {% endif %}
+              </div>
+
+            {%- when 'rating' -%}
+              <div class="product-custom__rating" {{ block.shopify_attributes }}>
+                 <!-- Simple Star Rating Placeholder or Liquid Logic -->
+                 <span style="color: #FFD700;">★★★★★</span> <span style="font-size: 0.9em; color:#666;">({{ 'rand' | date: "%N" | modulo: 50 | plus: 10 }} reviews)</span>
+              </div>
+
+            {%- when 'description' -%}
+              {%- if product.description != blank -%}
+                <div class="product-custom__description rte" {{ block.shopify_attributes }}>
+                  {{ product.description }}
+                </div>
+              {%- endif -%}
+
+            {%- when 'buy_buttons' -%}
+              <div class="product-custom__actions" {{ block.shopify_attributes }}>
+                {% form 'product', product %}
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                  
+                  <button type="submit" name="add" class="product-custom__btn product-custom__btn--add">
+                    {{ 'products.product.add_to_cart' | t }}
+                  </button>
+                  
+                  {% if block.settings.show_notify_me %}
+                    <button type="button" class="product-custom__btn product-custom__btn--notify">
+                      Notify Me
+                    </button>
+                  {% endif %}
+                {% endform %}
+              </div>
+
+            {%- when 'trust_badge' -%}
+              <div class="product-custom__trust-badges" {{ block.shopify_attributes }}>
+                {% if block.settings.text_1 != blank %}
+                  <div class="trust-badge__item">
+                    <span class="trust-badge__icon">
+                      {% if block.settings.icon_1 != blank %}
+                        {{ block.settings.icon_1 | image_url: width: 24 | image_tag }}
+                      {% else %}
+                         <!-- Checkmark SVG Default -->
+                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      {% endif %}
+                    </span>
+                    <span class="trust-badge__text">{{ block.settings.text_1 }}</span>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.text_2 != blank %}
+                  <div class="trust-badge__item">
+                    <span class="trust-badge__icon">
+                       {% if block.settings.icon_2 != blank %}
+                        {{ block.settings.icon_2 | image_url: width: 24 | image_tag }}
+                      {% else %}
+                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                      {% endif %}
+                    </span>
+                    <span class="trust-badge__text">{{ block.settings.text_2 }}</span>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.text_3 != blank %}
+                  <div class="trust-badge__item">
+                    <span class="trust-badge__icon">
+                       {% if block.settings.icon_3 != blank %}
+                        {{ block.settings.icon_3 | image_url: width: 24 | image_tag }}
+                      {% else %}
+                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                      {% endif %}
+                    </span>
+                    <span class="trust-badge__text">{{ block.settings.text_3 }}</span>
+                  </div>
+                {% endif %}
+              </div>
+
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Product Page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "title",
+      "name": "Product Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "rating",
+      "name": "Star Rating",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Buy Actions",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_notify_me",
+          "default": true,
+          "label": "Show 'Notify Me' Button"
+        }
+      ]
+    },
+    {
+      "type": "trust_badge",
+      "name": "Trust Badges",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Badge 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_1",
+          "label": "Icon 1"
+        },
+        {
+          "type": "text",
+          "id": "text_1",
+          "label": "Text 1",
+          "default": "Free Shipping"
+        },
+        {
+          "type": "header",
+          "content": "Badge 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_2",
+          "label": "Icon 2"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "Text 2",
+          "default": "30 Day Returns"
+        },
+        {
+          "type": "header",
+          "content": "Badge 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_3",
+          "label": "Icon 3"
+        },
+        {
+          "type": "text",
+          "id": "text_3",
+          "label": "Text 3",
+          "default": "12 Month Warranty"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Product Page",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "rating"
+        },
+        {
+          "type": "price"
+        },
+        {
+          "type": "description"
+        },
+        {
+          "type": "buy_buttons"
+        },
+        {
+          "type": "trust_badge"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
