@@ -69,10 +69,10 @@
                  <span style="color: #FFD700;">★★★★★</span> <span style="font-size: 0.9em; color:#666;">({{ 'rand' | date: "%N" | modulo: 50 | plus: 10 }} reviews)</span>
               </div>
 
-            {%- when 'description' -%}
-              {%- if product.description != blank -%}
+            {%- when 'short_description' -%}
+              {%- if block.settings.text != blank -%}
                 <div class="product-custom__description rte" {{ block.shopify_attributes }}>
-                  {{ product.description }}
+                  {{ block.settings.text }}
                 </div>
               {%- endif -%}
 
@@ -81,15 +81,26 @@
                 {% form 'product', product %}
                   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                   
-                  <button type="submit" name="add" class="product-custom__btn product-custom__btn--add">
-                    {{ 'products.product.add_to_cart' | t }}
-                  </button>
-                  
-                  {% if block.settings.show_notify_me %}
-                    <button type="button" class="product-custom__btn product-custom__btn--notify">
-                      Notify Me
+                  {% if product.selected_or_first_available_variant.available %}
+                    <!-- IN STOCK -->
+                    <button type="submit" name="add" class="product-custom__btn product-custom__btn--add">
+                      {{ 'products.product.add_to_cart' | t }}
                     </button>
+                    <!-- Hide Notify Me when in stock -->
+                  
+                  {% else %}
+                    <!-- OUT OF STOCK -->
+                    <button type="submit" name="add" class="product-custom__btn product-custom__btn--add product-custom__btn--disabled" disabled>
+                      {{ 'products.product.sold_out' | t }}
+                    </button>
+                    
+                    {% if block.settings.show_notify_me %}
+                      <button type="button" class="product-custom__btn product-custom__btn--notify">
+                        {{ block.settings.notify_me_text | default: "Notify Me" }}
+                      </button>
+                    {% endif %}
                   {% endif %}
+
                 {% endform %}
               </div>
 
@@ -195,9 +206,17 @@
       "limit": 1
     },
     {
-      "type": "description",
-      "name": "Description",
-      "limit": 1
+      "type": "short_description",
+      "name": "Short Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Short Summary",
+          "default": "<p>Brief product summary.</p>"
+        }
+      ]
     },
     {
       "type": "buy_buttons",
@@ -208,7 +227,13 @@
           "type": "checkbox",
           "id": "show_notify_me",
           "default": true,
-          "label": "Show 'Notify Me' Button"
+          "label": "Show 'Notify Me' Button when sold out"
+        },
+        {
+          "type": "text",
+          "id": "notify_me_text",
+          "label": "'Notify Me' Button Text",
+          "default": "Notify Me"
         }
       ]
     },
@@ -279,7 +304,7 @@
           "type": "price"
         },
         {
-          "type": "description"
+          "type": "short_description"
         },
         {
           "type": "buy_buttons"

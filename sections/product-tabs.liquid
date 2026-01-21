@@ -19,7 +19,11 @@
           <div id="tab-{{ section.id }}-{{ block.id }}" 
                class="product-tabs__pane {% if forloop.first %}active{% endif %}">
             <div class="rte">
-              {{ block.settings.content }}
+              {% if block.type == 'description' %}
+                {{ product.description }}
+              {% else %}
+                {{ block.settings.content }}
+              {% endif %}
             </div>
           </div>
         {% endfor %}
@@ -78,12 +82,28 @@
           "default": "<p>Add content here</p>"
         }
       ]
+    },
+    {
+      "type": "description",
+      "name": "Product Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Tab Heading",
+          "default": "Description"
+        }
+      ]
     }
   ],
   "presets": [
     {
       "name": "Product Tabs",
       "blocks": [
+        {
+          "type": "description"
+        },
         {
           "type": "tab",
           "settings": {
@@ -96,13 +116,6 @@
           "settings": {
             "heading": "How to use",
             "content": "<p>Step 1: Unbox<br>Step 2: Plug in</p>"
-          }
-        },
-        {
-           "type": "tab",
-            "settings": {
-            "heading": "Features",
-            "content": "<p>Eco-friendly<br>Long lasting</p>"
           }
         }
       ]

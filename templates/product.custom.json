@@ -50,6 +50,12 @@
     "tabs": {
       "type": "product-tabs",
       "blocks": {
+        "description_tab": {
+          "type": "description",
+          "settings": {
+            "heading": "Description"
+          }
+        },
         "specifications": {
           "type": "tab",
           "settings": {
@@ -73,6 +79,7 @@
         }
       },
       "block_order": [
+        "description_tab",
         "specifications",
         "how_to_use",
         "features"
