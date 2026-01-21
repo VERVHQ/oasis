@@ -29,8 +29,9 @@
 .product-custom__media-gallery {
   display: flex;
   gap: 20px;
-  height: auto;
-  align-items: stretch;
+  align-items: flex-start;
+  position: relative;
+  /* For gradient overlay */
 }
 
 .product-custom__thumbnails-wrapper {
@@ -39,13 +40,14 @@
   gap: 15px;
   width: 100px;
   flex-shrink: 0;
+  max-height: 500px;
+  /* Match main image height */
   overflow-y: auto;
   /* Hide scrollbar for cleaner look */
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
-  position: relative;
 }
 
 /* Scroll indicator gradient */
