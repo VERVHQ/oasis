@@ -259,6 +259,21 @@
     line-height: normal;
   }
 
+  /* Jiggle Animation */
+  @keyframes cart-jiggle {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(-8deg); }
+    20% { transform: rotate(8deg); }
+    30% { transform: rotate(-8deg); }
+    40% { transform: rotate(8deg); }
+    50%, 100% { transform: rotate(0deg); }
+  }
+
+  .cart-has-items svg {
+    animation: cart-jiggle 2.5s ease-in-out infinite;
+    transform-origin: center top;
+  }
+
   /* Mobile Toggle */
   .new-header__mobile-toggle {
     display: block;
@@ -471,7 +486,7 @@
     <div class="new-header__right">
       
       <!-- Cart Icon -->
-      <a href="{{ routes.cart_url }}" class="new-header__cart-icon link focus-inset" id="cart-icon-bubble">
+      <a href="{{ routes.cart_url }}" class="new-header__cart-icon link focus-inset {% if cart != empty %}cart-has-items{% endif %}" id="cart-icon-bubble">
         <!-- Shopping Bag Icon -->
         <svg class="icon icon-cart" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
