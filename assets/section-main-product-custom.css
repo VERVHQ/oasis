@@ -257,7 +257,7 @@
 /* Live Viewer Count */
 .product-custom__viewer-count {
   margin-top: 15px;
-  font-size: 0.95rem;
+  font-size: 18px;
   color: #666;
   display: flex;
   align-items: center;
@@ -444,13 +444,6 @@
   color: #2ecc71;
   font-weight: 600;
   font-size: 18px;
-}
-
-/* Green dot */
-border-radius: 50%;
-display: inline-block;
-box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
-animation: pulse-dot 2s infinite;
 }
 
 @keyframes pulse-dot {

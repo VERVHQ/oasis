@@ -6,8 +6,14 @@
     
     <product-tabs>
       <div class="product-tabs__nav">
+        {%- if section.settings.show_description_tab -%}
+          <button class="product-tabs__btn active" 
+                  data-target-id="tab-{{ section.id }}-description">
+            {{ section.settings.description_tab_heading | default: 'Description' }}
+          </button>
+        {%- endif -%}
         {% for block in section.blocks %}
-          <button class="product-tabs__btn {% if forloop.first %}active{% endif %}" 
+          <button class="product-tabs__btn {% if forloop.first and section.settings.show_description_tab == false %}active{% endif %}" 
                   data-target-id="tab-{{ section.id }}-{{ block.id }}">
             {{ block.settings.heading | escape }}
           </button>
@@ -15,9 +21,17 @@
       </div>
 
       <div class="product-tabs__content-wrapper">
+        {%- if section.settings.show_description_tab -%}
+          <div id="tab-{{ section.id }}-description" 
+               class="product-tabs__pane active">
+            <div class="rte">
+              {{ product.description }}
+            </div>
+          </div>
+        {%- endif -%}
         {% for block in section.blocks %}
           <div id="tab-{{ section.id }}-{{ block.id }}" 
-               class="product-tabs__pane {% if forloop.first %}active{% endif %}">
+               class="product-tabs__pane {% if forloop.first and section.settings.show_description_tab == false %}active{% endif %}">
             <div class="rte">
               {%- if block.settings.html_content != blank -%}
                 {{ block.settings.html_content }}
@@ -40,6 +54,23 @@
   "class": "section",
   "settings": [
      {
+      "type": "header",
+      "content": "Description Tab"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description_tab",
+      "label": "Show Description Tab",
+      "default": true,
+      "info": "Auto-fetches product description. This will always be the first tab."
+    },
+    {
+      "type": "text",
+      "id": "description_tab_heading",
+      "label": "Description Tab Heading",
+      "default": "Description"
+    },
+    {
       "type": "header",
       "content": "Section Padding"
     },
