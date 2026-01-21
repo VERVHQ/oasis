@@ -576,6 +576,11 @@
    CUSTOM PRODUCT CARD DESIGN (Blog UI Style)
    ========================================= */
 
+/* 0. Force Left Alignment via CSS Variable Override */
+.product-card-wrapper {
+  --text-alignment: left !important;
+}
+
 /* 1. Card Container & Depth */
 .product-card-wrapper .card {
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
@@ -618,16 +623,33 @@
 .product-card-wrapper .card__information {
   padding: 0 !important;
   text-align: left !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.product-card-wrapper .card-information {
+  text-align: left !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
 }
 
 /* 4. Typography Alignment */
-.product-card-wrapper .card__heading {
+.product-card-wrapper .card__heading,
+.product-card-wrapper .card__heading a {
   font-size: 2.2rem;
   /* 2x Larger Title */
   font-weight: 700;
-  text-align: left;
+  text-align: left !important;
   margin-bottom: 8px;
   line-height: 1.2;
+}
+
+.product-card-wrapper .rating,
+.product-card-wrapper .card__information>.caption {
+  text-align: left !important;
+  justify-content: flex-start !important;
 }
 
 .product-card-wrapper .price {
@@ -635,6 +657,7 @@
   /* Align price left */
   align-items: flex-start !important;
   text-align: left !important;
+  margin: 0 !important;
 }
 
 .product-card-wrapper .price__container {
