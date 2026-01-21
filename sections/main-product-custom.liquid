@@ -78,12 +78,10 @@
                  <span style="color: #FFD700;">★★★★★</span> <span style="font-size: 0.9em; color:#666;">({{ 'rand' | date: "%N" | modulo: 50 | plus: 10 }} reviews)</span>
               </div>
 
-            {%- when 'short_description' -%}
-              {%- if block.settings.text != blank -%}
-                <div class="product-custom__description rte" {{ block.shopify_attributes }}>
-                  {{ block.settings.text }}
-                </div>
-              {%- endif -%}
+            {%- when 'short_summary' -%}
+              <div class="product-custom__short-summary" {{ block.shopify_attributes }}>
+                {{ product.description | strip_html | truncatewords: 30 }}
+              </div>
 
             {%- when 'buy_buttons' -%}
               <div class="product-custom__actions" {{ block.shopify_attributes }}>
@@ -231,17 +229,9 @@
       "limit": 1
     },
     {
-      "type": "short_description",
-      "name": "Short Description",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Short Summary",
-          "default": "<p>Brief product summary.</p>"
-        }
-      ]
+      "type": "short_summary",
+      "name": "Auto Short Summary",
+      "limit": 1
     },
     {
       "type": "buy_buttons",

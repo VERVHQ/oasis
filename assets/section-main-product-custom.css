@@ -140,11 +140,12 @@
   margin: 0.5rem 0;
 }
 
-.product-custom__description {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  opacity: 0.9;
-  margin-bottom: 1rem;
+.product-custom__short-summary {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #666;
+  /* Grey */
+  margin-bottom: 0.5rem;
 }
 
 /* Quantity & Buttons */
