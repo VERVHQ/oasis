@@ -28,13 +28,12 @@
   
   <div class="new-blog-ui__header">
     <div class="new-blog-ui__filters">
-      <span class="new-blog-ui__label">Filters</span>
+      <span class="new-blog-ui__label">Sort By</span>
       <div class="new-blog-ui__select-wrapper">
-        <select class="new-blog-ui__select" onchange="location.href=this.value">
-          <option value="{{ collection.url }}">All Products</option>
-          {%- for tag in collection.all_tags -%}
-            <option value="{{ collection.url }}/{{ tag | handle }}" {% if current_tags contains tag %}selected{% endif %}>
-              {{ tag }}
+        <select id="SortBy" class="new-blog-ui__select">
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value | escape }}" {% if option.value == collection.sort_by %}selected="selected"{% endif %}>
+              {{ option.name | escape }}
             </option>
           {%- endfor -%}
         </select>
@@ -43,6 +42,15 @@
         </svg>
       </div>
     </div>
+
+    <script>
+      document.getElementById('SortBy').addEventListener('change', function(e) {
+        var value = e.target.value;
+        var url = new URL(window.location.href);
+        url.searchParams.set('sort_by', value);
+        window.location.href = url.href;
+      });
+    </script>
 
     <div class="new-blog-ui__search">
       <form action="{{ routes.search_url }}" method="get" role="search">
