@@ -56,7 +56,7 @@
           "type": "card",
           "settings": {
             "svg_code": "",
-            "image_icon": "shopify://shop_images/leaf.png",
+            "image_icon": "shopify://shop_images/leaf_1.png",
             "text": "Full Spectrum Healthy Growth"
           }
         },
@@ -71,7 +71,8 @@
         "card_LAMWx3": {
           "type": "card",
           "settings": {
-            "svg_code": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z\"></path></svg>",
+            "svg_code": "",
+            "image_icon": "shopify://shop_images/screw-driver_1.png",
             "text": "Easy Installation Everything Included"
           }
         }
@@ -86,7 +87,7 @@
         "bg_color": "#272727",
         "text_color": "#ffffff",
         "icon_color": "#e7c17d",
-        "card_bg_color": "#595959",
+        "card_bg_color": "#272727",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -284,6 +285,53 @@
         "margin_bottom": 0
       }
     },
+    "rich_text_ayBQ7i": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XFdgqh": {
+          "type": "heading",
+          "settings": {
+            "heading": "From Withering to Thriving",
+            "heading_size": "h1"
+          }
+        },
+        "text_PhFT8D": {
+          "type": "text",
+          "settings": {
+            "text": "<p>See how our full-spectrum grow lights mimic natural sunlight to restore vitality in low-light environments.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XFdgqh",
+        "text_PhFT8D"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "before_after_pWTiJ6": {
+      "type": "before-after",
+      "name": "Before/After Comparison",
+      "settings": {
+        "image_1": "shopify://shop_images/as.jpg",
+        "image_2": "shopify://shop_images/Eat_Fresh_Everyday_01.png",
+        "label_1": "Before",
+        "label_2": "After",
+        "section_height": 600,
+        "border_radius": 24,
+        "color_text": "#ffffff",
+        "color_handle": "#ffffff",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "blog_bento_Xypbir": {
       "type": "blog-bento",
       "blocks": {
@@ -363,53 +411,6 @@
         "margin_bottom": 0
       }
     },
-    "rich_text_ayBQ7i": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_XFdgqh": {
-          "type": "heading",
-          "settings": {
-            "heading": "From Withering to Thriving",
-            "heading_size": "h1"
-          }
-        },
-        "text_PhFT8D": {
-          "type": "text",
-          "settings": {
-            "text": "<p>See how our full-spectrum grow lights mimic natural sunlight to restore vitality in low-light environments.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading_XFdgqh",
-        "text_PhFT8D"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
-    "before_after_pWTiJ6": {
-      "type": "before-after",
-      "name": "Before/After Comparison",
-      "settings": {
-        "image_1": "shopify://shop_images/as.jpg",
-        "image_2": "shopify://shop_images/Eat_Fresh_Everyday_01.png",
-        "label_1": "Before",
-        "label_2": "After",
-        "section_height": 600,
-        "border_radius": 24,
-        "color_text": "#ffffff",
-        "color_handle": "#ffffff",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "faq_section_7KJTPj": {
       "type": "faq-section",
       "blocks": {
@@ -483,9 +484,9 @@
     "loop_ticker_Y3Letz",
     "about_oasis_aEKGMK",
     "review_cards_7abc8Y",
-    "blog_bento_Xypbir",
     "rich_text_ayBQ7i",
     "before_after_pWTiJ6",
+    "blog_bento_Xypbir",
     "faq_section_7KJTPj"
   ]
 }
