@@ -162,6 +162,21 @@
                 {% endif %}
               </div>
 
+            {%- when 'viewer_count' -%}
+              <div class="product-custom__viewer-count-wrapper" {{ block.shopify_attributes }}>
+                <live-viewer-count data-min="{{ block.settings.min_viewers }}" 
+                                   data-max="{{ block.settings.max_viewers }}" 
+                                   data-interval="{{ block.settings.update_interval }}">
+                   <div class="product-custom__viewer-count">
+                      <span class="viewer-count__icon"></span>
+                      <span>
+                        <span class="viewer-count">{{ block.settings.min_viewers | plus: 5 }}</span> 
+                        {{ block.settings.text }}
+                      </span>
+                   </div>
+                </live-viewer-count>
+              </div>
+
           {%- endcase -%}
         {%- endfor -%}
       </div>
