@@ -29,7 +29,8 @@
 .product-custom__media-gallery {
   display: flex;
   gap: 20px;
-  align-items: flex-start;
+  align-items: stretch;
+  /* Align to match heights */
   position: relative;
   /* For gradient overlay */
 }
@@ -40,15 +41,12 @@
   gap: 10px;
   width: 80px;
   flex-shrink: 0;
-  max-height: 500px;
   overflow-y: auto;
   /* Hide scrollbar for cleaner look */
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
-  padding-bottom: 30px;
-  /* Space for gradient */
   position: relative;
 }
 
