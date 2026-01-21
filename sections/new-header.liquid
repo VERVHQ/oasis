@@ -225,13 +225,20 @@
     position: relative;
     width: 44px;
     height: 44px;
-    margin-right: -10px; /* offset padding */
+    margin-right: -5px; 
+  }
+  
+  /* Right side wrapper to keep Cart and Mobile Toggle together */
+  .new-header__right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
   }
 
   .new-header__cart-icon svg {
     width: 24px;
     height: 24px;
-    fill: none;
+    fill: none; /* Ensure fill is none for stroke to work if using stroke icon, or fill if fill icon */
   }
   
   .cart-count-bubble {
@@ -465,22 +472,34 @@
         <line x1="3" y1="6" x2="21" y2="6"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
-    <!-- Cart Icon -->
-    <a href="{{ routes.cart_url }}" class="new-header__cart-icon header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-      <svg class="icon icon-cart" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
-        <path fill="currentColor" fill-rule="evenodd" d="M20.5 6.5a4.75 4.75 0 00-4.75 4.75v.56h-3.141a4.75 4.75 0 00-4.75 4.75v6.054a22.998 22.998 0 1013.353 30.138 23.003 23.003 0 00.999-5.187V22a4 4 0 00-3.999-4h-3.056v-.69A4.75 4.75 0 0020.5 6.5zm-2.75 4.75a2.75 2.75 0 012.75-2.75 2.75 2.75 0 012.75 2.75v.56h-5.5v-.56zM15 20v-2a2 2 0 012-2h6a2 2 0 012 2v2a2 2 0 012 2v2h-12v-2a2 2 0 010 0z"/>
-      </svg>
-      <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-      {%- if cart != empty -%}
-        <div class="cart-count-bubble">
-          {%- if cart.item_count < 100 -%}
-            <span aria-hidden="true">{{ cart.item_count }}</span>
-          {%- endif -%}
-          <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-        </div>
-      {%- endif -%}
-    </a>
+    <!-- Right Side Actions (Cart + Mobile Toggle) -->
+    <div class="new-header__right">
+      
+      <!-- Cart Icon -->
+      <a href="{{ routes.cart_url }}" class="new-header__cart-icon header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+        <svg class="icon icon-cart" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+          <path fill="currentColor" fill-rule="evenodd" d="M20.5 6.5a4.75 4.75 0 00-4.75 4.75v.56h-3.141a4.75 4.75 0 00-4.75 4.75v6.054a22.998 22.998 0 1013.353 30.138 23.003 23.003 0 00.999-5.187V22a4 4 0 00-3.999-4h-3.056v-.69A4.75 4.75 0 0020.5 6.5zm-2.75 4.75a2.75 2.75 0 012.75-2.75 2.75 2.75 0 012.75 2.75v.56h-5.5v-.56zM15 20v-2a2 2 0 012-2h6a2 2 0 012 2v2a2 2 0 012 2v2h-12v-2a2 2 0 010 0z"/>
+        </svg>
+        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+        {%- if cart != empty -%}
+          <div class="cart-count-bubble">
+            {%- if cart.item_count < 100 -%}
+              <span aria-hidden="true">{{ cart.item_count }}</span>
+            {%- endif -%}
+            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
+        {%- endif -%}
+      </a>
 
+      <!-- Mobile Toggle -->
+      <button class="new-header__mobile-toggle" aria-label="Open Menu" id="MobileToggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
 
