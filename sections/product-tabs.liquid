@@ -19,7 +19,7 @@
           <div id="tab-{{ section.id }}-{{ block.id }}" 
                class="product-tabs__pane {% if forloop.first %}active{% endif %}">
             <div class="rte">
-              {%- if block.type == 'html_tab' -%}
+              {%- if block.settings.html_content != blank -%}
                 {{ block.settings.html_content }}
               {%- else -%}
                 {{ block.settings.content }}
@@ -76,10 +76,11 @@
           "default": "Specifications"
         },
         {
-          "type": "richtext",
+          "type": "html",
           "id": "content",
-          "label": "Tab Content",
-          "default": "<p>Add content here</p>"
+          "label": "Tab Content (HTML)",
+          "default": "<p>Add content here</p>",
+          "info": "Supports custom HTML and images."
         }
       ]
     },
