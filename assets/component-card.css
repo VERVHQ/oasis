@@ -680,16 +680,28 @@
 }
 
 /* 6. Quick Add Button Rounded */
-.product-card-wrapper .quick-add__submit {
+.product-card-wrapper .quick-add__submit.button {
   border-radius: 50px !important;
   /* Rounded Pill Button */
+  background-color: #000000 !important;
+  /* Black Brand Fill */
+  color: #ffffff !important;
+  /* White Text */
+  border: none !important;
+  /* Remove Secondary Border */
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.5px;
   font-size: 0.9rem;
   transition: all 0.3s ease;
+  min-height: 4.5rem;
+  /* Ensure standard button height */
 }
 
-.product-card-wrapper .quick-add__submit:hover {
+.product-card-wrapper .quick-add__submit.button:hover {
   transform: scale(1.02);
+  background-color: #333333 !important;
+  /* Dark Grey Hover */
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
