@@ -5,6 +5,10 @@
     --btn-bg-color: {{ section.settings.btn_bg_color }};
     --btn-text-color: {{ section.settings.btn_text_color }};
   }
+  .section-{{ section.id }}-padding .product-custom__short-summary {
+    font-size: {{ section.settings.summary_font_size }}px;
+    color: {{ section.settings.summary_font_color }};
+  }
 {%- endstyle -%}
 
 {{ 'section-main-product-custom.css' | asset_url | stylesheet_tag }}
@@ -207,6 +211,26 @@
       "id": "btn_text_color",
       "label": "Button Text",
       "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Short Summary Style"
+    },
+    {
+      "type": "range",
+      "id": "summary_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "summary_font_color",
+      "label": "Font Color",
+      "default": "#666666"
     }
   ],
   "blocks": [
