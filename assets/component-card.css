@@ -583,17 +583,16 @@
   background: #ffffff;
   border-radius: 20px;
   /* Heavy Border Radius */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  /* Soft, subtle drop shadow */
+  box-shadow: none !important;
+  /* Remove Drop Shadow */
   overflow: hidden;
   /* Ensure content obeys radius */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .product-card-wrapper:hover .card {
   transform: translateY(-5px);
   /* Lift effect on hover */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 /* 2. Image Area */
@@ -623,10 +622,12 @@
 
 /* 4. Typography Alignment */
 .product-card-wrapper .card__heading {
-  font-size: 1.1rem;
+  font-size: 2.2rem;
+  /* 2x Larger Title */
   font-weight: 700;
   text-align: left;
   margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .product-card-wrapper .price {
