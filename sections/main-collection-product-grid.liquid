@@ -37,7 +37,7 @@
 
   /* Custom Grid Spacing & Alignment */
   #product-grid[data-id="{{ section.id }}"] {
-    justify-content: flex-start !important; /* Left align cards */
+    justify-content: flex-start !important; /* Left align cards on desktop */
     gap: 40px !important; /* Increase gap between cards */
     row-gap: 50px !important;
   }
@@ -46,6 +46,29 @@
     max-width: 1400px !important;
     padding-left: 20px !important;
     padding-right: 20px !important;
+  }
+
+  /* Mobile View Fixes - Center align and bigger cards */
+  @media screen and (max-width: 749px) {
+    #product-grid[data-id="{{ section.id }}"] {
+      justify-content: center !important; /* Center align cards on mobile */
+      gap: 20px !important;
+      row-gap: 30px !important;
+    }
+
+    #product-grid[data-id="{{ section.id }}"] .grid__item {
+      flex: 0 0 85% !important; /* Make cards much bigger - almost full width */
+      max-width: 85% !important;
+    }
+
+    #product-grid[data-id="{{ section.id }}"] .card-wrapper {
+      width: 100% !important;
+    }
+
+    .section-{{ section.id }}-padding .page-width {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+    }
   }
 {%- endstyle -%}
 
